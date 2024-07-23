@@ -22,7 +22,19 @@ export default async function Home() {
   if (!things.length){
       header = 'Save some things to see your data'}
   if (!userData.user){
-      header = 'Login to see your data'}
+      header = 'Login to add data';
+      return (
+        <main className="bg-gray-800 min-h-screen flex items-center justify-center text-center text-white ">
+          <div>
+            <h1 className="text-4xl font-bold mb-4 -mt-20">{header}</h1>
+            <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-8"
+                > 
+                <a href="/login"> Login/Signup</a>
+            </button>
+          </div>
+        </main>
+    )}
 
   for (var key in Object.keys(things)){
     things[key]['dateobj'] = new Date(things[key].created_at)
