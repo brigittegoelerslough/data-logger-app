@@ -9,9 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.4.0",
+    "@supabase/supabase-js": "^2.44.4",
+    "chart.js": "^4.4.3",
+    "next": "14.2.5",
+    "plotly.js": "^2.33.0",
+    "plotly.js-dist": "^2.33.0",
     "react": "^18",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
-    "next": "14.2.5"
+    "react-plotly.js": "^2.6.0"
   },
   "devDependencies": {
     "postcss": "^8",
