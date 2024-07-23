@@ -2,19 +2,28 @@
 
 import { Chart as ChartJS, defaults } from "chart.js/auto"
 import {Bar, Doughnut, Line } from "react-chartjs-2"
-import revenueData from "./ChartData/revenueData.json"
 
-export default function BarChart3(things){
+export default function BarChartMonthSum(things){
 
    const finalResult = things.things
 
-   const last_week_keys = Object.keys(finalResult).slice(-7)
-   const lastWeek = {}
-   for (const key in last_week_keys) {
-    const day = last_week_keys[key]
-    lastWeek[day] = finalResult[day]
+   const now = new Date();
+   const month = now.toISOString().substring(5,7);
+   if (month === '02'){
+      var num_days = 28
+   } else if (month === '02' || month === '02' || month === '02' || month === '02'){
+      var num_days = 30
+   }  else {
+      var num_days = 31
    }
-   console.log(lastWeek)
+
+   const last_month_keys = Object.keys(finalResult).slice(-num_days)
+   const lastMonth = {}
+   for (const key in last_month_keys) {
+    const day = last_month_keys[key]
+    lastMonth[day] = finalResult[day]
+   }
+   // console.log(lastWeek)
 
    return (
       <div>
@@ -22,12 +31,12 @@ export default function BarChart3(things){
          <Bar 
             data={{
                // labels: revenueData.map((data) => data.label),
-               labels: Object.keys(lastWeek),
+               labels: Object.keys(lastMonth),
                datasets: [
                   {
                      label: "Ammount",
                      // data: revenueData.map((data) => data.revenue),
-                     data: Object.values(lastWeek),
+                     data: Object.values(lastMonth),
                      backgroundColor: "#13eda1",
                      borderColor: "#13eda1",
                   },

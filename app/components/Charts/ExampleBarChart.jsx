@@ -2,8 +2,7 @@
 
 import { Chart as ChartJS, defaults } from "chart.js/auto"
 import {Bar, Doughnut, Line } from "react-chartjs-2"
-import revenueData from "./ChartData/revenueData.json"
-
+import revenueData from "./revenueData.json"
 
 // defaults.maintainAspectRatio = false;
 // defaults.responsive = true;
@@ -13,19 +12,25 @@ import revenueData from "./ChartData/revenueData.json"
 // defaults.plugins.title.font.size = 20;
 // defaults.plugins.title.color = "white";
 
-export default function BarChart4(){
+export default function BarChartEx(things){
    return (
       <div>
        <div>
          <Bar 
             data={{
-               // labels: revenueData.map((data) => data.label),
+               labels: revenueData.map((data) => data.label),
                datasets: [
                   {
-                     label: "Amount",
-                     data: [],
-                     backgroundColor: 'rgba(0, 0, 0, 0)',
-                     borderColor: 'rgba(0, 0, 0, 0)',
+                     label: "Revenue",
+                     data: revenueData.map((data) => data.revenue),
+                     backgroundColor: "#064FF0",
+                     borderColor: "#064FF0",
+                  },
+                  {
+                     label: "Cost",
+                     data: revenueData.map((data) => data.cost),
+                     backgroundColor: "#FF3030",
+                     borderColor: "#FF3030",
                   },
                ],
             }}

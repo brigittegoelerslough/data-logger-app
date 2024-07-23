@@ -2,11 +2,17 @@
 
 import { Chart as ChartJS, defaults } from "chart.js/auto"
 import {Bar, Doughnut, Line } from "react-chartjs-2"
-import revenueData from "./ChartData/revenueData.json"
 
-export default function BarChart2(things){
+export default function BarChartWeekSum(things){
 
    const finalResult = things.things
+
+   const last_week_keys = Object.keys(finalResult).slice(-7)
+   const lastWeek = {}
+   for (const key in last_week_keys) {
+    const day = last_week_keys[key]
+    lastWeek[day] = finalResult[day]
+   }
 
    return (
       <div>
@@ -14,12 +20,12 @@ export default function BarChart2(things){
          <Bar 
             data={{
                // labels: revenueData.map((data) => data.label),
-               labels: Object.keys(finalResult),
+               labels: Object.keys(lastWeek),
                datasets: [
                   {
                      label: "Ammount",
                      // data: revenueData.map((data) => data.revenue),
-                     data: Object.values(finalResult),
+                     data: Object.values(lastWeek),
                      backgroundColor: "#13eda1",
                      borderColor: "#13eda1",
                   },

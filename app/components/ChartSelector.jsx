@@ -2,23 +2,24 @@
 
 import { Chart as ChartJS, defaults } from "chart.js/auto"
 import {Bar, Doughnut, Line } from "react-chartjs-2"
-import revenueData from "./ChartData/revenueData.json"
+import revenueData from "./Charts/revenueData.json"
 // import chooseGraph from "../saved-data/actions";
 import { useEffect, useRef, useState } from "react";
-import BarChart from "./BarChart";
-import BarChart2 from "./BarChart2";
-import BarChart3 from "./BarChart3";
-import BarChart4 from "./BarChart4";
+import BarChart from "./Charts/ExampleBarChart";
+import BarChartAllSum from "./Charts/Sum/BarChartAllSum";
+import BarChartWeekSum from "./Charts/Sum/BarChartWeekSum";
+import BarChartMonthSum from "./Charts/Sum/BarChartMonthSum";
+import BarChartAllBreakdown from "./Charts/Breakdown/BarChartAllBreakdown";
+import BarChartMonthBreakdown from "./Charts/Breakdown/BarChartMonthBreakdown";
+import BarChartWeekBreakdown from "./Charts/Breakdown/BarChartWeekBreakdown";
 
 export default function ChartSelector(things){
 
-    if (things.things.length == 0) {
-        return
-    }
+    if (things.things.length == 0) {return};
 
     const thingsData = things.things
     const days = Object.groupBy(thingsData, ({created_date}) => created_date)
- 
+    
     const newData = {}
     for (const day in days){
        var counter=0
@@ -70,13 +71,15 @@ export default function ChartSelector(things){
           }
     });
 
+    const timeRef = useRef()
+    const breakdownRef = useRef()
+    const graphAllSum = useRef()
+    const graphWeekSum = useRef()
+    const graphMonthSum = useRef()
+    const graphAllBreakdown = useRef()
+    const graphMonthBreakdown = useRef()
+    const graphWeekBreakdown = useRef()
 
-
-    const myElementRef2 = useRef()
-    const graph1 = useRef()
-    const graph2 = useRef()
-    const graph3 = useRef()
-    const graph4 = useRef()
 
    return (
     <div className="grid grid-cols-5 gap-24 m-12">
@@ -84,63 +87,165 @@ export default function ChartSelector(things){
         <h1 className="text-2xl font-bold mb-4">
             Time Period
         </h1>
-        <select id='purpose' className="text-black col-span-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            ref={myElementRef2}
+
+        <select className="text-black col-span-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            ref={breakdownRef}
             onChange={async () => {
-                const ammt = myElementRef2.current.value;
+                const timescale = timeRef.current.value;
+                const breakdown = breakdownRef.current.value;
                 // console.log(ammt)
-                if(ammt === "1"){
-                    graph1.current.style.display = 'block';
-                    graph2.current.style.display = 'none';
-                    graph3.current.style.display = 'none';
-                    graph4.current.style.display = 'none';
-                } else if(ammt === "2"){
-                    graph1.current.style.display = 'none';
-                    graph2.current.style.display = 'block';
-                    graph3.current.style.display = 'none';
-                    graph4.current.style.display = 'none';
-                } else if(ammt === "3"){
-                    graph1.current.style.display = 'none';
-                    graph2.current.style.display = 'none';
-                    graph3.current.style.display = 'block';
-                    graph4.current.style.display = 'none';
-                } else if(ammt === "4"){
-                    graph1.current.style.display = 'none';
-                    graph2.current.style.display = 'none';
-                    graph3.current.style.display = 'none';
-                    graph4.current.style.display = 'block';
+                if(timescale === "All" && breakdown == "Sum"){
+                    graphAllSum.current.style.display = 'block';
+                    graphMonthSum.current.style.display = 'none';
+                    graphWeekSum.current.style.display = 'none';
+                    graphAllBreakdown.current.style.display = 'none';
+                    graphMonthBreakdown.current.style.display = 'none';
+                    graphWeekBreakdown.current.style.display = 'none';
+                } else if(timescale === "All" && breakdown == "Breakdown"){
+                    graphAllSum.current.style.display = 'none';
+                    graphMonthSum.current.style.display = 'none';
+                    graphWeekSum.current.style.display = 'none';
+                    graphAllBreakdown.current.style.display = 'block';
+                    graphMonthBreakdown.current.style.display = 'none';
+                    graphWeekBreakdown.current.style.display = 'none';
+                } else if(timescale === "Month" && breakdown == "Sum"){
+                    graphAllSum.current.style.display = 'none';
+                    graphMonthSum.current.style.display = 'block';
+                    graphWeekSum.current.style.display = 'none';
+                    graphAllBreakdown.current.style.display = 'none';
+                    graphMonthBreakdown.current.style.display = 'none';
+                    graphWeekBreakdown.current.style.display = 'none';
+                } else if(timescale === "Month" && breakdown == "Breakdown"){
+                    graphAllSum.current.style.display = 'none';
+                    graphMonthSum.current.style.display = 'none';
+                    graphWeekSum.current.style.display = 'none';
+                    graphAllBreakdown.current.style.display = 'none';
+                    graphMonthBreakdown.current.style.display = 'block';
+                    graphWeekBreakdown.current.style.display = 'none';
+                } else if(timescale === "Week" && breakdown == "Sum"){
+                    graphAllSum.current.style.display = 'none';
+                    graphMonthSum.current.style.display = 'none';
+                    graphWeekSum.current.style.display = 'block';
+                    graphAllBreakdown.current.style.display = 'none';
+                    graphMonthBreakdown.current.style.display = 'none';
+                    graphWeekBreakdown.current.style.display = 'none';
+                } else if(timescale === "Week" && breakdown == "Breakdown"){
+                    graphAllSum.current.style.display = 'none';
+                    graphMonthSum.current.style.display = 'none';
+                    graphWeekSum.current.style.display = 'none';
+                    graphAllBreakdown.current.style.display = 'none';
+                    graphMonthBreakdown.current.style.display = 'none';
+                    graphWeekBreakdown.current.style.display = 'block';
                 } else {
-                    graph1.current.style.display = 'none';
-                    graph2.current.style.display = 'none';
-                    graph3.current.style.display = 'none';
-                    graph4.current.style.display = 'block';
+                    graphAllSum.current.style.display = 'block';
+                    graphMonthSum.current.style.display = 'none';
+                    graphWeekSum.current.style.display = 'none';
+                    graphAllBreakdown.current.style.display = 'none';
+                    graphMonthBreakdown.current.style.display = 'none';
+                    graphWeekBreakdown.current.style.display = 'none';
                 }
                 }}> 
-            <option value="2">All Time</option>
-            {/* <option value="1">Double Bar</option> */}
-            <option value="4">Last Month</option>
-            <option value="3">Last Week</option>
+            <option value="Sum">Sum</option>
+            <option value="Breakdown">Breakdown</option>
+            {/* <option value="4"></option> */}
+        </select>
+        <br></br>
+
+        <select className="text-black col-span-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            ref={timeRef}
+            onChange={async () => {
+                const timescale = timeRef.current.value;
+                const breakdown = breakdownRef.current.value;
+                // console.log(ammt)
+                if(timescale === "All" && breakdown == "Sum"){
+                    graphAllSum.current.style.display = 'block';
+                    graphMonthSum.current.style.display = 'none';
+                    graphWeekSum.current.style.display = 'none';
+                    graphAllBreakdown.current.style.display = 'none';
+                    graphMonthBreakdown.current.style.display = 'none';
+                    graphWeekBreakdown.current.style.display = 'none';
+                } else if(timescale === "All" && breakdown == "Breakdown"){
+                    graphAllSum.current.style.display = 'none';
+                    graphMonthSum.current.style.display = 'none';
+                    graphWeekSum.current.style.display = 'none';
+                    graphAllBreakdown.current.style.display = 'block';
+                    graphMonthBreakdown.current.style.display = 'none';
+                    graphWeekBreakdown.current.style.display = 'none';
+                } else if(timescale === "Month" && breakdown == "Sum"){
+                    graphAllSum.current.style.display = 'none';
+                    graphMonthSum.current.style.display = 'block';
+                    graphWeekSum.current.style.display = 'none';
+                    graphAllBreakdown.current.style.display = 'none';
+                    graphMonthBreakdown.current.style.display = 'none';
+                    graphWeekBreakdown.current.style.display = 'none';
+                } else if(timescale === "Month" && breakdown == "Breakdown"){
+                    graphAllSum.current.style.display = 'none';
+                    graphMonthSum.current.style.display = 'none';
+                    graphWeekSum.current.style.display = 'none';
+                    graphAllBreakdown.current.style.display = 'none';
+                    graphMonthBreakdown.current.style.display = 'block';
+                    graphWeekBreakdown.current.style.display = 'none';
+                } else if(timescale === "Week" && breakdown == "Sum"){
+                    graphAllSum.current.style.display = 'none';
+                    graphMonthSum.current.style.display = 'none';
+                    graphWeekSum.current.style.display = 'block';
+                    graphAllBreakdown.current.style.display = 'none';
+                    graphMonthBreakdown.current.style.display = 'none';
+                    graphWeekBreakdown.current.style.display = 'none';
+                } else if(timescale === "Week" && breakdown == "Breakdown"){
+                    graphAllSum.current.style.display = 'none';
+                    graphMonthSum.current.style.display = 'none';
+                    graphWeekSum.current.style.display = 'none';
+                    graphAllBreakdown.current.style.display = 'none';
+                    graphMonthBreakdown.current.style.display = 'none';
+                    graphWeekBreakdown.current.style.display = 'block';
+                } else {
+                    graphAllSum.current.style.display = 'block';
+                    graphMonthSum.current.style.display = 'none';
+                    graphWeekSum.current.style.display = 'none';
+                    graphAllBreakdown.current.style.display = 'none';
+                    graphMonthBreakdown.current.style.display = 'none';
+                    graphWeekBreakdown.current.style.display = 'none';
+                }
+                }}> 
+            <option value="All">All Time</option>
+            <option value="Month">Last Month</option>
+            <option value="Week">Last Week</option>
+            {/* <option value="1">Brekadown by Amount</option> */}
             {/* <option value="4"></option> */}
         </select>
 
         </div>
 
-        <div style={{display:"none"}} ref={graph1} className="col-span-4">
-            <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
-            <BarChart things={finalResult}/>
+        {/* <div style={{display:"none"}} ref={graphAllBreakdown} className="col-span-4"> */}
+            {/* <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1> */}
+            {/* <BarChartEx things={finalResult}/> */}
+            {/* <BarChartBreakdown things={finalResult}/> */}
+        {/* </div> */}
+            <div style={{display:"block"}} ref={graphAllSum} className="col-span-4">
+                <h1 className="text-2xl font-bold mb-4" >Consumption Over All Time</h1>
+                <BarChartAllSum things={finalResult}/>
+            </div>
+            <div style={{display:"none"}} ref={graphWeekSum} className="col-span-4">
+                <h1 className="text-2xl font-bold mb-4" >Consumption Over The Last Week</h1>
+                <BarChartWeekSum things={finalResult}/>
+            </div>
+            <div style={{display:"none"}} ref={graphMonthSum} className="col-span-4">
+                <h1 className="text-2xl font-bold mb-4" >Consumption Over The Last Month</h1>
+                <BarChartMonthSum things={finalResult}/>
+            </div>
+            <div style={{display:"none"}} ref={graphAllBreakdown} className="col-span-4">
+                <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
+                <BarChartAllBreakdown things={thingsData} />
+            </div>
+            <div style={{display:"none"}} ref={graphMonthBreakdown} className="col-span-4">
+                <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
+                <BarChartMonthBreakdown things={thingsData} />
+            </div>    
+            <div style={{display:"none"}} ref={graphWeekBreakdown} className="col-span-4">
+                <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
+                <BarChartWeekBreakdown things={thingsData} />
+            </div>                
         </div>
-        <div style={{display:"block"}} ref={graph2} className="col-span-4">
-            <h1 className="text-2xl font-bold mb-4" >Consumption Over All Time</h1>
-            <BarChart2 things={finalResult}/>
-        </div>
-        <div style={{display:"none"}} ref={graph3} className="col-span-4">
-            <h1 className="text-2xl font-bold mb-4" >Consumption Over The Last Week</h1>
-            <BarChart3 things={finalResult}/>
-        </div>
-        <div style={{display:"none"}} ref={graph4} className="col-span-4">
-            <h1 className="text-2xl font-bold mb-4" >Consumption Over The Last Month</h1>
-            <BarChart4 things={finalResult}/>
-        </div>
-    </div>
       )
    }

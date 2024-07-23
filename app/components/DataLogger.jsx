@@ -84,7 +84,6 @@ export default function DataLogger(user){
 
    var now = new Date();
    var minDate = now.toISOString().substring(0,10);
-   console.log(minDate)
 
    return (
        <div>

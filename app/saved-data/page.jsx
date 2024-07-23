@@ -1,5 +1,5 @@
-import BarChart from "../components/BarChart";
-import BarChart4 from "../components/BarChart5";
+import BarChart from "../components/Charts/ExampleBarChart";
+import BarChart4 from "../components/Charts/BarChartEmpty";
 import ChartSelector from "../components/ChartSelector";
 import DeleteThingButton from "../components/DeleteThingButton";
 import { createClient } from "../utils/supabase/server";
