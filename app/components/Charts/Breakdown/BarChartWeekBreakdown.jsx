@@ -3,6 +3,18 @@
 import { Chart as ChartJS, defaults } from "chart.js/auto"
 import {Bar, Doughnut, Line } from "react-chartjs-2"
 
+const config = {
+    options: {
+      scales: {
+        y: {
+          grid: {
+            color: '#ffffff'
+            },
+          },
+        }
+      }
+    };
+
 export default function BarChartWeekBreakdown(things){
 
    var thingsData = things.things
@@ -71,9 +83,15 @@ export default function BarChartWeekBreakdown(things){
       for (const key in finalResult2){
         var obj = {};
         obj['date'] = key;
+        var total = 0;
         for (const key2 in finalResult2[key]) {
-            obj[key2] = Object.keys(finalResult2[key][key2]).length
+            const len = Object.keys(finalResult2[key][key2]).length
+            const mult = parseInt(key2) * len
+            obj[key2] = mult
+            total += mult;
         }
+        obj['total'] = total;
+        total = 0;
         const pos_amounts = ['1', '2', '3', '4', '5']
         for (const i of pos_amounts) {
             if (!Object.keys(obj).includes(i)){
@@ -128,7 +146,14 @@ export default function BarChartWeekBreakdown(things){
                     data: finalResult3.map((data) => data['5']),
                     backgroundColor: "#9121ed",
                     borderColor: "#9121ed",
-                 },                                         
+                 },    
+                //  {
+                //     label: "total",
+                //     // data: revenueData.map((data) => data.revenue),
+                //     data: finalResult3.map((data) => data['total']),
+                //     backgroundColor: "#000000",
+                //     borderColor: "#ffffff",
+                //  },                                                           
                ],
             }}
             options={{

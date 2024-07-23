@@ -89,73 +89,15 @@ export default function ChartSelector(things){
         </h1>
 
         <select className="text-black col-span-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            ref={breakdownRef}
-            onChange={async () => {
-                const timescale = timeRef.current.value;
-                const breakdown = breakdownRef.current.value;
-                // console.log(ammt)
-                if(timescale === "All" && breakdown == "Sum"){
-                    graphAllSum.current.style.display = 'block';
-                    graphMonthSum.current.style.display = 'none';
-                    graphWeekSum.current.style.display = 'none';
-                    graphAllBreakdown.current.style.display = 'none';
-                    graphMonthBreakdown.current.style.display = 'none';
-                    graphWeekBreakdown.current.style.display = 'none';
-                } else if(timescale === "All" && breakdown == "Breakdown"){
-                    graphAllSum.current.style.display = 'none';
-                    graphMonthSum.current.style.display = 'none';
-                    graphWeekSum.current.style.display = 'none';
-                    graphAllBreakdown.current.style.display = 'block';
-                    graphMonthBreakdown.current.style.display = 'none';
-                    graphWeekBreakdown.current.style.display = 'none';
-                } else if(timescale === "Month" && breakdown == "Sum"){
-                    graphAllSum.current.style.display = 'none';
-                    graphMonthSum.current.style.display = 'block';
-                    graphWeekSum.current.style.display = 'none';
-                    graphAllBreakdown.current.style.display = 'none';
-                    graphMonthBreakdown.current.style.display = 'none';
-                    graphWeekBreakdown.current.style.display = 'none';
-                } else if(timescale === "Month" && breakdown == "Breakdown"){
-                    graphAllSum.current.style.display = 'none';
-                    graphMonthSum.current.style.display = 'none';
-                    graphWeekSum.current.style.display = 'none';
-                    graphAllBreakdown.current.style.display = 'none';
-                    graphMonthBreakdown.current.style.display = 'block';
-                    graphWeekBreakdown.current.style.display = 'none';
-                } else if(timescale === "Week" && breakdown == "Sum"){
-                    graphAllSum.current.style.display = 'none';
-                    graphMonthSum.current.style.display = 'none';
-                    graphWeekSum.current.style.display = 'block';
-                    graphAllBreakdown.current.style.display = 'none';
-                    graphMonthBreakdown.current.style.display = 'none';
-                    graphWeekBreakdown.current.style.display = 'none';
-                } else if(timescale === "Week" && breakdown == "Breakdown"){
-                    graphAllSum.current.style.display = 'none';
-                    graphMonthSum.current.style.display = 'none';
-                    graphWeekSum.current.style.display = 'none';
-                    graphAllBreakdown.current.style.display = 'none';
-                    graphMonthBreakdown.current.style.display = 'none';
-                    graphWeekBreakdown.current.style.display = 'block';
-                } else {
-                    graphAllSum.current.style.display = 'block';
-                    graphMonthSum.current.style.display = 'none';
-                    graphWeekSum.current.style.display = 'none';
-                    graphAllBreakdown.current.style.display = 'none';
-                    graphMonthBreakdown.current.style.display = 'none';
-                    graphWeekBreakdown.current.style.display = 'none';
-                }
-                }}> 
-            <option value="Sum">Sum</option>
-            <option value="Breakdown">Breakdown</option>
-            {/* <option value="4"></option> */}
-        </select>
-        <br></br>
-
-        <select className="text-black col-span-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             ref={timeRef}
             onChange={async () => {
                 const timescale = timeRef.current.value;
-                const breakdown = breakdownRef.current.value;
+                // const breakdown = breakdownRef.current.value;
+                if (breakdownRef.current.checked){
+                    var breakdown = 'Breakdown'
+                } else{
+                    var breakdown = 'Sum'
+                }
                 // console.log(ammt)
                 if(timescale === "All" && breakdown == "Sum"){
                     graphAllSum.current.style.display = 'block';
@@ -214,6 +156,80 @@ export default function ChartSelector(things){
             {/* <option value="1">Brekadown by Amount</option> */}
             {/* <option value="4"></option> */}
         </select>
+
+        <br></br> <br></br>
+
+        <div>
+            <label class="inline-flex items-center cursor-pointer">
+            <input 
+                type="checkbox" 
+                value="Breakdown" 
+                class="sr-only peer"
+                ref={breakdownRef}
+                onChange={async () => {
+                    const timescale = timeRef.current.value;
+                    if (breakdownRef.current.checked){
+                        var breakdown = 'Breakdown'
+                    } else{
+                        var breakdown = 'Sum'
+                    }
+
+                    if(timescale === "All" && breakdown == "Sum"){
+                        graphAllSum.current.style.display = 'block';
+                        graphMonthSum.current.style.display = 'none';
+                        graphWeekSum.current.style.display = 'none';
+                        graphAllBreakdown.current.style.display = 'none';
+                        graphMonthBreakdown.current.style.display = 'none';
+                        graphWeekBreakdown.current.style.display = 'none';
+                    } else if(timescale === "All" && breakdown == "Breakdown"){
+                        graphAllSum.current.style.display = 'none';
+                        graphMonthSum.current.style.display = 'none';
+                        graphWeekSum.current.style.display = 'none';
+                        graphAllBreakdown.current.style.display = 'block';
+                        graphMonthBreakdown.current.style.display = 'none';
+                        graphWeekBreakdown.current.style.display = 'none';
+                    } else if(timescale === "Month" && breakdown == "Sum"){
+                        graphAllSum.current.style.display = 'none';
+                        graphMonthSum.current.style.display = 'block';
+                        graphWeekSum.current.style.display = 'none';
+                        graphAllBreakdown.current.style.display = 'none';
+                        graphMonthBreakdown.current.style.display = 'none';
+                        graphWeekBreakdown.current.style.display = 'none';
+                    } else if(timescale === "Month" && breakdown == "Breakdown"){
+                        graphAllSum.current.style.display = 'none';
+                        graphMonthSum.current.style.display = 'none';
+                        graphWeekSum.current.style.display = 'none';
+                        graphAllBreakdown.current.style.display = 'none';
+                        graphMonthBreakdown.current.style.display = 'block';
+                        graphWeekBreakdown.current.style.display = 'none';
+                    } else if(timescale === "Week" && breakdown == "Sum"){
+                        graphAllSum.current.style.display = 'none';
+                        graphMonthSum.current.style.display = 'none';
+                        graphWeekSum.current.style.display = 'block';
+                        graphAllBreakdown.current.style.display = 'none';
+                        graphMonthBreakdown.current.style.display = 'none';
+                        graphWeekBreakdown.current.style.display = 'none';
+                    } else if(timescale === "Week" && breakdown == "Breakdown"){
+                        graphAllSum.current.style.display = 'none';
+                        graphMonthSum.current.style.display = 'none';
+                        graphWeekSum.current.style.display = 'none';
+                        graphAllBreakdown.current.style.display = 'none';
+                        graphMonthBreakdown.current.style.display = 'none';
+                        graphWeekBreakdown.current.style.display = 'block';
+                    } else {
+                        graphAllSum.current.style.display = 'block';
+                        graphMonthSum.current.style.display = 'none';
+                        graphWeekSum.current.style.display = 'none';
+                        graphAllBreakdown.current.style.display = 'none';
+                        graphMonthBreakdown.current.style.display = 'none';
+                        graphWeekBreakdown.current.style.display = 'none';
+                    }
+                    }}
+            />
+            <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+            <span class="ms-3 text-lg font-medium text-white">Breakdown By Amount</span>
+            </label>
+        </div>
 
         </div>
 
