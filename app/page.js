@@ -14,7 +14,7 @@ export default async function Home() {
         <h1 className="text-4xl font-bold mb-12 "> Tracker App </h1>
         <h1 className="text-2xl mb-16"> To log data for whatever you want to track, and to see graphs over time: </h1>
         <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-8"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2"
         > 
         <a href="/login"> Login/Signup</a>
         </button>
