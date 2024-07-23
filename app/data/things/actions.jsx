@@ -23,7 +23,9 @@ export async function saveThing(formData){
         //    {user_id: user.id, amount: ammt, created_at: new_time, created_date: date}
         ])
        if (error) throw error;
+       console.log('DONE SUCCESS')
        revalidatePath('/saved-data');
+       revalidatePath('/log-data');
        return data;
    } catch(error){
        throw error}}

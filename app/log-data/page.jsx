@@ -61,7 +61,11 @@ export default async function Home() {
   }
   things.sort((a,b) => b.dateobj - a.dateobj)
 
-  const halfway = Math.floor(things.length/2)+1
+  if (things.length % 2 == 1){
+    var halfway = Math.floor(things.length/2)+1
+  } else {
+    var halfway = things.length/2
+  }
   const first_keys = Object.keys(things).slice(0,halfway)
   var first_half = []
   for (const key in first_keys) {
@@ -76,10 +80,10 @@ export default async function Home() {
   }
 
   return (
-    <main className="bg-gray-800 min-h-screen flex items-center justify-center text-center text-white ">
+    <main className="bg-gray-800 min-h-screen flex items-top justify-center text-center text-white ">
       {/* <div className="grid grid-cols-4 gap-40"> */}
 
-      <div className="grid grid-cols-4 gap-10 ">
+      <div className="grid grid-cols-4 gap-10 mt-24">
 
         <div className="col-span-1"> 
           <DataLogger user={data.user} />

@@ -148,7 +148,7 @@ export default function DataLogger(user){
                     // await saveThing(ammt);
                     await saveThing(formData);
                     // console.log('after save')
-                    alert('Data Saved Successfully!')
+                    // alert('Data Saved Successfully!')
                    // TODO CHANGE TO TOAST MESSAGE
                    }}
                    >
