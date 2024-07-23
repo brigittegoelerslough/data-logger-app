@@ -12,7 +12,7 @@ export default async function SavedData() {
         if (error){
             console.error('Error fetching things:', error)}
         things = thingsData;}
-    let header = 'Saved Things';
+    let header = 'Saved Data';
     if (!things.length){
         header = 'Save some things to see your data'}
     if (!userData.user){
@@ -27,6 +27,7 @@ export default async function SavedData() {
         <main className="bg-gray-800 min-h-screen items-center justify-center text-center text-white p-4">
 
             <div>
+                <h1 className="text-4xl font-bold mb-4 underline">{header}</h1>
                 <ChartSelector things={things}/>
             </div>
 
