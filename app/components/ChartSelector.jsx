@@ -45,7 +45,8 @@ export default function ChartSelector(things){
        dates.push(new Date(day))
     }
     const minimumDate = new Date(Math.min.apply(null, dates));
-    const maximumDate = new Date(Math.max.apply(null, dates));
+    // const maximumDate = new Date(Math.max.apply(null, dates));
+    const maximumDate = new Date();
     // var num_days = parseInt((maximumDate - minimumDate) / (1000 * 60 * 60 * 24), 10); 
  
     //creating array with all dates (missing ones)
