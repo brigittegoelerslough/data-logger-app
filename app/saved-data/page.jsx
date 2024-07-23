@@ -1,4 +1,5 @@
 import BarChart from "../components/BarChart";
+import BarChart4 from "../components/BarChart5";
 import ChartSelector from "../components/ChartSelector";
 import DeleteThingButton from "../components/DeleteThingButton";
 import { createClient } from "../utils/supabase/server";
@@ -18,14 +19,20 @@ export default async function SavedData() {
     if (!userData.user){
         header = 'Login to see your data';
         return (
-            <main className="bg-gray-800 min-h-screen flex items-center justify-center text-center text-white ">
-                <div>
-                <h1 className="text-4xl font-bold mb-4 -mt-20">{header}</h1>
-                <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-8"
-                    > 
-                    <a href="/login"> Login/Signup</a>
-                </button>
+            <main className="bg-gray-800 min-h-screen flex items-center justify-center text-center text-white col-span-1 content-center">
+                <div className="grid grid-cols-5 gap-24 mx-12 -mt-14">
+                    <div className="col-span-1 content-center">
+                    <h1 className="text-4xl font-bold mb-4 -mt-20">{header}</h1>
+                    <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-4"
+                        > 
+                        <a href="/login"> Login/Signup</a>
+                    </button>
+                    </div>
+                    <div className="col-span-4">
+                        <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
+                        <BarChart4 />
+                    </div>
                 </div>
             </main>
         )

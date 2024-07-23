@@ -22,19 +22,39 @@ export default async function Home() {
   if (!things.length){
       header = 'Save some things to see your data'}
   if (!userData.user){
-      header = 'Login to add data';
+      header = 'Login to Delete Previous Entries';
       return (
-        <main className="bg-gray-800 min-h-screen flex items-center justify-center text-center text-white ">
-          <div>
-            <h1 className="text-4xl font-bold mb-4 -mt-20">{header}</h1>
-            <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-8"
-                > 
-                <a href="/login"> Login/Signup</a>
-            </button>
-          </div>
-        </main>
-    )}
+      <main className="bg-gray-800 min-h-screen flex items-center justify-center text-center text-white ">
+      <div className="grid grid-cols-4 gap-10 ">
+        <div className="col-span-1"> 
+          <DataLogger user={data.user} />
+        </div>
+        <div className="col-span-1">
+          <p></p>
+        </div>
+        <div className="col-span-2">
+          <h1 className="text-2xl font-bold mb-4">{header}</h1>
+          <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2"
+          > 
+          <a href="/login"> Login/Signup</a>
+          </button>
+        </div>
+      </div>
+    </main> )
+    //   return (
+    //     <main className="bg-gray-800 min-h-screen flex items-center justify-center text-center text-white ">
+    //       <div>
+    //         <h1 className="text-4xl font-bold mb-4 -mt-20">{header}</h1>
+    //         <button
+    //             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-8"
+    //             > 
+    //             <a href="/login"> Login/Signup</a>
+    //         </button>
+    //       </div>
+    //     </main>
+    // )
+  }
 
   for (var key in Object.keys(things)){
     things[key]['dateobj'] = new Date(things[key].created_at)
