@@ -22,7 +22,7 @@ export async function login(formData) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/log-data')
+  redirect('/saved-data')
 }
 
 export async function signup(formData) {
