@@ -18,10 +18,14 @@ export default function NavBar() {
                    </li>
                    <li>
                        <a href="/saved-data" className="text-white hover:text-blue-500">
-                           Saved Data
+                           Bar Charts
                        </a>
                    </li>
-                   {/* <li>
+                   <li>
+                       <a href="/line-chart" className="text-white hover:text-blue-500">
+                           Line Charts
+                       </a>
+                   </li>                   {/* <li>
                        <a href="/saved-jokes" className="text-white hover:text-blue-500">
                            Saved Jokes
                        </a>
