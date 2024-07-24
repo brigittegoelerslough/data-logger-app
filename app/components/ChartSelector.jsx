@@ -12,6 +12,7 @@ import BarChartMonthSum from "./Charts/Sum/BarChartMonthSum";
 import BarChartAllBreakdown from "./Charts/Breakdown/BarChartAllBreakdown";
 import BarChartMonthBreakdown from "./Charts/Breakdown/BarChartMonthBreakdown";
 import BarChartWeekBreakdown from "./Charts/Breakdown/BarChartWeekBreakdown";
+import { groupBy } from "core-js/actual/array/group-by";
 
 export default function ChartSelector(things){
 
@@ -19,6 +20,7 @@ export default function ChartSelector(things){
 
     const thingsData = things.things
     const days = Object.groupBy(thingsData, ({created_date}) => created_date)
+    // const days = thingsData.groupBy((created_date) => created_date)
     
     const newData = {}
     for (const day in days){
@@ -49,6 +51,8 @@ export default function ChartSelector(things){
     // const maximumDate = new Date(Math.max.apply(null, dates));
     const maximumDate = new Date();
     // var num_days = parseInt((maximumDate - minimumDate) / (1000 * 60 * 60 * 24), 10); 
+    // var day = 60 * 60 * 24 * 1000;
+    // const minimumDate = new Date(maximumDate.getTime() - (31 * day))
  
     //creating array with all dates (missing ones)
     var new_dates = []
@@ -85,7 +89,7 @@ export default function ChartSelector(things){
     <div className="grid grid-cols-5 gap-24 m-12">
         <div className="col-span-1 content-center">
         <h1 className="text-2xl font-bold mb-4">
-            Time Period
+            Time Period:
         </h1>
 
         <select className="text-black col-span-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -157,8 +161,9 @@ export default function ChartSelector(things){
             {/* <option value="4"></option> */}
         </select>
 
-        <br></br> <br></br>
+        <br></br> <br></br> <br></br> <br></br>
 
+        <h1 class="text-2xl font-bold mb-4">Breakdown By Amount:</h1>
         <div>
             <label class="inline-flex items-center cursor-pointer">
             <input 
@@ -226,8 +231,8 @@ export default function ChartSelector(things){
                     }
                     }}
             />
-            <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-            <span class="ms-3 text-lg font-medium text-white">Breakdown By Amount</span>
+            <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+            {/* <span class="ms-3 text-lg font-medium text-white">Breakdown By Amount</span> */}
             </label>
         </div>
 
@@ -241,6 +246,7 @@ export default function ChartSelector(things){
             <div style={{display:"block"}} ref={graphAllSum} className="col-span-4">
                 <h1 className="text-2xl font-bold mb-4" >Consumption Over All Time</h1>
                 <BarChartAllSum things={finalResult}/>
+                {/* <App/> */}
             </div>
             <div style={{display:"none"}} ref={graphWeekSum} className="col-span-4">
                 <h1 className="text-2xl font-bold mb-4" >Consumption Over The Last Week</h1>

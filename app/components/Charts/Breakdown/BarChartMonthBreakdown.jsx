@@ -27,6 +27,8 @@ export default function BarChartMonthBreakdown(things){
    // const maximumDate = new Date(Math.max.apply(null, dates));
    const maximumDate = new Date();
    // var num_days = parseInt((maximumDate - minimumDate) / (1000 * 60 * 60 * 24), 10); 
+   // var day = 60 * 60 * 24 * 1000;
+   // const minimumDate = new Date(maximumDate.getTime() - (31 * day))
 
    //creating array with all dates (missing ones)
    var new_dates = []
@@ -100,12 +102,34 @@ export default function BarChartMonthBreakdown(things){
         finalResult3.push(obj)
         obj = {}
       }
-    console.log('3 BREAKDOWN FINAL', finalResult3)
+   //  console.log('3 BREAKDOWN FINAL', finalResult3)
 
    return (
       <div>
        <div>
          <Bar 
+            options= {{
+               scales: {
+                 y:       {
+                   grid: {
+                     color: "#474747"
+                   },
+                   ticks: {
+                    color: "#a8a8a8"
+                   }
+                 }
+                 ,
+                 x: 
+                   {
+                     grid: {
+                       color: "#474747"
+                     },
+                     ticks: {
+                      color: "#a8a8a8"
+                     }
+                   }
+               }
+             }}
             data={{
                // labels: revenueData.map((data) => data.label),
             //    labels: Object.keys(finalResult),
@@ -155,18 +179,18 @@ export default function BarChartMonthBreakdown(things){
                // },                                                        
                ],
             }}
-            options={{
-               elements:{
-                  line: {
-                     // tension: 0.5,
-                  }
-               },
-               plugins: {
-                  title: {
-                     text: "Monthly Revenue and Cost"
-                  }
-               }
-            }}
+            // options={{
+            //    elements:{
+            //       line: {
+            //          // tension: 0.5,
+            //       }
+            //    },
+            //    plugins: {
+            //       title: {
+            //          text: "Monthly Revenue and Cost"
+            //       }
+            //    }
+            // }}
          />
        </div>
 

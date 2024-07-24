@@ -12,6 +12,7 @@
     "@supabase/ssr": "^0.4.0",
     "@supabase/supabase-js": "^2.44.4",
     "chart.js": "^4.4.3",
+    "core-js": "^3.37.1",
     "next": "14.2.5",
     "plotly.js": "^2.33.0",
     "plotly.js-dist": "^2.33.0",

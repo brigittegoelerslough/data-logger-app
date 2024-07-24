@@ -29,6 +29,28 @@ export default function BarChartMonthSum(things){
       <div>
        <div>
          <Bar 
+            options= {{
+               scales: {
+                 y:       {
+                   grid: {
+                     color: "#474747"
+                   },
+                   ticks: {
+                    color: "#a8a8a8"
+                   }
+                 }
+                 ,
+                 x: 
+                   {
+                     grid: {
+                       color: "#474747"
+                     },
+                     ticks: {
+                      color: "#a8a8a8"
+                     }
+                   }
+               }
+             }}         
             data={{
                // labels: revenueData.map((data) => data.label),
                labels: Object.keys(lastMonth),
@@ -48,18 +70,6 @@ export default function BarChartMonthSum(things){
                   //    borderColor: "#fc4503",
                   // },
                ],
-            }}
-            options={{
-               elements:{
-                  line: {
-                     // tension: 0.5,
-                  }
-               },
-               plugins: {
-                  title: {
-                     text: "Monthly Revenue and Cost"
-                  }
-               }
             }}
          />
        </div>

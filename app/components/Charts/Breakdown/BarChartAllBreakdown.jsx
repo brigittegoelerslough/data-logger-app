@@ -83,12 +83,34 @@ export default function BarChartAllBreakdown(things){
         finalResult3.push(obj)
         obj = {}
       }
-    console.log('3 BREAKDOWN FINAL', finalResult3)
+    // console.log('3 BREAKDOWN FINAL', finalResult3)
 
    return (
       <div>
        <div>
          <Bar 
+            options= {{
+                scales: {
+                  y:       {
+                    grid: {
+                      color: "#474747"
+                    },
+                    ticks: {
+                     color: "#a8a8a8"
+                    }
+                  }
+                  ,
+                  x: 
+                    {
+                      grid: {
+                        color: "#474747"
+                      },
+                      ticks: {
+                       color: "#a8a8a8"
+                      }
+                    }
+                }
+              }}
             data={{
                // labels: revenueData.map((data) => data.label),
             //    labels: Object.keys(finalResult),
@@ -137,18 +159,6 @@ export default function BarChartAllBreakdown(things){
                 //     borderColor: "#ffffff",
                 //  },                                         
                ],
-            }}
-            options={{
-               elements:{
-                  line: {
-                     // tension: 0.5,
-                  }
-               },
-               plugins: {
-                  title: {
-                     text: "Monthly Revenue and Cost"
-                  }
-               }
             }}
          />
        </div>
