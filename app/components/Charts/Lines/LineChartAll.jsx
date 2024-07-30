@@ -35,7 +35,7 @@ export default function LineChartAll(things) {
     sortable.sort(function(a, b) {
         return a[0] - b[0];
     });
-    console.log('SORTED', sortable)
+    // console.log('SORTED', sortable)
 
     const dates = []
     const totals = []
@@ -53,6 +53,9 @@ export default function LineChartAll(things) {
     // var num_days = parseInt((maximumDate - minimumDate) / (1000 * 60 * 60 * 24), 10); 
  //    var day = 60 * 60 * 24 * 1000;
  //    const minimumDate = new Date(maximumDate.getTime() - (7 * day))
+
+    dates.push(maximumDate)
+    totals.push(sum)
 
     const data = {
         labels: dates,

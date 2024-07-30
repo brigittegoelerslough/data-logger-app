@@ -53,6 +53,9 @@ export default function LineChartWeek(things) {
     var day = 60 * 60 * 24 * 1000;
     const minimumDate = new Date(maximumDate.getTime() - (7 * day))
 
+    dates.push(maximumDate)
+    totals.push(sum)
+
     const data = {
         labels: dates,
         datasets: [

@@ -61,6 +61,9 @@ export default function LineChartMonth(things) {
     var day = 60 * 60 * 24 * 1000;
     const minimumDate = new Date(maximumDate.getTime() - (num_days * day))
 
+    dates.push(maximumDate)
+    totals.push(sum)
+
     const data = {
         labels: dates,
         datasets: [
