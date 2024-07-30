@@ -36,7 +36,7 @@ export default async function SavedData() {
             //         </div>
             //     </div>
             // </main>
-            <main className="md:w-screen bg-gray-800 min-h-screen flex justify-center text-center text-white col-span-1 content-center">
+            <main className="bg-gray-800 min-h-screen flex justify-center text-center text-white col-span-1 content-center">
             {/* <div className="grid grid-cols-5 gap-24 mx-12 -mt-14"> */}
                 <div className="lg:flex lg:w-full">
                     {/* <div className="col-span-1 content-center"> */}
