@@ -5,7 +5,7 @@ export default function NavBar() {
    return(
        <nav className="bg-gray-900 tex-white p-4">
            <div className="flex justify-between items-center w-full">
-               <ul className="text-sm lg:text-base flex space-x-3 lg:space-x-6 justify-center items-center">
+               <ul className="text-sm md:text-base flex space-x-3 md:space-x-6 justify-center items-center">
                    <li>
                        <a href="/" className="text-white hover:text-blue-500">
                            Home
