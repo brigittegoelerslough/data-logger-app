@@ -14,7 +14,6 @@ import revenueData from "./revenueData.json"
 
 export default function BarChartEx(things){
    return (
-      <div>
        <div>
          <Bar 
             data={{
@@ -48,8 +47,6 @@ export default function BarChartEx(things){
             }}
          />
        </div>
-
-      </div>
       )
    }
 

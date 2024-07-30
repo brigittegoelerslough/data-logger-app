@@ -15,6 +15,7 @@ import BarChartWeekBreakdown from "./Charts/Breakdown/BarChartWeekBreakdown";
 import { groupBy } from "core-js/actual/array/group-by";
 
 export default function ChartSelector(things){
+    console.log(things)
 
     if (things.things.length == 0) {return};
 
@@ -86,13 +87,17 @@ export default function ChartSelector(things){
 
 
    return (
-    <div className="grid grid-cols-5 gap-24 m-12">
-        <div className="col-span-1 content-center">
-        <h1 className="text-2xl font-bold mb-4">
+    // <div className="grid grid-cols-5 gap-24 m-12">
+    <div className="lg:flex">
+        {/* <div className="col-span-1 content-center"> */}
+        <div className="lg:flex-shrink-0 lg:flex-grow basis-1/4 pt-0 lg:pt-40">
+
+        <div>
+        <h1 className="text-xl xl:text-2xl font-bold mb-3 lg:mb-4">
             Time Period:
         </h1>
 
-        <select className="text-black col-span-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        <select className="max-w-64 m-auto text-black col-span-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             ref={timeRef}
             onChange={async () => {
                 const timescale = timeRef.current.value;
@@ -160,11 +165,12 @@ export default function ChartSelector(things){
             {/* <option value="1">Brekadown by Amount</option> */}
             {/* <option value="4"></option> */}
         </select>
+        </div>
 
-        <br></br> <br></br> <br></br> <br></br>
-
-        <h1 class="text-2xl font-bold mb-4">Breakdown By Amount:</h1>
+        {/* <br></br> <br></br> <br></br> <br></br> */}
         <div>
+        <h1 class="text-xl xl:text-2xl font-bold mb-3 lg:mb-4 pt-8 lg:pt-32">Breakdown By Amount:</h1>
+        
             <label class="inline-flex items-center cursor-pointer">
             <input 
                 type="checkbox" 
@@ -238,36 +244,35 @@ export default function ChartSelector(things){
 
         </div>
 
-        {/* <div style={{display:"none"}} ref={graphAllBreakdown} className="col-span-4"> */}
-            {/* <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1> */}
-            {/* <BarChartEx things={finalResult}/> */}
-            {/* <BarChartBreakdown things={finalResult}/> */}
-        {/* </div> */}
-            <div style={{display:"block"}} ref={graphAllSum} className="col-span-4">
+        {/* <div> */}
+            {/* <div style={{display:"block"}} ref={graphAllSum} className="col-span-4"> */}
+            <div style={{display:"block"}} ref={graphAllSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
                 <h1 className="text-2xl font-bold mb-4" >Consumption Over All Time</h1>
                 <BarChartAllSum things={finalResult}/>
                 {/* <App/> */}
             </div>
-            <div style={{display:"none"}} ref={graphWeekSum} className="col-span-4">
+            <div style={{display:"none"}} ref={graphWeekSum} className="mt-4 lg:mt-0 lg:ml-6 lg:flex-grow basis-3/4">
                 <h1 className="text-2xl font-bold mb-4" >Consumption Over The Last Week</h1>
                 <BarChartWeekSum things={finalResult}/>
             </div>
-            <div style={{display:"none"}} ref={graphMonthSum} className="col-span-4">
+            <div style={{display:"none"}} ref={graphMonthSum} className="mt-4 lg:mt-0 lg:ml-6 lg:flex-grow basis-3/4">
                 <h1 className="text-2xl font-bold mb-4" >Consumption Over The Last Month</h1>
                 <BarChartMonthSum things={finalResult}/>
             </div>
-            <div style={{display:"none"}} ref={graphAllBreakdown} className="col-span-4">
+            <div style={{display:"none"}} ref={graphAllBreakdown} className="mt-4 lg:mt-0 lg:ml-6 lg:flex-grow basis-3/4">
                 <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
                 <BarChartAllBreakdown things={thingsData} />
             </div>
-            <div style={{display:"none"}} ref={graphMonthBreakdown} className="col-span-4">
+            <div style={{display:"none"}} ref={graphMonthBreakdown} className="mt-4 lg:mt-0 lg:ml-6 lg:flex-grow basis-3/4">
                 <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
                 <BarChartMonthBreakdown things={thingsData} />
             </div>    
-            <div style={{display:"none"}} ref={graphWeekBreakdown} className="col-span-4">
+            <div style={{display:"none"}} ref={graphWeekBreakdown} className="mt-4 lg:mt-0 lg:ml-6 lg:flex-grow basis-3/4">
                 <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
                 <BarChartWeekBreakdown things={thingsData} />
             </div>                
+        {/* </div> */}
+
         </div>
       )
    }

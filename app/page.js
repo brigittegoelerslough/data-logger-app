@@ -9,7 +9,7 @@ export default async function Home() {
   const {data} = await supabase.auth.getUser();
 
   return (
-    <main className="bg-gray-800 min-h-screen flex items-center justify-center text-center text-white ">
+    <main className="bg-gray-800 min-h-screen flex items-center justify-center text-center text-white p-5">
       <div>
         <h1 className="text-4xl font-bold mb-12 "> Tracker App </h1>
         <h1 className="text-2xl mb-16"> To log data for whatever you want to track, and to see graphs over time: </h1>

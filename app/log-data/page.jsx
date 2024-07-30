@@ -20,19 +20,23 @@ export default async function Home() {
       things = thingsData;}
   let header = 'Delete Previous Entries:';
   if (!things.length){
-      header = 'Save some things to see your data'}
+      header = 'Save Some Things to See Your Data'}
   if (!userData.user){
-      header = 'Login to Delete Previous Entries';
+      header = 'Login to Delete Previous Entries:';
       return (
-      <main className="bg-gray-800 min-h-screen flex items-center justify-center text-center text-white ">
-      <div className="grid grid-cols-4 gap-10 ">
-        <div className="col-span-1"> 
+      <main className="px-5 md:px-0 bg-gray-800 min-h-screen flex pt-10 md:pt-0 md:items-center justify-center text-center text-white ">
+      {/* <div className="grid grid-cols-4 gap-10 "> */}
+      <div className="md:flex ">
+        {/* <div className="col-span-1">  */}
+        <div className="md:flex-shrink-0 md:flex-grow basis-1/3"> 
           <DataLogger user={data.user} />
         </div>
-        <div className="col-span-1">
+        {/* <div className="col-span-1"> */}
+        <div className="md:flex-shrink-0 md:flex-grow basis-1/4">
           <p></p>
         </div>
-        <div className="col-span-2">
+        {/* <div className="col-span-2"> */}
+        <div className="mt-4 md:mt-0 md:ml-6 md:flex-shrink-0 md:flex-grow basis-1/2">
           <h1 className="text-2xl font-bold mb-4">{header}</h1>
           <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2"
@@ -80,72 +84,59 @@ export default async function Home() {
   }
 
   return (
-    <main className="bg-gray-800 min-h-screen flex items-top justify-center text-center text-white ">
-      {/* <div className="grid grid-cols-4 gap-40"> */}
+    <main className="px-5 md:px-0 bg-gray-800 min-h-screen flex pt-10 justify-center text-center text-white ">
 
-      <div className="grid grid-cols-4 gap-10 mt-12 mx-4">
+      {/* <div className="grid grid-cols-4 gap-10 mt-12 mx-4"> */}
+      <div className="md:flex md:w-screen md:px-20">
 
-        <div className="col-span-1"> 
+        {/* <div className="col-span-1">  */}
+        <div className="md:flex-shrink-0 md:flex-grow basis-1/4"> 
           <DataLogger user={data.user} />
         </div>
 
-        <div className="col-span-1">
+        {/* <div className="col-span-1"> */}
+        <div className="md:flex-shrink-0 md:flex-grow basis-1/12">
           <p></p>
         </div>
 
-        <div className="col-span-2">
-          <h1 className="text-2xl font-bold mb-4">{header}</h1>
-          
-          <div className="grid grid-cols-2 gap-4">
-            <div className="col-span-1">
-              <div className="col-span-1">
-                  <ul>
-                    {first_half.map((thing) => (
-                      <div key={thing.id} className="flex items-center justify-center space-x-2">
-                          <li className="list-none">
-                            {
-                            convert_date(thing.created_at.substring(5, 7)) + '/' + thing.created_at.substring(8, 10) + '/' + thing.created_at.substring(0, 4) +
-                            ' at ' + convert_time(thing.created_at.substring(11,16)) + ' '
-                            } 
-                            {/* &mdash;  */}
-                            &#8943;
-                            {/* &#8943; */}
-                            {/* &#10870; */}
-                            {' Amount: ' + thing.amount
-                            }
-                            <DeleteThingButton thingId={thing.id} />
-                          </li>
-                      </div>
-                      ))}
-                  </ul> 
-                  </div>
-              </div>
-            <div className="col-span-1">
-              {/* <h1 className="text-2xl font-bold mb-4 text-gray-800"> {header} </h1> */}
-                <div className="col-span-1">
+        {/* <div className="col-span-2"> */}
+        <div className="mt-4 md:mt-0 md:ml-6 md:flex-shrink-0 md:flex-grow basis-2/3">
+              <h1 className="text-2xl font-bold mb-4">{header}</h1>
+              {/* <h1 
+                class="text-2xl font-bold mb-4 text-yellow-600 sm:text-indigo-600 md:text-green-600 lg:text-fuchsia-600 xl:text-orange-600 2xl:text-blue-600"
+                >
+                    Size
+              </h1> */}
+            <div className="md:columns-1 lg:columns-2 min-[1400px]:columns-3 min-[1800px]:columns-4">
+                {/* <div className="md:flex-shrink-0 md:flex-grow"> */}
+                  {/* <div className="basis-1/3"> */}
                     <ul>
-                      {second_half.map((thing) => (
-                        <div key={thing.id} className="flex items-center justify-center space-x-2">
-                            <li className="list-none">
+                      {first_half.map((thing) => (
+                        // <div key={thing.id} className="flex items-center justify-center space-x-2">
+                        <div key={thing.id} className="flex justify-center space-x-2">
+                        <li className="list-none">
                               {
                               convert_date(thing.created_at.substring(5, 7)) + '/' + thing.created_at.substring(8, 10) + '/' + thing.created_at.substring(0, 4) +
                               ' at ' + convert_time(thing.created_at.substring(11,16)) + ' '
                               } 
-                              {/* &mdash;  */}
-                              &#8943;
+                              {"\xa0"}
+                              &mdash; 
+                              {"\xa0"}
+                              {/* &#8943; */}
                               {/* &#8943; */}
                               {/* &#10870; */}
-                              {' Amount: ' + thing.amount
-                              }
+                              {/* {' Ammount: ' + thing.amount */}
+                              {' ' + thing.amount + ' '}
                               <DeleteThingButton thingId={thing.id} />
                             </li>
                         </div>
                         ))}
                     </ul> 
-                    </div>
-                </div>
-          </div>
-        </div>
+                  </div>
+              
+
+
+            </div>
         
 
       </div>

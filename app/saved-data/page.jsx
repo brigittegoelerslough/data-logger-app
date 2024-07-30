@@ -19,7 +19,7 @@ export default async function SavedData() {
     if (!userData.user){
         header = 'Login to see your data';
         return (
-            <main className="bg-gray-800 min-h-screen flex items-center justify-center text-center text-white col-span-1 content-center">
+            <main className="md:w-screen bg-gray-800 min-h-screen flex items-center justify-center text-center text-white col-span-1 content-center">
                 <div className="grid grid-cols-5 gap-24 mx-12 -mt-14">
                     <div className="col-span-1 content-center">
                     <h1 className="text-4xl font-bold mb-4 -mt-20">{header}</h1>
