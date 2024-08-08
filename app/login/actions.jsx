@@ -22,7 +22,7 @@ export async function login(formData) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/saved-data')
+  redirect('/bar-chart')
 }
 
 export async function signup(formData) {
@@ -42,5 +42,5 @@ export async function signup(formData) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/')
+  redirect('/log-data')
 }
