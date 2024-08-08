@@ -4,7 +4,7 @@ import ChartSelector from "../components/ChartSelector";
 import DeleteThingButton from "../components/DeleteThingButton";
 import { createClient } from "../utils/supabase/server";
 
-export default async function SavedData() {
+export default async function BarCharts() {
     const supabase = createClient();
     const {data:userData} = await supabase.auth.getUser();
     let things = [];

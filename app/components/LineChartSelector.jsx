@@ -85,6 +85,113 @@ export default function LineChartSelector(things){
     const graphWeekSum = useRef()
 
 
+    const now = new Date();
+
+
+    // Month Chooser
+    const monthRef = useRef()
+    const [monthState, setMonthState] = useState(now);
+
+    function increaseM() {
+        var datestring = monthState.toISOString()
+        var currMonth = parseInt(monthState.toISOString().substring(5,7));
+        if (currMonth < 12) {
+            currMonth += 1
+            if (currMonth < 10) {
+                var newDay = datestring.substring(0,4) + '-0' + currMonth + '-10' + datestring.substring(10,30)
+            } else {
+                var newDay = datestring.substring(0,4) + '-' + currMonth + '-10' + datestring.substring(10,30)
+            }
+        } else if (currMonth == 12) {
+            var currYear = parseInt(datestring.substring(0,4))
+            currYear += 1
+            var newDay = currYear + '-01-10' + datestring.substring(10,30)
+        } else {
+            alert('error')
+        }
+        const nextMonth = new Date(newDay)
+        setMonthState(nextMonth) 
+    }
+
+    function decreaseM() {
+        var datestring = monthState.toISOString()
+        var currMonth = parseInt(monthState.toISOString().substring(5,7));
+        if (currMonth > 1) {
+            currMonth -= 1
+            if (currMonth < 10) {
+                var newDay = datestring.substring(0,4) + '-0' + currMonth + '-10' + datestring.substring(10,30)
+            } else {
+                var newDay = datestring.substring(0,4) + '-' + currMonth + '-10' + datestring.substring(10,30)
+            }
+        } else if (currMonth == 1) {
+            var currYear = parseInt(datestring.substring(0,4))
+            currYear -= 1
+            var newDay = currYear + '-12-10' + datestring.substring(10,30)
+        } else {
+            alert('error')
+        }
+        const nextMonth = new Date(newDay)
+        setMonthState(nextMonth) 
+    }
+
+    function chooseMonthToday() {
+        const today = new Date()
+        setMonthState(today) 
+    }
+    
+    var months = [ "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December" ];
+    var dispMonth = months[parseInt(monthState.toISOString().substring(5,7)) - 1];
+    var dispYear = monthState.toISOString().substring(0,4);
+    var dispDay = dispMonth + ' ' + dispYear
+
+
+    // Week Chooser
+    const weekRef = useRef()
+    const [weekState, setWeekState] = useState(now);
+
+    function increaseW() {
+        const oneWeek = 7 * 1000 * 60 * 60 * 24;
+        const newWeek = new Date(weekState.valueOf() + oneWeek)
+        setWeekState(newWeek)
+    }
+
+    function decreaseW() {
+        const oneWeek = 7 * 1000 * 60 * 60 * 24;
+        const newWeek = new Date(weekState - oneWeek)
+        setWeekState(newWeek)
+    }
+
+    function chooseWeekToday() {
+        const today = new Date()
+        setWeekState(today) 
+    }
+
+    const datestring = weekState.toISOString()
+    if (datestring[5] == 0 && datestring[8] == 0){
+        var mmddyyyy = datestring.substring(6,7) + '/' + datestring.substring(9,10) + '/' + datestring.substring(0,4);
+    } else if (datestring[5] == 0) {
+        var mmddyyyy = datestring.substring(6,7) + '/' + datestring.substring(8,10) + '/' + datestring.substring(0,4);
+    } else if (datestring[8] == 0) {
+        var mmddyyyy = datestring.substring(5,7) + '/' + datestring.substring(9,10) + '/' + datestring.substring(0,4);
+    } else{
+        var mmddyyyy = datestring.substring(5,7) + '/' + datestring.substring(8,10) + '/' + datestring.substring(0,4);
+    }
+    const oneWeek = 7 * 1000 * 60 * 60 * 24;
+    const prevWeek = new Date(weekState - oneWeek)
+    const prevdatestring = prevWeek.toISOString()
+    if (prevdatestring[5] == 0 && prevdatestring[8] == 0){
+        var mmddyyyy2 = prevdatestring.substring(6,7) + '/' + prevdatestring.substring(9,10) + '/' + prevdatestring.substring(0,4);
+    } else if (datestring[5] == 0) {
+        var mmddyyyy2 = prevdatestring.substring(6,7) + '/' + prevdatestring.substring(8,10) + '/' + prevdatestring.substring(0,4);
+    } else if (datestring[8] == 0) {
+        var mmddyyyy2 = prevdatestring.substring(5,7) + '/' + prevdatestring.substring(9,10) + '/' + prevdatestring.substring(0,4);
+    } else{
+        var mmddyyyy2 = prevdatestring.substring(5,7) + '/' + prevdatestring.substring(8,10) + '/' + prevdatestring.substring(0,4);
+    }
+    var dispWeek =  mmddyyyy2 + ' - ' + mmddyyyy
+
+
    return (
     // <div className="grid grid-cols-5 gap-24 m-12">
     <div className="lg:flex">
@@ -120,8 +227,8 @@ export default function LineChartSelector(things){
                 }
                 }}> 
             <option value="All">All Time</option>
-            <option value="Month">Last Month</option>
-            <option value="Week">Last Week</option>
+            <option value="Month">By Month</option>
+            <option value="Week">By Week</option>
             {/* <option value="1">Brekadown by Amount</option> */}
             {/* <option value="4"></option> */}
         </select>
@@ -137,12 +244,54 @@ export default function LineChartSelector(things){
             </div>
 
             <div style={{display:"none"}} ref={graphMonthSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
-                <h1 className="text-2xl font-bold mb-4" >Consumption Over The Last Month</h1>
-                <LineChartMonth things={thingsData}/>
+                <h1 className="text-2xl font-bold mb-4" >Consumption Over The Month Of:</h1>
+
+                <button onClick={() => decreaseM()}>
+                    &larr; {"\xa0"}
+                </button>
+                <input 
+                    type="text" 
+                    ref={monthRef} 
+                    readOnly={true} 
+                    value = {dispDay}
+                    className="max-w-40 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                </input>  
+                <button className="mb-4" onClick={() => increaseM()}>
+                    {"\xa0"} &rarr;
+                </button>
+                <button 
+                    onClick={() => chooseMonthToday()}
+                    className="ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                    Return to Today
+                </button>
+
+                <LineChartMonth data={[thingsData, monthState]}/>
             </div>
             <div style={{display:"none"}} ref={graphWeekSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
-                <h1 className="text-2xl font-bold mb-4" >Consumption Over The Last Week</h1>
-                <LineChartWeek things={thingsData}/>
+                <h1 className="text-2xl font-bold mb-4" >Consumption Over The Week Of:</h1>
+
+                <button onClick={() => decreaseW()}>
+                    &larr; {"\xa0"}
+                </button>
+                <input 
+                    type="text" 
+                    ref={weekRef} 
+                    readOnly={true} 
+                    value = {dispWeek}
+                    className="max-w-48 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                </input>  
+                <button className="mb-4" onClick={() => increaseW()}>
+                    {"\xa0"} &rarr;
+                </button>
+                <button 
+                    onClick={() => chooseWeekToday()}
+                    className="ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                    Return to Today
+                </button>
+
+                <LineChartWeek data={[thingsData, weekState]}/>
             </div>               
         </div>
       )

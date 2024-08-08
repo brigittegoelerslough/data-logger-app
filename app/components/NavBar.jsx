@@ -17,7 +17,7 @@ export default function NavBar() {
                        </a>
                    </li>
                    <li>
-                       <a href="/saved-data" className="text-white hover:text-blue-500">
+                       <a href="/bar-chart" className="text-white hover:text-blue-500">
                            Bar Charts
                        </a>
                    </li>

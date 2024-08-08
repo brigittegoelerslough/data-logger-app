@@ -5,12 +5,13 @@ import {Bar, Doughnut, Line } from "react-chartjs-2"
 
 export default function BarChartMonthBreakdown(things){
 
-   var thingsData = things.things
-//    console.log(thingsData)
+   const thingsData = things.data[0]
+   const date = things.data[1]
+
+   const chosenMonth = date.toISOString().substring(5,7)
+   const chosenYear = date.toISOString().substring(0,4)
+
    const days = Object.groupBy(thingsData, ({created_date}) => created_date)
-//    console.log('DAYS:', Object.keys(days), days)
-//    const amounts = Object.groupBy(thingsData, ({amount}) => amount)
-//    console.log(amounts)
 
    const sortedData = Object.keys(days)
    .sort()
@@ -43,66 +44,64 @@ export default function BarChartMonthBreakdown(things){
    let finalResult = {};
    new_dates.forEach(date => {
       var datestring = date.toISOString().split('T')[0]
-      var mmddyyy = datestring.substring(5,7) + '/' + datestring.substring(8,10) + '/' + datestring.substring(0,4);
+      if (datestring.substring(5,7) == chosenMonth && datestring.substring(0,4) == chosenYear) {
+         var mmddyyy = datestring.substring(5,7) + '/' + datestring.substring(8,10) + '/' + datestring.substring(0,4);
          if(!sortedData.hasOwnProperty(datestring)) {
             finalResult[mmddyyy] = [];
          } else {
             finalResult[mmddyyy] = sortedData[datestring];
          }
+      }
+      
    });
 
-   // console.log('111', finalResult)
 
-   const now = new Date();
-   const month = now.toISOString().substring(5,7);
-   if (month === '02'){
-      var num_days = 28
-   } else if (month === '02' || month === '02' || month === '02' || month === '02'){
-      var num_days = 30
-   }  else {
-      var num_days = 31
-   }
+   // const now = new Date();
+   // const month = now.toISOString().substring(5,7);
+   // if (month === '02'){
+   //    var num_days = 28
+   // } else if (month === '02' || month === '02' || month === '02' || month === '02'){
+   //    var num_days = 30
+   // }  else {
+   //    var num_days = 31
+   // }
 
-   const last_month_keys = Object.keys(finalResult).slice(-num_days)
-   const lastMonth = {}
-   for (const key in last_month_keys) {
-    const day = last_month_keys[key]
-    lastMonth[day] = finalResult[day]
-   }
+   // const last_month_keys = Object.keys(finalResult).slice(-num_days)
+   // const lastMonth = {}
+   // for (const key in last_month_keys) {
+   //  const day = last_month_keys[key]
+   //  lastMonth[day] = finalResult[day]
+   // }
 
    let finalResult2 = {};
-//    console.log(Object.keys(finalResult))
-   for (const key in lastMonth){
-    // console.log(key, finalResult[key])
-    const amounts = Object.groupBy(lastMonth[key], ({amount}) => amount)
+   for (const key in finalResult){
+    const amounts = Object.groupBy(finalResult[key], ({amount}) => amount)
     finalResult2[key] = amounts
    }
-//    console.log('2: BREAKDOWN FINAL', finalResult2)
 
 
    let finalResult3 = [];
       for (const key in finalResult2){
-        var obj = {};
-        obj['date'] = key;
-        var total = 0;
-        for (const key2 in finalResult2[key]) {
-            const len = Object.keys(finalResult2[key][key2]).length
-            const mult = parseInt(key2) * len
-            obj[key2] = mult
-            total += mult;
-        }
-        obj['total'] = total;
-        total = 0;
-        const pos_amounts = ['1', '2', '3', '4', '5']
-        for (const i of pos_amounts) {
-            if (!Object.keys(obj).includes(i)){
-                obj[i] = 0
-            }
-        }
-        finalResult3.push(obj)
-        obj = {}
+         var obj = {};
+         obj['date'] = key;
+         var total = 0;
+         for (const key2 in finalResult2[key]) {
+               const len = Object.keys(finalResult2[key][key2]).length
+               const mult = parseInt(key2) * len
+               obj[key2] = mult
+               total += mult;
+         }
+         obj['total'] = total;
+         total = 0;
+         const pos_amounts = ['1', '2', '3', '4', '5']
+         for (const i of pos_amounts) {
+               if (!Object.keys(obj).includes(i)){
+                  obj[i] = 0
+               }
+         }
+         finalResult3.push(obj)
+         obj = {}
       }
-   //  console.log('3 BREAKDOWN FINAL', finalResult3)
 
    return (
       <div>

@@ -17,12 +17,11 @@ const config = {
 
 export default function BarChartWeekBreakdown(things){
 
-   var thingsData = things.things
-//    console.log(thingsData)
+   const thingsData = things.data[0]
+   const chosenDate = things.data[1]
+   // console.log('TEST', chosenDate)
+
    const days = Object.groupBy(thingsData, ({created_date}) => created_date)
-//    console.log('DAYS:', Object.keys(days), days)
-//    const amounts = Object.groupBy(thingsData, ({amount}) => amount)
-//    console.log(amounts)
 
    const sortedData = Object.keys(days)
    .sort()
@@ -63,8 +62,15 @@ export default function BarChartWeekBreakdown(things){
          }
    });
 
-//    console.log('111', finalResult)
-   const last_week_keys = Object.keys(finalResult).slice(-7)
+   const chosendatestring = chosenDate.toISOString().split('T')[0]
+   var searchDate = chosendatestring.substring(5,7) + '/' + chosendatestring.substring(8,10) + '/' + chosendatestring.substring(0,4);
+   const lasti = Object.keys(finalResult).findIndex(x => x == searchDate)
+
+   if (lasti == -1) {
+      var last_week_keys = []
+    } else {
+      var last_week_keys = Object.keys(finalResult).slice(lasti-7, lasti)
+    }
    const lastWeek = {}
    for (const key in last_week_keys) {
     const day = last_week_keys[key]
@@ -72,13 +78,10 @@ export default function BarChartWeekBreakdown(things){
    }
 
    let finalResult2 = {};
-//    console.log(Object.keys(finalResult))
    for (const key in lastWeek){
-    // console.log(key, finalResult[key])
     const amounts = Object.groupBy(lastWeek[key], ({amount}) => amount)
     finalResult2[key] = amounts
    }
-//    console.log('2: BREAKDOWN FINAL', finalResult2)
 
 
    let finalResult3 = [];
@@ -103,7 +106,6 @@ export default function BarChartWeekBreakdown(things){
         finalResult3.push(obj)
         obj = {}
       }
-    // console.log('3 BREAKDOWN FINAL', finalResult3)
 
    return (
       <div>

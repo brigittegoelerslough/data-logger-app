@@ -13,9 +13,11 @@ import BarChartAllBreakdown from "./Charts/Breakdown/BarChartAllBreakdown";
 import BarChartMonthBreakdown from "./Charts/Breakdown/BarChartMonthBreakdown";
 import BarChartWeekBreakdown from "./Charts/Breakdown/BarChartWeekBreakdown";
 import { groupBy } from "core-js/actual/array/group-by";
+import buttonClick from "./actions";
+import { setWeek } from "date-fns";
 
 export default function ChartSelector(things){
-    console.log(things)
+    // console.log(things)
 
     if (things.things.length == 0) {return};
 
@@ -76,6 +78,7 @@ export default function ChartSelector(things){
           }
     });
 
+
     const timeRef = useRef()
     const breakdownRef = useRef()
     const graphAllSum = useRef()
@@ -84,6 +87,113 @@ export default function ChartSelector(things){
     const graphAllBreakdown = useRef()
     const graphMonthBreakdown = useRef()
     const graphWeekBreakdown = useRef()
+
+
+    const now = new Date();
+    // var datestring = now.toISOString().split('T')[0]
+
+    // Month Chooser
+    const monthRef = useRef()
+    const [monthState, setMonthState] = useState(now);
+
+    function increaseM() {
+        var datestring = monthState.toISOString()
+        var currMonth = parseInt(monthState.toISOString().substring(5,7));
+        if (currMonth < 12) {
+            currMonth += 1
+            if (currMonth < 10) {
+                var newDay = datestring.substring(0,4) + '-0' + currMonth + '-10' + datestring.substring(10,30)
+            } else {
+                var newDay = datestring.substring(0,4) + '-' + currMonth + '-10' + datestring.substring(10,30)
+            }
+        } else if (currMonth == 12) {
+            var currYear = parseInt(datestring.substring(0,4))
+            currYear += 1
+            var newDay = currYear + '-01-10' + datestring.substring(10,30)
+        } else {
+            alert('error')
+        }
+        const nextMonth = new Date(newDay)
+        setMonthState(nextMonth) 
+    }
+
+    function decreaseM() {
+        var datestring = monthState.toISOString()
+        var currMonth = parseInt(monthState.toISOString().substring(5,7));
+        if (currMonth > 1) {
+            currMonth -= 1
+            if (currMonth < 10) {
+                var newDay = datestring.substring(0,4) + '-0' + currMonth + '-10' + datestring.substring(10,30)
+            } else {
+                var newDay = datestring.substring(0,4) + '-' + currMonth + '-10' + datestring.substring(10,30)
+            }
+        } else if (currMonth == 1) {
+            var currYear = parseInt(datestring.substring(0,4))
+            currYear -= 1
+            var newDay = currYear + '-12-10' + datestring.substring(10,30)
+        } else {
+            alert('error')
+        }
+        const nextMonth = new Date(newDay)
+        setMonthState(nextMonth) 
+    }
+
+    function chooseMonthToday() {
+        const today = new Date()
+        setMonthState(today) 
+    }
+    
+    var months = [ "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December" ];
+    var dispMonth = months[parseInt(monthState.toISOString().substring(5,7)) - 1];
+    var dispYear = monthState.toISOString().substring(0,4);
+    var dispDay = dispMonth + ' ' + dispYear
+
+    
+    // Week Chooser
+    const weekRef = useRef()
+    const [weekState, setWeekState] = useState(now);
+
+    function increaseW() {
+        const oneWeek = 7 * 1000 * 60 * 60 * 24;
+        const newWeek = new Date(weekState.valueOf() + oneWeek)
+        setWeekState(newWeek)
+    }
+
+    function decreaseW() {
+        const oneWeek = 7 * 1000 * 60 * 60 * 24;
+        const newWeek = new Date(weekState - oneWeek)
+        setWeekState(newWeek)
+    }
+
+    function chooseWeekToday() {
+        const today = new Date()
+        setWeekState(today) 
+    }
+
+    const datestring = weekState.toISOString()
+    if (datestring[5] == 0 && datestring[8] == 0){
+        var mmddyyyy = datestring.substring(6,7) + '/' + datestring.substring(9,10) + '/' + datestring.substring(0,4);
+    } else if (datestring[5] == 0) {
+        var mmddyyyy = datestring.substring(6,7) + '/' + datestring.substring(8,10) + '/' + datestring.substring(0,4);
+    } else if (datestring[8] == 0) {
+        var mmddyyyy = datestring.substring(5,7) + '/' + datestring.substring(9,10) + '/' + datestring.substring(0,4);
+    } else{
+        var mmddyyyy = datestring.substring(5,7) + '/' + datestring.substring(8,10) + '/' + datestring.substring(0,4);
+    }
+    const oneWeek = 7 * 1000 * 60 * 60 * 24;
+    const prevWeek = new Date(weekState - oneWeek)
+    const prevdatestring = prevWeek.toISOString()
+    if (prevdatestring[5] == 0 && prevdatestring[8] == 0){
+        var mmddyyyy2 = prevdatestring.substring(6,7) + '/' + prevdatestring.substring(9,10) + '/' + prevdatestring.substring(0,4);
+    } else if (datestring[5] == 0) {
+        var mmddyyyy2 = prevdatestring.substring(6,7) + '/' + prevdatestring.substring(8,10) + '/' + prevdatestring.substring(0,4);
+    } else if (datestring[8] == 0) {
+        var mmddyyyy2 = prevdatestring.substring(5,7) + '/' + prevdatestring.substring(9,10) + '/' + prevdatestring.substring(0,4);
+    } else{
+        var mmddyyyy2 = prevdatestring.substring(5,7) + '/' + prevdatestring.substring(8,10) + '/' + prevdatestring.substring(0,4);
+    }
+    var dispWeek =  mmddyyyy2 + ' - ' + mmddyyyy
 
 
    return (
@@ -96,6 +206,9 @@ export default function ChartSelector(things){
         <h1 className="text-xl xl:text-2xl font-bold mb-3 lg:mb-4">
             Time Period:
         </h1>
+
+        {/* <input className="text-black" type="text" value={childState} onChange={() => handleStateChange} />
+        <br></br> */}
 
         <select className="max-w-64 m-auto text-black col-span-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             ref={timeRef}
@@ -160,8 +273,8 @@ export default function ChartSelector(things){
                 }
                 }}> 
             <option value="All">All Time</option>
-            <option value="Month">Last Month</option>
-            <option value="Week">Last Week</option>
+            <option value="Month">By Month</option>
+            <option value="Week">By Week</option>
             {/* <option value="1">Brekadown by Amount</option> */}
             {/* <option value="4"></option> */}
         </select>
@@ -169,13 +282,13 @@ export default function ChartSelector(things){
 
         {/* <br></br> <br></br> <br></br> <br></br> */}
         <div>
-        <h1 class="text-xl xl:text-2xl font-bold mb-3 lg:mb-4 pt-8 lg:pt-32">Breakdown By Amount:</h1>
+        <h1 className="text-xl xl:text-2xl font-bold mb-3 lg:mb-4 pt-8 lg:pt-32">Breakdown By Amount:</h1>
         
-            <label class="inline-flex items-center cursor-pointer">
+            <label className="inline-flex items-center cursor-pointer">
             <input 
                 type="checkbox" 
                 value="Breakdown" 
-                class="sr-only peer"
+                className="sr-only peer"
                 ref={breakdownRef}
                 onChange={async () => {
                     const timescale = timeRef.current.value;
@@ -237,8 +350,8 @@ export default function ChartSelector(things){
                     }
                     }}
             />
-            <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-            {/* <span class="ms-3 text-lg font-medium text-white">Breakdown By Amount</span> */}
+            <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+            {/* <span className="ms-3 text-lg font-medium text-white">Breakdown By Amount</span> */}
             </label>
         </div>
 
@@ -251,25 +364,115 @@ export default function ChartSelector(things){
                 <BarChartAllSum things={finalResult}/>
                 {/* <App/> */}
             </div>
-            <div style={{display:"none"}} ref={graphWeekSum} className="mt-4 lg:mt-0 lg:ml-6 lg:flex-grow basis-3/4">
-                <h1 className="text-2xl font-bold mb-4" >Consumption Over The Last Week</h1>
-                <BarChartWeekSum things={finalResult}/>
+
+            <div style={{display:"none"}} ref={graphMonthSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
+                <h1 className="text-2xl font-bold mb-4" >Consumption Over The Month Of:</h1>
+                
+                <button onClick={() => decreaseM()}>
+                    &larr; {"\xa0"}
+                </button>
+                <input 
+                    type="text" 
+                    ref={monthRef} 
+                    readOnly={true} 
+                    value = {dispDay}
+                    className="max-w-40 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                </input>  
+                <button onClick={() => increaseM()}>
+                    {"\xa0"} &rarr;
+                </button>
+                <button 
+                    onClick={() => chooseMonthToday()}
+                    className="ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                    Return to Today
+                </button>
+
+                <BarChartMonthSum data={[finalResult, monthState]}/>
+
             </div>
-            <div style={{display:"none"}} ref={graphMonthSum} className="mt-4 lg:mt-0 lg:ml-6 lg:flex-grow basis-3/4">
-                <h1 className="text-2xl font-bold mb-4" >Consumption Over The Last Month</h1>
-                <BarChartMonthSum things={finalResult}/>
+
+            <div style={{display:"none"}} ref={graphWeekSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
+                <h1 className="text-2xl font-bold mb-4" >Consumption Over The Week Of:</h1>
+
+                <button onClick={() => decreaseW()}>
+                    &larr; {"\xa0"}
+                </button>
+                <input 
+                    type="text" 
+                    ref={weekRef} 
+                    readOnly={true} 
+                    value = {dispWeek}
+                    className="max-w-40 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                </input>  
+                <button onClick={() => increaseW()}>
+                    {"\xa0"} &rarr;
+                </button>
+                <button 
+                    onClick={() => chooseWeekToday()}
+                    className="ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                    Return to Today
+                </button>
+
+                <BarChartWeekSum data={[finalResult, weekState]}/>
             </div>
-            <div style={{display:"none"}} ref={graphAllBreakdown} className="mt-4 lg:mt-0 lg:ml-6 lg:flex-grow basis-3/4">
+
+            <div style={{display:"none"}} ref={graphAllBreakdown} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
                 <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
                 <BarChartAllBreakdown things={thingsData} />
             </div>
-            <div style={{display:"none"}} ref={graphMonthBreakdown} className="mt-4 lg:mt-0 lg:ml-6 lg:flex-grow basis-3/4">
-                <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
-                <BarChartMonthBreakdown things={thingsData} />
+            
+            <div style={{display:"none"}} ref={graphMonthBreakdown} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
+                <h1 className="text-2xl font-bold mb-4" >Consumption Over The Month Of:</h1>
+            
+                <button onClick={() => decreaseM()}>
+                    &larr; {"\xa0"}
+                </button>
+                <input 
+                    type="text" 
+                    ref={monthRef} 
+                    readOnly={true} 
+                    value = {dispDay}
+                    className="max-w-40 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                </input>  
+                <button onClick={() => increaseM()}>
+                    {"\xa0"} &rarr;
+                </button>
+                <button 
+                    onClick={() => chooseMonthToday()}
+                    className="ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                    Return to Today
+                </button>
+
+                <BarChartMonthBreakdown data={[thingsData, monthState]} />
             </div>    
+            
             <div style={{display:"none"}} ref={graphWeekBreakdown} className="mt-4 lg:mt-0 lg:ml-6 lg:flex-grow basis-3/4">
-                <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
-                <BarChartWeekBreakdown things={thingsData} />
+                <h1 className="text-2xl font-bold mb-4" >Consumption Over The Week Of:</h1>
+
+                <button onClick={() => decreaseW()}>
+                    &larr; {"\xa0"}
+                </button>
+                <input 
+                    type="text" 
+                    ref={weekRef} 
+                    readOnly={true} 
+                    value = {dispWeek}
+                    className="max-w-40 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                </input>  
+                <button onClick={() => increaseW()}>
+                    {"\xa0"} &rarr;
+                </button>
+                <button 
+                    onClick={() => chooseWeekToday()}
+                    className="ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                    Return to Today
+                </button>
+
+                <BarChartWeekBreakdown data={[thingsData, weekState]} />
             </div>                
         {/* </div> */}
 

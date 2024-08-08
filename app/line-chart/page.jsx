@@ -5,7 +5,7 @@ import DeleteThingButton from "../components/DeleteThingButton";
 import { createClient } from "../utils/supabase/server";
 import LineChartSelector from "../components/LineChartSelector";
 
-export default async function SavedData() {
+export default async function LineCharts() {
     const supabase = createClient();
     const {data:userData} = await supabase.auth.getUser();
     let things = [];

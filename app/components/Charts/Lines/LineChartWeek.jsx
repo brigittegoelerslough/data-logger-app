@@ -23,39 +23,46 @@ ChartJs.register(
 );
 
 export default function LineChartWeek(things) {
-    const thingsData = things.things
+
+    const thingsData = things.data[0]
+    const chosenDate = things.data[1]
+
+    const today = new Date();
+    const maximumDate = chosenDate;
+    var day = 60 * 60 * 24 * 1000;
+    const minimumDate = new Date(maximumDate.getTime() - (7 * day))
 
     let sortable = [];
     for (var key in thingsData) {
         var item = thingsData[key]
         var day = new Date(item['created_at'])
-        sortable.push([day, item['amount']]);
+        if (day > minimumDate && day < maximumDate) {
+            sortable.push([day, item['amount']]);
+        }
     }
 
     sortable.sort(function(a, b) {
         return a[0] - b[0];
     });
-    console.log('SORTED', sortable)
 
     const dates = []
     const totals = []
+    if (sortable.length > 0) {
+        dates.push(minimumDate)
+        totals.push(0)
+    }
     var sum = 0
     for (var entry of sortable){
-        // console.log(entry)
         dates.push(entry[0])
         sum += entry[1]
         totals.push(sum)
     }
 
-    // const minimumDate = new Date(Math.min.apply(null, dates));
-    // const maximumDate = new Date(Math.max.apply(null, dates));
-    const maximumDate = new Date();
-    var day = 60 * 60 * 24 * 1000;
-    const minimumDate = new Date(maximumDate.getTime() - (7 * day))
-
-    dates.push(maximumDate)
-    totals.push(sum)
-
+    if (sum > 0) {
+        dates.push(today)
+        totals.push(sum)
+    }
+    
     const data = {
         labels: dates,
         datasets: [
@@ -69,8 +76,9 @@ export default function LineChartWeek(things) {
                 pointStyle: 'circle',
                 pointRadius: 6,
                 pointHoverRadius: 10,
-                pointBorderWidth: 1
+                pointBorderWidth: 1,
                 // tension: 0.4
+                // stepped: true
             }
         ]
     }

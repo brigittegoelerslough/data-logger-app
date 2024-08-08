@@ -1,60 +1,84 @@
+"use client";
 
 
-import DataLogger from "../components/DataLogger";
-import DeleteJokeButton from "../components/DeleteJokeButton";
-import { createClient } from "../utils/supabase/server"
+// import chooseGraph from "../saved-data/actions";
+// import { useEffect, useRef, useState } from "react";
+import { groupBy } from "core-js/actual/array/group-by";
+import revalidateTestpage from "../components/actions";
+// import { revalidatePath } from "next/cache";
 
-
-export default async function tester() {
-    const test = []
-
-   return (
-<main 
-className="bg-gray-800 min-h-screen flex flex-col items-center pt-10 text-center text-white p-4"
->
-    <div 
-    class="md:flex"
-    >
-        <div 
-            class="md:flex-shrink-0 md:flex-grow basis-1/3" //md:w-1/2
-            >
-            <img 
-                class="rounded-lg" 
-                // src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=448&q=80" 
-                src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg"
-                // width="448" 
-                // height="299" 
-                />
-            <p>JUST TESTING SOME THINGS</p>
-        </div>
-        <div 
-            class="mt-4 md:mt-0 md:ml-6"
-            >
-            <div 
-                class="text-3xl text-yellow-600 sm:text-indigo-600 md:text-green-600 lg:text-fuchsia-600 xl:text-orange-600 font-bold uppercase" //tracking = space between letters
-                >
-                    Size
-            </div>
-            <div 
-                class="text-sm md:text-2xl uppercase tracking-wide text-indigo-600 font-bold" //tracking = space between letters
-                >
-                    Marketing
-            </div>
-            <a 
-                class="block mt-1 text-lg font-semibold text-gray-900 hover:underline"
-                >
-                    Finding customers for your new business
-            </a>
-            <p 
-                class="mt-2 text-gray-600 leading-tight" //leading = line spacing vertically
-                >
-                    Getting a new business off the ground is a lot of hard work. Here are five ideas you can use to find your first customers.
-            </p>
-        </div>
+import { useState } from 'react';
+// import { MyInput } from "./page2";
+export const MyInput = (data) => {
+    console.log('DATA', data)
+    console.log(data.data[0], data.data[1])
+    const name = data.data[0]
+    const age = data.data[1]
+  return (
+    <div>
+        <p> TESTING </p>
+        <p>Hello, {name}. You are {age}.</p>
     </div>
-</main>
-       )
-    }
+)
+};
+
+// 'use client';
+
+// import DataLogger from "../components/DataLogger";
+// import DeleteJokeButton from "../components/DeleteJokeButton";
+// import { createClient } from "../utils/supabase/server"
+
+
+// export default async function tester() {
+//     const test = []
+
+//    return (
+// <main 
+// className="bg-gray-800 min-h-screen flex flex-col items-center pt-10 text-center text-white p-4"
+// >
+//     <div 
+//     className="md:flex"
+//     >
+//         <div 
+//             className="md:flex-shrink-0 md:flex-grow basis-1/3" //md:w-1/2
+//             >
+//             <img 
+//                 className="rounded-lg" 
+//                 // src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=448&q=80" 
+//                 src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg"
+//                 // width="448" 
+//                 // height="299" 
+//                 />
+//             <p>JUST TESTING SOME THINGS</p>
+//         </div>
+//         <div 
+//             className="mt-4 md:mt-0 md:ml-6"
+//             >
+//             <div 
+//                 className="text-3xl text-yellow-600 sm:text-indigo-600 md:text-green-600 lg:text-fuchsia-600 xl:text-orange-600 font-bold uppercase" //tracking = space between letters
+//                 >
+//                     Size
+//             </div>
+//             <div 
+//                 className="text-sm md:text-2xl uppercase tracking-wide text-indigo-600 font-bold" //tracking = space between letters
+//                 >
+//                     Marketing
+//             </div>
+//             <a 
+//                 className="block mt-1 text-lg font-semibold text-gray-900 hover:underline"
+//                 >
+//                     Finding customers for your new business
+//             </a>
+//             <p 
+//                 className="mt-2 text-gray-600 leading-tight" //leading = line spacing vertically
+//                 >
+//                     Getting a new business off the ground is a lot of hard work. Here are five ideas you can use to find your first customers.
+//             </p>
+//         </div>
+//     </div>
+// </main>
+//        )
+//     }
 
 
 

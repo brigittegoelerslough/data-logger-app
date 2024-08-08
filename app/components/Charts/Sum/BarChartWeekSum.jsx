@@ -5,9 +5,21 @@ import {Bar, Doughnut, Line } from "react-chartjs-2"
 
 export default function BarChartWeekSum(things){
 
-   const finalResult = things.things
+  const finalResult = things.data[0]
+  const date = things.data[1]
+  // console.log(date.toISOString().split('T')[0], finalResult)
+  const datestring = date.toISOString().split('T')[0]
+  var mmddyyyy = datestring.substring(5,7) + '/' + datestring.substring(8,10) + '/' + datestring.substring(0,4);
+  // console.log(mmddyyyy, finalResult)
 
-   const last_week_keys = Object.keys(finalResult).slice(-7)
+  const lasti = Object.keys(finalResult).findIndex(x => x == mmddyyyy)
+
+  //  const last_week_keys = Object.keys(finalResult).slice(-7)
+  if (lasti == -1) {
+    var last_week_keys = []
+  } else {
+    var last_week_keys = Object.keys(finalResult).slice(lasti-7, lasti)
+  }
    const lastWeek = {}
    for (const key in last_week_keys) {
     const day = last_week_keys[key]

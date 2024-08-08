@@ -5,31 +5,31 @@ import { redirect } from "next/navigation";
 import { redirectlogin } from "../data/joke/actions";
 import { saveThing } from "../data/things/actions";
 
-function tempAlert(msg,duration){
-    var el = document.createElement("p");
-    // el.setAttribute("style","position:absolute;top:40%;left:20%;background-color:white;");
-    el.setAttribute("style","\
-        left:45%; \
-        right:45%; \
-        ");
-    el.classList.add("text-black");
-    el.classList.add("text-xl");
-    el.classList.add("bg-white");
-    el.classList.add("absolute");
-    // el.classList.add("inset-x-64");
-    el.classList.add("top-1");
-    el.classList.add("items-center");
-    el.classList.add("justify-center");
-    el.classList.add("place-content-center");
-    el.classList.add("p-5");
-    // el.classList.add("");
+// function tempAlert(msg,duration){
+//     var el = document.createElement("p");
+//     // el.setAttribute("style","position:absolute;top:40%;left:20%;background-color:white;");
+//     el.setAttribute("style","\
+//         left:45%; \
+//         right:45%; \
+//         ");
+//     el.classList.add("text-black");
+//     el.classList.add("text-xl");
+//     el.classList.add("bg-white");
+//     el.classList.add("absolute");
+//     // el.classList.add("inset-x-64");
+//     el.classList.add("top-1");
+//     el.classList.add("items-center");
+//     el.classList.add("justify-center");
+//     el.classList.add("place-content-center");
+//     el.classList.add("p-5");
+//     // el.classList.add("");
 
-    el.innerHTML = msg;
-    setTimeout(function(){
-    el.parentNode.removeChild(el);
-    },duration);
-    document.body.appendChild(el);
-    }
+//     el.innerHTML = msg;
+//     setTimeout(function(){
+//     el.parentNode.removeChild(el);
+//     },duration);
+//     document.body.appendChild(el);
+//     }
 
 export default function DataLogger(user){
 //    const [joke, setJoke] = useState('');
@@ -61,8 +61,8 @@ export default function DataLogger(user){
                  <option value="3">3</option>
                  <option value="4">4</option>
                  <option value="5">5</option>
-                 {/* <option value="6">6</option>
-                 <option value="7">7</option>
+                 <option value="6">6</option>
+                 {/* <option value="7">7</option>
                  <option value="8">8</option>
                  <option value="9">9</option>
                  <option value="10">10</option> */}
@@ -98,8 +98,8 @@ export default function DataLogger(user){
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
-                {/* <option value="6">6</option>
-                <option value="7">7</option>
+                <option value="6">6</option>
+                {/* <option value="7">7</option>
                 <option value="8">8</option>
                 <option value="9">9</option>
                 <option value="10">10</option> */}
