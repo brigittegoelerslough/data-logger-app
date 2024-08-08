@@ -240,7 +240,10 @@ export default function LineChartSelector(things){
             <div style={{display:"block"}} ref={graphAllSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
                 <h1 className="text-2xl font-bold mb-4" >Consumption Over All Time</h1>
                 {/* <LineChart things={finalResult}/> */}
-                <LineChartAll things={thingsData}/>
+                
+                <div className="-mx-2 lg:mx" >
+                    <LineChartAll things={thingsData}/>
+                </div>
             </div>
 
             <div style={{display:"none"}} ref={graphMonthSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
@@ -262,11 +265,13 @@ export default function LineChartSelector(things){
                 </button>
                 <button 
                     onClick={() => chooseMonthToday()}
-                    className="mb-4 ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                    className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
                     Return to Today
                 </button>
 
-                <LineChartMonth data={[thingsData, monthState]}/>
+                <div className="-mx-2 lg:mx" >
+                    <LineChartMonth data={[thingsData, monthState]}/>
+                </div>
             </div>
             <div style={{display:"none"}} ref={graphWeekSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
                 <h1 className="text-2xl font-bold mb-4" >Consumption Over The Week Of:</h1>
@@ -287,11 +292,13 @@ export default function LineChartSelector(things){
                 </button>
                 <button 
                     onClick={() => chooseWeekToday()}
-                    className="mb-4 ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                    className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
                     Return to Today
                 </button>
 
-                <LineChartWeek data={[thingsData, weekState]}/>
+                <div className="-mx-2 lg:mx" >
+                    <LineChartWeek data={[thingsData, weekState]}/>
+                </div>
             </div>               
         </div>
       )

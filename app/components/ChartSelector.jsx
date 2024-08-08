@@ -361,7 +361,10 @@ export default function ChartSelector(things){
             {/* <div style={{display:"block"}} ref={graphAllSum} className="col-span-4"> */}
             <div style={{display:"block"}} ref={graphAllSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
                 <h1 className="text-2xl font-bold mb-4" >Consumption Over All Time</h1>
-                <BarChartAllSum things={finalResult}/>
+                
+                <div className="-mx-2 lg:mx" >
+                    <BarChartAllSum things={finalResult}/>
+                </div>
                 {/* <App/> */}
             </div>
 
@@ -382,13 +385,16 @@ export default function ChartSelector(things){
                 <button className="font-bold" onClick={() => increaseM()}>
                     {"\xa0"} &rarr;
                 </button>
+                {/* <br></br> */}
                 <button 
                     onClick={() => chooseMonthToday()}
-                    className="mb-4 ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                    className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
                     Return to Today
                 </button>
 
-                <BarChartMonthSum data={[finalResult, monthState]}/>
+                <div className="-mx-2 lg:mx" >
+                    <BarChartMonthSum data={[finalResult, monthState]}/>
+                </div>
 
             </div>
 
@@ -411,16 +417,20 @@ export default function ChartSelector(things){
                 </button>
                 <button 
                     onClick={() => chooseWeekToday()}
-                    className="mb-4 ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                    className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
                     Return to Today
                 </button>
 
-                <BarChartWeekSum data={[finalResult, weekState]}/>
+                <div className="-mx-2 lg:mx" >
+                    <BarChartWeekSum data={[finalResult, weekState]}/>
+                </div>
             </div>
 
             <div style={{display:"none"}} ref={graphAllBreakdown} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
                 <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
-                <BarChartAllBreakdown things={thingsData} />
+                <div className="-mx-2 lg:mx" >
+                    <BarChartAllBreakdown things={thingsData} />
+                </div>
             </div>
             
             <div style={{display:"none"}} ref={graphMonthBreakdown} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
@@ -442,11 +452,13 @@ export default function ChartSelector(things){
                 </button>
                 <button 
                     onClick={() => chooseMonthToday()}
-                    className="mb-4 ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                    className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
                     Return to Today
                 </button>
 
-                <BarChartMonthBreakdown data={[thingsData, monthState]} />
+                <div className="-mx-2 lg:mx" >
+                    <BarChartMonthBreakdown data={[thingsData, monthState]} />
+                </div>
             </div>    
             
             <div style={{display:"none"}} ref={graphWeekBreakdown} className="mt-4 lg:mt-0 lg:ml-6 lg:flex-grow basis-3/4">
@@ -468,11 +480,13 @@ export default function ChartSelector(things){
                 </button>
                 <button 
                     onClick={() => chooseWeekToday()}
-                    className="mb-4 ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                    className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
                     Return to Today
                 </button>
-
-                <BarChartWeekBreakdown data={[thingsData, weekState]} />
+                
+                <div className="-mx-2 lg:mx" >
+                    <BarChartWeekBreakdown data={[thingsData, weekState]} />
+                </div>
             </div>                
         {/* </div> */}
 
