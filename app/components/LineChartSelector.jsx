@@ -241,7 +241,7 @@ export default function LineChartSelector(things){
                 <h1 className="text-2xl font-bold mb-4" >Consumption Over All Time</h1>
                 {/* <LineChart things={finalResult}/> */}
                 
-                <div className="-mx-2 lg:mx" >
+                <div className="-mx-2 lg:mx-0" >
                     <LineChartAll things={thingsData}/>
                 </div>
             </div>
@@ -269,7 +269,7 @@ export default function LineChartSelector(things){
                     Return to Today
                 </button>
 
-                <div className="-mx-2 lg:mx" >
+                <div className="-mx-2 lg:mx-0" >
                     <LineChartMonth data={[thingsData, monthState]}/>
                 </div>
             </div>
@@ -296,7 +296,7 @@ export default function LineChartSelector(things){
                     Return to Today
                 </button>
 
-                <div className="-mx-2 lg:mx" >
+                <div className="-mx-2 lg:mx-0" >
                     <LineChartWeek data={[thingsData, weekState]}/>
                 </div>
             </div>               

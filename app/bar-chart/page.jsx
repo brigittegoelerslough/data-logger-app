@@ -37,7 +37,9 @@ export default async function BarCharts() {
                     {/* <div className="col-span-4"> */}
                     <div className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
                         <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
-                        <BarChart4 />
+                        <div className="-mx-2 lg:mx-0">
+                            <BarChart4 />
+                        </div>
                     </div>
                 </div>
             </main>

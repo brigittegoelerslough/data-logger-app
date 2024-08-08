@@ -362,7 +362,7 @@ export default function ChartSelector(things){
         <div style={{display:"block"}} ref={graphAllSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
             <h1 className="text-2xl font-bold mb-4" >Consumption Over All Time</h1>
             
-            <div className="-mx-2 lg:mx" >
+            <div className="-mx-2 lg:mx-0" >
                 <BarChartAllSum things={finalResult}/>
             </div>
             {/* <App/> */}
@@ -392,7 +392,7 @@ export default function ChartSelector(things){
                 Return to Today
             </button>
 
-            <div className="-mx-2 lg:mx" >
+            <div className="-mx-2 lg:mx-0" >
                 <BarChartMonthSum data={[finalResult, monthState]}/>
             </div>
 
@@ -421,14 +421,14 @@ export default function ChartSelector(things){
                 Return to Today
             </button>
 
-            <div className="-mx-2 lg:mx" >
+            <div className="-mx-2 lg:mx-0" >
                 <BarChartWeekSum data={[finalResult, weekState]}/>
             </div>
         </div>
 
         <div style={{display:"none"}} ref={graphAllBreakdown} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
             <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
-            <div className="-mx-2 lg:mx" >
+            <div className="-mx-2 lg:mx-0" >
                 <BarChartAllBreakdown things={thingsData} />
             </div>
         </div>
@@ -456,7 +456,7 @@ export default function ChartSelector(things){
                 Return to Today
             </button>
 
-            <div className="-mx-2 lg:mx" >
+            <div className="-mx-2 lg:mx-0" >
                 <BarChartMonthBreakdown data={[thingsData, monthState]} />
             </div>
         </div>    
@@ -484,7 +484,7 @@ export default function ChartSelector(things){
                 Return to Today
             </button>
             
-            <div className="-mx-2 lg:mx" >
+            <div className="-mx-2 lg:mx-0" >
                 <BarChartWeekBreakdown data={[thingsData, weekState]} />
             </div>
         </div>                

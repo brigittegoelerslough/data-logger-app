@@ -105,12 +105,24 @@ export default function DataLogger(user){
                 <option value="10">10</option> */}
             </select>
 
+            {/* <label htmlFor="time" className="block my-2 text-xl font-medium text-white"> Time: </label> */}
             <input 
-                type="time" 
+                // type="time" 
+                type="text"
+                placeholder="--:-- --"
+                onFocus={(e) => (e.target.type = "time")}
+                onBlur={(e) => (e.target.type = "text")}
                 ref={myTimeRef} 
-                className="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                className="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+            
+            {/* <label htmlFor="date" className="block my-2 text-xl font-medium text-white"> Date: </label> */}
             <input 
-                type="date" 
+                // type="date" 
+                type="text" 
+                placeholder="mm/dd/yyyy"
+                onFocus={(e) => (e.target.type = "date")}
+                onBlur={(e) => (e.target.type = "text")}
                 ref={myDateRef} 
                 max ={minDate}
                 className="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
