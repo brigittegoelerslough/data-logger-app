@@ -61,7 +61,6 @@ export default function LineChartMonth(things) {
     sortable.sort(function(a, b) {
         return a[0] - b[0];
     });
-    console.log('SORTED', sortable)
 
     const dates = []
     const totals = []

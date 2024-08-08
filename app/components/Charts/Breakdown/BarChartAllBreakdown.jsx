@@ -7,7 +7,11 @@ export default function BarChartAllBreakdown(things){
 
    var thingsData = things.things
 //    console.log(thingsData)
-   const days = Object.groupBy(thingsData, ({created_date}) => created_date)
+   // const days = Object.groupBy(thingsData, ({created_date}) => created_date)
+   const days = thingsData.reduce((x,y) => {
+      (x[y.created_date] = x[y.created_date] || []).push(y);
+      return x;
+  } , {});
 //    console.log('DAYS:', Object.keys(days), days)
 //    const amounts = Object.groupBy(thingsData, ({amount}) => amount)
 //    console.log(amounts)
@@ -55,7 +59,11 @@ export default function BarChartAllBreakdown(things){
 //    console.log(Object.keys(finalResult))
    for (const key in finalResult){
     // console.log(key, finalResult[key])
-    const amounts = Object.groupBy(finalResult[key], ({amount}) => amount)
+   //  const amounts = Object.groupBy(finalResult[key], ({amount}) => amount)
+    const amounts = finalResult[key].reduce((x,y) => {
+      (x[y.amount] = x[y.amount] || []).push(y);
+      return x;
+      } , {});
     finalResult2[key] = amounts
    }
 //    console.log('2: BREAKDOWN FINAL', finalResult2)

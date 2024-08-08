@@ -91,7 +91,11 @@ export default function DataLogger(user){
 
         <form className="max-w-sm mx-auto py-6">
         <label htmlFor="ammt" className="block mb-2 text-xl font-medium text-white"> Choose an amount: </label>
-            <select ref={myElementRef} id="ammt" name="ammt" className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <select 
+            ref={myElementRef} 
+            id="ammt" 
+            name="ammt" 
+            className="w-72 h-11 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value=""></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -113,7 +117,7 @@ export default function DataLogger(user){
                 onFocus={() => (myTimeRef.current.type = "time")}
                 onBlur={() => (myTimeRef.current.type = "text")}
                 ref={myTimeRef} 
-                className="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="w-72 h-11 mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             
             {/* <label htmlFor="date" className="block my-2 text-xl font-medium text-white"> Date: </label> */}
@@ -125,7 +129,7 @@ export default function DataLogger(user){
                 onBlur={(e) => (e.target.type = "text")}
                 ref={myDateRef} 
                 max ={minDate}
-                className="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                className="w-72 h-11 mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
 
             <button
             //    type="submit"

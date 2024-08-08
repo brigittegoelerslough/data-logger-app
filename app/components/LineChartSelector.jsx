@@ -23,7 +23,11 @@ export default function LineChartSelector(things){
     if (things.things.length == 0) {return};
 
     const thingsData = things.things
-    const days = Object.groupBy(thingsData, ({created_date}) => created_date)
+    // const days = Object.groupBy(thingsData, ({created_date}) => created_date)
+    const days = thingsData.reduce((x,y) => {
+        (x[y.created_date] = x[y.created_date] || []).push(y);
+        return x;
+    } , {});
     // const days = thingsData.groupBy((created_date) => created_date)
     
     const newData = {}

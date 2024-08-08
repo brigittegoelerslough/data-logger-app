@@ -11,7 +11,11 @@ export default function BarChartMonthBreakdown(things){
    const chosenMonth = date.toISOString().substring(5,7)
    const chosenYear = date.toISOString().substring(0,4)
 
-   const days = Object.groupBy(thingsData, ({created_date}) => created_date)
+   // const days = Object.groupBy(thingsData, ({created_date}) => created_date)
+   const days = thingsData.reduce((x,y) => {
+      (x[y.created_date] = x[y.created_date] || []).push(y);
+      return x;
+  } , {});
 
    const sortedData = Object.keys(days)
    .sort()
@@ -75,7 +79,11 @@ export default function BarChartMonthBreakdown(things){
 
    let finalResult2 = {};
    for (const key in finalResult){
-    const amounts = Object.groupBy(finalResult[key], ({amount}) => amount)
+   //  const amounts = Object.groupBy(finalResult[key], ({amount}) => amount)
+    const amounts = finalResult[key].reduce((x,y) => {
+      (x[y.amount] = x[y.amount] || []).push(y);
+      return x;
+      } , {});
     finalResult2[key] = amounts
    }
 
