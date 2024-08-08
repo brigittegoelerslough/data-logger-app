@@ -107,8 +107,8 @@ export default function DataLogger(user){
 
             {/* <label htmlFor="time" className="block my-2 text-xl font-medium text-white"> Time: </label> */}
             <input 
-                // type="time" 
-                type="text"
+                type="time" 
+                // type="text"
                 placeholder="--:-- --"
                 onFocus={() => (myTimeRef.current.type = "time")}
                 onBlur={() => (myTimeRef.current.type = "text")}
@@ -118,8 +118,8 @@ export default function DataLogger(user){
             
             {/* <label htmlFor="date" className="block my-2 text-xl font-medium text-white"> Date: </label> */}
             <input 
-                // type="date" 
-                type="text" 
+                type="date" 
+                // type="text" 
                 placeholder="mm/dd/yyyy"
                 onFocus={(e) => (e.target.type = "date")}
                 onBlur={(e) => (e.target.type = "text")}
