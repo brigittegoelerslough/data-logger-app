@@ -107,7 +107,7 @@ export default async function Home() {
                 >
                     Size
               </h1> */}
-            <div className="md:columns-1 lg:columns-2 min-[1400px]:columns-3 min-[1800px]:columns-4">
+            <div className="md:columns-1 lg:columns-2 min-[1400px]:columns-3 min-[1800px]:columns-4 pb-10">
                 {/* <div className="md:flex-shrink-0 md:flex-grow"> */}
                   {/* <div className="basis-1/3"> */}
                     <ul>
