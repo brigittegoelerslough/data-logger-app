@@ -246,7 +246,7 @@ export default function LineChartSelector(things){
             <div style={{display:"none"}} ref={graphMonthSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
                 <h1 className="text-2xl font-bold mb-4" >Consumption Over The Month Of:</h1>
 
-                <button onClick={() => decreaseM()}>
+                <button className="font-bold" onClick={() => decreaseM()}>
                     &larr; {"\xa0"}
                 </button>
                 <input 
@@ -257,12 +257,12 @@ export default function LineChartSelector(things){
                     className="max-w-40 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     >
                 </input>  
-                <button className="mb-4" onClick={() => increaseM()}>
+                <button className="font-bold" onClick={() => increaseM()}>
                     {"\xa0"} &rarr;
                 </button>
                 <button 
                     onClick={() => chooseMonthToday()}
-                    className="ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                    className="mb-4 ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
                     Return to Today
                 </button>
 
@@ -271,7 +271,7 @@ export default function LineChartSelector(things){
             <div style={{display:"none"}} ref={graphWeekSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
                 <h1 className="text-2xl font-bold mb-4" >Consumption Over The Week Of:</h1>
 
-                <button onClick={() => decreaseW()}>
+                <button className="font-bold" onClick={() => decreaseW()}>
                     &larr; {"\xa0"}
                 </button>
                 <input 
@@ -282,12 +282,12 @@ export default function LineChartSelector(things){
                     className="max-w-48 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     >
                 </input>  
-                <button className="mb-4" onClick={() => increaseW()}>
+                <button className="font-bold" onClick={() => increaseW()}>
                     {"\xa0"} &rarr;
                 </button>
                 <button 
                     onClick={() => chooseWeekToday()}
-                    className="ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                    className="mb-4 ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
                     Return to Today
                 </button>
 
