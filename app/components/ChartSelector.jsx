@@ -200,104 +200,27 @@ export default function ChartSelector(things){
     // <div className="grid grid-cols-5 gap-24 m-12">
     <div className="lg:flex">
         {/* <div className="col-span-1 content-center"> */}
-        <div className="lg:flex-shrink-0 lg:flex-grow basis-1/4 pt-0 lg:pt-40">
+        <div className="columns-2 lg:columns-1 lg:flex-shrink-0 lg:flex-grow basis-1/4 pt-2 lg:pt-40">
 
         <div>
-        <h1 className="text-xl xl:text-2xl font-bold mb-3 lg:mb-4">
-            Time Period:
-        </h1>
+            <h1 className="text-xl xl:text-2xl font-bold mb-3 lg:mb-4">
+                Time Period:
+            </h1>
 
-        {/* <input className="text-black" type="text" value={childState} onChange={() => handleStateChange} />
-        <br></br> */}
+            {/* <input className="text-black" type="text" value={childState} onChange={() => handleStateChange} />
+            <br></br> */}
 
-        <select className="max-w-64 m-auto text-black col-span-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            ref={timeRef}
-            onChange={async () => {
-                const timescale = timeRef.current.value;
-                // const breakdown = breakdownRef.current.value;
-                if (breakdownRef.current.checked){
-                    var breakdown = 'Breakdown'
-                } else{
-                    var breakdown = 'Sum'
-                }
-                // console.log(ammt)
-                if(timescale === "All" && breakdown == "Sum"){
-                    graphAllSum.current.style.display = 'block';
-                    graphMonthSum.current.style.display = 'none';
-                    graphWeekSum.current.style.display = 'none';
-                    graphAllBreakdown.current.style.display = 'none';
-                    graphMonthBreakdown.current.style.display = 'none';
-                    graphWeekBreakdown.current.style.display = 'none';
-                } else if(timescale === "All" && breakdown == "Breakdown"){
-                    graphAllSum.current.style.display = 'none';
-                    graphMonthSum.current.style.display = 'none';
-                    graphWeekSum.current.style.display = 'none';
-                    graphAllBreakdown.current.style.display = 'block';
-                    graphMonthBreakdown.current.style.display = 'none';
-                    graphWeekBreakdown.current.style.display = 'none';
-                } else if(timescale === "Month" && breakdown == "Sum"){
-                    graphAllSum.current.style.display = 'none';
-                    graphMonthSum.current.style.display = 'block';
-                    graphWeekSum.current.style.display = 'none';
-                    graphAllBreakdown.current.style.display = 'none';
-                    graphMonthBreakdown.current.style.display = 'none';
-                    graphWeekBreakdown.current.style.display = 'none';
-                } else if(timescale === "Month" && breakdown == "Breakdown"){
-                    graphAllSum.current.style.display = 'none';
-                    graphMonthSum.current.style.display = 'none';
-                    graphWeekSum.current.style.display = 'none';
-                    graphAllBreakdown.current.style.display = 'none';
-                    graphMonthBreakdown.current.style.display = 'block';
-                    graphWeekBreakdown.current.style.display = 'none';
-                } else if(timescale === "Week" && breakdown == "Sum"){
-                    graphAllSum.current.style.display = 'none';
-                    graphMonthSum.current.style.display = 'none';
-                    graphWeekSum.current.style.display = 'block';
-                    graphAllBreakdown.current.style.display = 'none';
-                    graphMonthBreakdown.current.style.display = 'none';
-                    graphWeekBreakdown.current.style.display = 'none';
-                } else if(timescale === "Week" && breakdown == "Breakdown"){
-                    graphAllSum.current.style.display = 'none';
-                    graphMonthSum.current.style.display = 'none';
-                    graphWeekSum.current.style.display = 'none';
-                    graphAllBreakdown.current.style.display = 'none';
-                    graphMonthBreakdown.current.style.display = 'none';
-                    graphWeekBreakdown.current.style.display = 'block';
-                } else {
-                    graphAllSum.current.style.display = 'block';
-                    graphMonthSum.current.style.display = 'none';
-                    graphWeekSum.current.style.display = 'none';
-                    graphAllBreakdown.current.style.display = 'none';
-                    graphMonthBreakdown.current.style.display = 'none';
-                    graphWeekBreakdown.current.style.display = 'none';
-                }
-                }}> 
-            <option value="All">All Time</option>
-            <option value="Month">By Month</option>
-            <option value="Week">By Week</option>
-            {/* <option value="1">Brekadown by Amount</option> */}
-            {/* <option value="4"></option> */}
-        </select>
-        </div>
-
-        {/* <br></br> <br></br> <br></br> <br></br> */}
-        <div>
-        <h1 className="text-xl xl:text-2xl font-bold mb-3 lg:mb-4 pt-8 lg:pt-32">Breakdown By Amount:</h1>
-        
-            <label className="inline-flex items-center cursor-pointer">
-            <input 
-                type="checkbox" 
-                value="Breakdown" 
-                className="sr-only peer"
-                ref={breakdownRef}
+            <select className="max-w-64 m-auto text-black col-span-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                ref={timeRef}
                 onChange={async () => {
                     const timescale = timeRef.current.value;
+                    // const breakdown = breakdownRef.current.value;
                     if (breakdownRef.current.checked){
                         var breakdown = 'Breakdown'
                     } else{
                         var breakdown = 'Sum'
                     }
-
+                    // console.log(ammt)
                     if(timescale === "All" && breakdown == "Sum"){
                         graphAllSum.current.style.display = 'block';
                         graphMonthSum.current.style.display = 'none';
@@ -348,148 +271,224 @@ export default function ChartSelector(things){
                         graphMonthBreakdown.current.style.display = 'none';
                         graphWeekBreakdown.current.style.display = 'none';
                     }
-                    }}
-            />
-            <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-            {/* <span className="ms-3 text-lg font-medium text-white">Breakdown By Amount</span> */}
-            </label>
+                    }}> 
+                <option value="All">All Time</option>
+                <option value="Month">By Month</option>
+                <option value="Week">By Week</option>
+                {/* <option value="1">Brekadown by Amount</option> */}
+                {/* <option value="4"></option> */}
+            </select>
         </div>
 
+        {/* <br></br> <br></br> <br></br> <br></br> */}
+        <div>
+            <h1 className="text-xl xl:text-2xl font-bold mb-3 lg:mb-4 lg:pt-32">Breakdown By Amount:</h1>
+            
+                <label className="inline-flex items-center cursor-pointer">
+                <input 
+                    type="checkbox" 
+                    value="Breakdown" 
+                    className="sr-only peer"
+                    ref={breakdownRef}
+                    onChange={async () => {
+                        const timescale = timeRef.current.value;
+                        if (breakdownRef.current.checked){
+                            var breakdown = 'Breakdown'
+                        } else{
+                            var breakdown = 'Sum'
+                        }
+
+                        if(timescale === "All" && breakdown == "Sum"){
+                            graphAllSum.current.style.display = 'block';
+                            graphMonthSum.current.style.display = 'none';
+                            graphWeekSum.current.style.display = 'none';
+                            graphAllBreakdown.current.style.display = 'none';
+                            graphMonthBreakdown.current.style.display = 'none';
+                            graphWeekBreakdown.current.style.display = 'none';
+                        } else if(timescale === "All" && breakdown == "Breakdown"){
+                            graphAllSum.current.style.display = 'none';
+                            graphMonthSum.current.style.display = 'none';
+                            graphWeekSum.current.style.display = 'none';
+                            graphAllBreakdown.current.style.display = 'block';
+                            graphMonthBreakdown.current.style.display = 'none';
+                            graphWeekBreakdown.current.style.display = 'none';
+                        } else if(timescale === "Month" && breakdown == "Sum"){
+                            graphAllSum.current.style.display = 'none';
+                            graphMonthSum.current.style.display = 'block';
+                            graphWeekSum.current.style.display = 'none';
+                            graphAllBreakdown.current.style.display = 'none';
+                            graphMonthBreakdown.current.style.display = 'none';
+                            graphWeekBreakdown.current.style.display = 'none';
+                        } else if(timescale === "Month" && breakdown == "Breakdown"){
+                            graphAllSum.current.style.display = 'none';
+                            graphMonthSum.current.style.display = 'none';
+                            graphWeekSum.current.style.display = 'none';
+                            graphAllBreakdown.current.style.display = 'none';
+                            graphMonthBreakdown.current.style.display = 'block';
+                            graphWeekBreakdown.current.style.display = 'none';
+                        } else if(timescale === "Week" && breakdown == "Sum"){
+                            graphAllSum.current.style.display = 'none';
+                            graphMonthSum.current.style.display = 'none';
+                            graphWeekSum.current.style.display = 'block';
+                            graphAllBreakdown.current.style.display = 'none';
+                            graphMonthBreakdown.current.style.display = 'none';
+                            graphWeekBreakdown.current.style.display = 'none';
+                        } else if(timescale === "Week" && breakdown == "Breakdown"){
+                            graphAllSum.current.style.display = 'none';
+                            graphMonthSum.current.style.display = 'none';
+                            graphWeekSum.current.style.display = 'none';
+                            graphAllBreakdown.current.style.display = 'none';
+                            graphMonthBreakdown.current.style.display = 'none';
+                            graphWeekBreakdown.current.style.display = 'block';
+                        } else {
+                            graphAllSum.current.style.display = 'block';
+                            graphMonthSum.current.style.display = 'none';
+                            graphWeekSum.current.style.display = 'none';
+                            graphAllBreakdown.current.style.display = 'none';
+                            graphMonthBreakdown.current.style.display = 'none';
+                            graphWeekBreakdown.current.style.display = 'none';
+                        }
+                        }}
+                />
+                <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                {/* <span className="ms-3 text-lg font-medium text-white">Breakdown By Amount</span> */}
+                </label>
         </div>
+
+    </div>
 
         {/* <div> */}
             {/* <div style={{display:"block"}} ref={graphAllSum} className="col-span-4"> */}
-            <div style={{display:"block"}} ref={graphAllSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
-                <h1 className="text-2xl font-bold mb-4" >Consumption Over All Time</h1>
-                
-                <div className="-mx-2 lg:mx" >
-                    <BarChartAllSum things={finalResult}/>
-                </div>
-                {/* <App/> */}
-            </div>
-
-            <div style={{display:"none"}} ref={graphMonthSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
-                <h1 className="text-2xl font-bold mb-4" >Consumption Over The Month Of:</h1>
-                
-                <button className="font-bold" onClick={() => decreaseM()}>
-                    &larr; {"\xa0"}
-                </button>
-                <input 
-                    type="text" 
-                    ref={monthRef} 
-                    readOnly={true} 
-                    value = {dispDay}
-                    className="max-w-40 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                </input>  
-                <button className="font-bold" onClick={() => increaseM()}>
-                    {"\xa0"} &rarr;
-                </button>
-                {/* <br></br> */}
-                <button 
-                    onClick={() => chooseMonthToday()}
-                    className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
-                    Return to Today
-                </button>
-
-                <div className="-mx-2 lg:mx" >
-                    <BarChartMonthSum data={[finalResult, monthState]}/>
-                </div>
-
-            </div>
-
-            <div style={{display:"none"}} ref={graphWeekSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
-                <h1 className="text-2xl font-bold mb-4" >Consumption Over The Week Of:</h1>
-
-                <button className="font-bold" onClick={() => decreaseW()}>
-                    &larr; {"\xa0"}
-                </button>
-                <input 
-                    type="text" 
-                    ref={weekRef} 
-                    readOnly={true} 
-                    value = {dispWeek}
-                    className="max-w-40 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                </input>  
-                <button className="font-bold" onClick={() => increaseW()}>
-                    {"\xa0"} &rarr;
-                </button>
-                <button 
-                    onClick={() => chooseWeekToday()}
-                    className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
-                    Return to Today
-                </button>
-
-                <div className="-mx-2 lg:mx" >
-                    <BarChartWeekSum data={[finalResult, weekState]}/>
-                </div>
-            </div>
-
-            <div style={{display:"none"}} ref={graphAllBreakdown} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
-                <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
-                <div className="-mx-2 lg:mx" >
-                    <BarChartAllBreakdown things={thingsData} />
-                </div>
-            </div>
+        <div style={{display:"block"}} ref={graphAllSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
+            <h1 className="text-2xl font-bold mb-4" >Consumption Over All Time</h1>
             
-            <div style={{display:"none"}} ref={graphMonthBreakdown} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
-                <h1 className="text-2xl font-bold mb-4" >Consumption Over The Month Of:</h1>
-            
-                <button className="font-bold" onClick={() => decreaseM()}>
-                    &larr; {"\xa0"}
-                </button>
-                <input 
-                    type="text" 
-                    ref={monthRef} 
-                    readOnly={true} 
-                    value = {dispDay}
-                    className="max-w-40 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                </input>  
-                <button className="font-bold" onClick={() => increaseM()}>
-                    {"\xa0"} &rarr;
-                </button>
-                <button 
-                    onClick={() => chooseMonthToday()}
-                    className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
-                    Return to Today
-                </button>
+            <div className="-mx-2 lg:mx" >
+                <BarChartAllSum things={finalResult}/>
+            </div>
+            {/* <App/> */}
+        </div>
 
-                <div className="-mx-2 lg:mx" >
-                    <BarChartMonthBreakdown data={[thingsData, monthState]} />
-                </div>
-            </div>    
+        <div style={{display:"none"}} ref={graphMonthSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
+            <h1 className="text-2xl font-bold mb-4" >Consumption Over The Month Of:</h1>
             
-            <div style={{display:"none"}} ref={graphWeekBreakdown} className="mt-4 lg:mt-0 lg:ml-6 lg:flex-grow basis-3/4">
-                <h1 className="text-2xl font-bold mb-4" >Consumption Over The Week Of:</h1>
+            <button className="font-bold" onClick={() => decreaseM()}>
+                &larr; {"\xa0"}
+            </button>
+            <input 
+                type="text" 
+                ref={monthRef} 
+                readOnly={true} 
+                value = {dispDay}
+                className="max-w-40 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+            </input>  
+            <button className="font-bold" onClick={() => increaseM()}>
+                {"\xa0"} &rarr;
+            </button>
+            {/* <br></br> */}
+            <button 
+                onClick={() => chooseMonthToday()}
+                className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                Return to Today
+            </button>
 
-                <button className="font-bold" onClick={() => decreaseW()}>
-                    &larr; {"\xa0"}
-                </button>
-                <input 
-                    type="text" 
-                    ref={weekRef} 
-                    readOnly={true} 
-                    value = {dispWeek}
-                    className="max-w-40 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                </input>  
-                <button className="font-bold" onClick={() => increaseW()}>
-                    {"\xa0"} &rarr;
-                </button>
-                <button 
-                    onClick={() => chooseWeekToday()}
-                    className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
-                    Return to Today
-                </button>
-                
-                <div className="-mx-2 lg:mx" >
-                    <BarChartWeekBreakdown data={[thingsData, weekState]} />
-                </div>
-            </div>                
-        {/* </div> */}
+            <div className="-mx-2 lg:mx" >
+                <BarChartMonthSum data={[finalResult, monthState]}/>
+            </div>
 
         </div>
+
+        <div style={{display:"none"}} ref={graphWeekSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
+            <h1 className="text-2xl font-bold mb-4" >Consumption Over The Week Of:</h1>
+
+            <button className="font-bold" onClick={() => decreaseW()}>
+                &larr; {"\xa0"}
+            </button>
+            <input 
+                type="text" 
+                ref={weekRef} 
+                readOnly={true} 
+                value = {dispWeek}
+                className="max-w-40 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+            </input>  
+            <button className="font-bold" onClick={() => increaseW()}>
+                {"\xa0"} &rarr;
+            </button>
+            <button 
+                onClick={() => chooseWeekToday()}
+                className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                Return to Today
+            </button>
+
+            <div className="-mx-2 lg:mx" >
+                <BarChartWeekSum data={[finalResult, weekState]}/>
+            </div>
+        </div>
+
+        <div style={{display:"none"}} ref={graphAllBreakdown} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
+            <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
+            <div className="-mx-2 lg:mx" >
+                <BarChartAllBreakdown things={thingsData} />
+            </div>
+        </div>
+            
+        <div style={{display:"none"}} ref={graphMonthBreakdown} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
+            <h1 className="text-2xl font-bold mb-4" >Consumption Over The Month Of:</h1>
+        
+            <button className="font-bold" onClick={() => decreaseM()}>
+                &larr; {"\xa0"}
+            </button>
+            <input 
+                type="text" 
+                ref={monthRef} 
+                readOnly={true} 
+                value = {dispDay}
+                className="max-w-40 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+            </input>  
+            <button className="font-bold" onClick={() => increaseM()}>
+                {"\xa0"} &rarr;
+            </button>
+            <button 
+                onClick={() => chooseMonthToday()}
+                className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                Return to Today
+            </button>
+
+            <div className="-mx-2 lg:mx" >
+                <BarChartMonthBreakdown data={[thingsData, monthState]} />
+            </div>
+        </div>    
+            
+        <div style={{display:"none"}} ref={graphWeekBreakdown} className="mt-4 lg:mt-0 lg:ml-6 lg:flex-grow basis-3/4">
+            <h1 className="text-2xl font-bold mb-4" >Consumption Over The Week Of:</h1>
+
+            <button className="font-bold" onClick={() => decreaseW()}>
+                &larr; {"\xa0"}
+            </button>
+            <input 
+                type="text" 
+                ref={weekRef} 
+                readOnly={true} 
+                value = {dispWeek}
+                className="max-w-40 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+            </input>  
+            <button className="font-bold" onClick={() => increaseW()}>
+                {"\xa0"} &rarr;
+            </button>
+            <button 
+                onClick={() => chooseWeekToday()}
+                className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                Return to Today
+            </button>
+            
+            <div className="-mx-2 lg:mx" >
+                <BarChartWeekBreakdown data={[thingsData, weekState]} />
+            </div>
+        </div>                
+
+    </div>
       )
    }
