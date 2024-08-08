@@ -110,8 +110,8 @@ export default function DataLogger(user){
                 // type="time" 
                 type="text"
                 placeholder="--:-- --"
-                onFocus={(e) => (e.target.type = "time")}
-                onBlur={(e) => (e.target.type = "text")}
+                onFocus={() => (myTimeRef.current.type = "time")}
+                onBlur={() => (myTimeRef.current.type = "text")}
                 ref={myTimeRef} 
                 className="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
