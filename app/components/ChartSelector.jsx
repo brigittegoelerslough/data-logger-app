@@ -374,9 +374,9 @@ export default function ChartSelector(things){
         </div>
 
         <div style={{display:"none"}} ref={graphMonthSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
-            <h1 className="text-2xl font-bold mb-4" >Consumption Over The Month Of:</h1>
+            <h1 className="text-xl lg:text-2xl font-bold mb-2 lg:mb-4" >Consumption Over The Month Of:</h1>
             
-            <button className="font-bold" onClick={() => decreaseM()}>
+            <button className="font-bold -ml-3" onClick={() => decreaseM()}>
                 &larr; {"\xa0"}
             </button>
             <input 
@@ -393,7 +393,7 @@ export default function ChartSelector(things){
             {/* <br></br> */}
             <button 
                 onClick={() => chooseMonthToday()}
-                className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                className="-mr-3 mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
                 Return to Today
             </button>
 
@@ -404,9 +404,9 @@ export default function ChartSelector(things){
         </div>
 
         <div style={{display:"none"}} ref={graphWeekSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
-            <h1 className="text-2xl font-bold mb-4" >Consumption Over The Week Of:</h1>
+            <h1 className="text-xl lg:text-2xl font-bold mb-2 lg:mb-4" >Consumption Over The Week Of:</h1>
 
-            <button className="font-bold" onClick={() => decreaseW()}>
+            <button className="-ml-3 font-bold" onClick={() => decreaseW()}>
                 &larr; {"\xa0"}
             </button>
             <input 
@@ -414,7 +414,7 @@ export default function ChartSelector(things){
                 ref={weekRef} 
                 readOnly={true} 
                 value = {dispWeek}
-                className="max-w-40 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="max-w-56 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
             </input>  
             <button className="font-bold" onClick={() => increaseW()}>
@@ -422,7 +422,7 @@ export default function ChartSelector(things){
             </button>
             <button 
                 onClick={() => chooseWeekToday()}
-                className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                className="-mr-3 mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
                 Return to Today
             </button>
 
@@ -439,9 +439,9 @@ export default function ChartSelector(things){
         </div>
             
         <div style={{display:"none"}} ref={graphMonthBreakdown} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
-            <h1 className="text-2xl font-bold mb-4" >Consumption Over The Month Of:</h1>
+            <h1 className="text-xl lg:text-2xl font-bold mb-2 lg:mb-4" >Consumption Over The Month Of:</h1>
         
-            <button className="font-bold" onClick={() => decreaseM()}>
+            <button className="-ml-3 font-bold" onClick={() => decreaseM()}>
                 &larr; {"\xa0"}
             </button>
             <input 
@@ -457,7 +457,7 @@ export default function ChartSelector(things){
             </button>
             <button 
                 onClick={() => chooseMonthToday()}
-                className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                className="-mr-3 mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
                 Return to Today
             </button>
 
@@ -467,9 +467,9 @@ export default function ChartSelector(things){
         </div>    
             
         <div style={{display:"none"}} ref={graphWeekBreakdown} className="mt-4 lg:mt-0 lg:ml-6 lg:flex-grow basis-3/4">
-            <h1 className="text-2xl font-bold mb-4" >Consumption Over The Week Of:</h1>
+            <h1 className="text-xl lg:text-2xl font-bold mb-2 lg:mb-4" >Consumption Over The Week Of:</h1>
 
-            <button className="font-bold" onClick={() => decreaseW()}>
+            <button className="-ml-3 font-bold" onClick={() => decreaseW()}>
                 &larr; {"\xa0"}
             </button>
             <input 
@@ -477,7 +477,7 @@ export default function ChartSelector(things){
                 ref={weekRef} 
                 readOnly={true} 
                 value = {dispWeek}
-                className="max-w-40 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="max-w-56 max-h-8 m-auto text-black text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
             </input>  
             <button className="font-bold" onClick={() => increaseW()}>
@@ -485,7 +485,7 @@ export default function ChartSelector(things){
             </button>
             <button 
                 onClick={() => chooseWeekToday()}
-                className="mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                className="-mr-3 mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
                 Return to Today
             </button>
             
