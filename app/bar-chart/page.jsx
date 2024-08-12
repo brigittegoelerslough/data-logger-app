@@ -1,4 +1,3 @@
-import BarChart from "../components/Charts/ExampleBarChart";
 import BarChart4 from "../components/Charts/BarChartEmpty";
 import ChartSelector from "../components/ChartSelector";
 import DeleteThingButton from "../components/DeleteThingButton";

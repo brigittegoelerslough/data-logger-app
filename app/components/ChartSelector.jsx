@@ -2,10 +2,8 @@
 
 import { Chart as ChartJS, defaults } from "chart.js/auto"
 import {Bar, Doughnut, Line } from "react-chartjs-2"
-import revenueData from "./Charts/revenueData.json"
 // import chooseGraph from "../saved-data/actions";
 import { useEffect, useRef, useState } from "react";
-import BarChart from "./Charts/ExampleBarChart";
 import BarChartAllSum from "./Charts/Sum/BarChartAllSum";
 import BarChartWeekSum from "./Charts/Sum/BarChartWeekSum";
 import BarChartMonthSum from "./Charts/Sum/BarChartMonthSum";
@@ -13,7 +11,6 @@ import BarChartAllBreakdown from "./Charts/Breakdown/BarChartAllBreakdown";
 import BarChartMonthBreakdown from "./Charts/Breakdown/BarChartMonthBreakdown";
 import BarChartWeekBreakdown from "./Charts/Breakdown/BarChartWeekBreakdown";
 import { groupBy } from "core-js/actual/array/group-by";
-import buttonClick from "./actions";
 import { setWeek } from "date-fns";
 require("core-js/actual/array/group-by");
 

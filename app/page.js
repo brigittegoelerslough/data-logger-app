@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { createClient } from "./utils/supabase/server";
-import JokeFetcher from "./components/JokeFetcher";
 import { redirect } from "next/navigation";
 
 export default async function Home() {

@@ -4,11 +4,10 @@
 // import chooseGraph from "../saved-data/actions";
 // import { useEffect, useRef, useState } from "react";
 import { groupBy } from "core-js/actual/array/group-by";
-import revalidateTestpage from "../components/actions";
 // import { revalidatePath } from "next/cache";
 
 import { useState } from 'react';
-import { MyInput } from "./page2";
+// import { MyInput } from "./page2";
 
 // const MyInput = (data) => {
 //     console.log('DATA', data)
