@@ -1,8 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from "react";
-import { saveJoke } from "../data/joke/actions";
 import { redirect } from "next/navigation";
-import { redirectlogin } from "../data/joke/actions";
 import { saveThing } from "../data/things/actions";
 
 // function tempAlert(msg,duration){
@@ -49,10 +47,10 @@ export default function DataLogger(user){
 
    if (!user.user){
     return (
-        <div>
+        <div className="justify-center items-center">
          <h1 className="text-2xl font-bold ">Log Data:</h1>
  
-         <form className="max-w-sm mx-auto py-6">
+         <form className="w-72 mx-auto py-6">
          <label htmlFor="ammt" className="block mb-2 text-xl font-medium text-white"> Choose an amount: </label>
              <select ref={myElementRef} id="ammt" name="ammt" className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                  <option value=""></option>
@@ -86,16 +84,16 @@ export default function DataLogger(user){
    var minDate = now.toISOString().substring(0,10);
 
    return (
-       <div>
+       <div className="justify-center items-center">
         <h1 className="text-2xl font-bold ">Log Data:</h1>
 
-        <form className="max-w-sm mx-auto py-6">
+        <form className="max-w-sm mx-auto py-6 justify-center items-center">
         <label htmlFor="ammt" className="block mb-2 text-xl font-medium text-white"> Choose an amount: </label>
             <select 
             ref={myElementRef} 
             id="ammt" 
             name="ammt" 
-            className="w-72 h-11 items-center justify-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            className="mx-auto w-72 h-11 items-center justify-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value=""></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -117,7 +115,7 @@ export default function DataLogger(user){
                 // onFocus={() => (myTimeRef.current.type = "time")}
                 // onBlur={() => (myTimeRef.current.type = "text")}
                 ref={myTimeRef} 
-                className="w-72 h-11 items-center justify-center mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="mx-auto w-72 h-11 items-center justify-center mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             
             {/* <label htmlFor="date" className="block my-2 text-xl font-medium text-white"> Date: </label> */}
@@ -129,7 +127,7 @@ export default function DataLogger(user){
                 // onBlur={(e) => (e.target.type = "text")}
                 ref={myDateRef} 
                 max ={minDate}
-                className="w-72 h-11 items-center justify-center mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                className="mx-auto w-72 h-11 items-center justify-center mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
 
             <button
             //    type="submit"

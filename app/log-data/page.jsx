@@ -87,10 +87,10 @@ export default async function Home() {
     <main className="px-5 md:px-0 bg-gray-800 min-h-screen flex pt-10 justify-center text-center text-white ">
 
       {/* <div className="grid grid-cols-4 gap-10 mt-12 mx-4"> */}
-      <div className="md:flex md:w-screen md:px-20">
+      <div className="md:flex md:w-screen md:px-10 md:mx-10">
 
         {/* <div className="col-span-1">  */}
-        <div className="md:flex-shrink-0 md:flex-grow basis-1/4"> 
+        <div className="md:flex-shrink-0 md:flex-grow basis-1/4 justify-center items-center"> 
           <DataLogger user={data.user} />
         </div>
 
