@@ -6,32 +6,8 @@ export default function NavBar() {
    return(
        <nav className="bg-gray-900 tex-white py-3 px-5">
            <div className="flex justify-between items-center w-full">
-               <ul className="text-sm md:text-base flex space-x-3 md:space-x-6 justify-center items-center">
-                   <li>
-                       <a href="/" className="text-white hover:text-blue-500 mr-3">
-                           Home
-                       </a>
-                   </li>
-                   <li>
-                       <a href="/log-data" className="text-white hover:text-blue-500">
-                           Log Data
-                       </a>
-                   </li>
+                <Dropdown/>
 
-                   <Dropdown/>
-                   
-                   {/* <li>
-                       <a href="/bar-chart" className="text-white hover:text-blue-500">
-                           Bar Charts
-                       </a>
-                   </li>
-                   <li>
-                       <a href="/line-chart" className="text-white hover:text-blue-500">
-                           Line Charts
-                       </a>
-                   </li> */}
-                   
-               </ul>
                <div>
                    <LogoutOrLogin />
                </div>
