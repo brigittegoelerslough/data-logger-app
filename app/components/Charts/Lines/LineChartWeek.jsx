@@ -1,20 +1,20 @@
+import 'chartjs-adapter-date-fns';
+import { Line } from 'react-chartjs-2';
+
 import {
     Chart as ChartJs,
     LineElement,
-    // CategoryScale,
     TimeScale,
     LinearScale,
     PointElement,
     Tooltip,
     Legend
 } from 'chart.js';
-
-import 'chartjs-adapter-date-fns';
-import { Line } from 'react-chartjs-2';
+import { max } from 'date-fns';
+import { createDatesTotals } from '@/app/functions/actions';
 
 ChartJs.register(
     LineElement,
-    // CategoryScale,
     TimeScale,
     LinearScale,
     PointElement,
@@ -27,7 +27,6 @@ export default function LineChartWeek(things) {
     const thingsData = things.data[0]
     const chosenDate = things.data[1]
 
-    const today = new Date();
     const maximumDate = chosenDate;
     var day = 60 * 60 * 24 * 1000;
     const minimumDate = new Date(maximumDate.getTime() - (7 * day))
@@ -45,23 +44,9 @@ export default function LineChartWeek(things) {
         return a[0] - b[0];
     });
 
-    const dates = []
-    const totals = []
-    if (sortable.length > 0) {
-        dates.push(minimumDate)
-        totals.push(0)
-    }
-    var sum = 0
-    for (var entry of sortable){
-        dates.push(entry[0])
-        sum += entry[1]
-        totals.push(sum)
-    }
-
-    if (sum > 0) {
-        dates.push(today)
-        totals.push(sum)
-    }
+    let res = createDatesTotals(sortable, minimumDate, maximumDate)
+    const dates = res[0]
+    const totals = res[1]
     
     const data = {
         labels: dates,

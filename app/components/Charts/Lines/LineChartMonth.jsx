@@ -1,20 +1,19 @@
+import 'chartjs-adapter-date-fns';
+import { Line } from 'react-chartjs-2';
+
 import {
     Chart as ChartJs,
     LineElement,
-    // CategoryScale,
     TimeScale,
     LinearScale,
     PointElement,
     Tooltip,
     Legend
 } from 'chart.js';
-
-import 'chartjs-adapter-date-fns';
-import { Line } from 'react-chartjs-2';
+import { createDatesTotals } from '@/app/functions/actions';
 
 ChartJs.register(
     LineElement,
-    // CategoryScale,
     TimeScale,
     LinearScale,
     PointElement,
@@ -37,17 +36,18 @@ export default function LineChartMonth(things) {
     }  else {
         var num_days = 31
     }
-    // var day = 60 * 60 * 24 * 1000;
-    // const minimumDate = new Date(maximumDate.getTime() - (num_days * day))
-    const maxChosenDate = chosenYear + '-' + chosenMonth + '-' + num_days + 'T07:24:00'
+
+    const maxChosenDate = chosenYear + '-' + chosenMonth + '-' + num_days + 'T23:59:00'
     const minChosenDate = chosenYear + '-' + chosenMonth + '-01' + 'T00:00:00'
     var maximumDate = new Date(maxChosenDate);
+    const minimumDate = new Date(minChosenDate);
     
     const today = new Date()
     if (maximumDate > today) {
-        maximumDate = today
+        if (today.toISOString().substring(5,7) == chosenDate) {
+            maximumDate = today
+        }
     }
-    const minimumDate = new Date(minChosenDate);
 
     let sortable = [];
     for (var key in thingsData) {
@@ -62,22 +62,9 @@ export default function LineChartMonth(things) {
         return a[0] - b[0];
     });
 
-    const dates = []
-    const totals = []
-    if (sortable.length > 0) {
-        dates.push(minimumDate)
-        totals.push(0)
-    }
-    var sum = 0
-    for (var entry of sortable){
-        dates.push(entry[0])
-        sum += entry[1]
-        totals.push(sum)
-    }
-    if (sum > 0) {
-        dates.push(maximumDate)
-        totals.push(sum)
-    }
+    let res = createDatesTotals(sortable, minimumDate, maximumDate)
+    const dates = res[0]
+    const totals = res[1]
 
     const data = {
         labels: dates,

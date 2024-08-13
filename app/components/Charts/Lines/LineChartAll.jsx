@@ -1,7 +1,9 @@
+import 'chartjs-adapter-date-fns';
+import { Line } from 'react-chartjs-2';
+
 import {
     Chart as ChartJs,
     LineElement,
-    // CategoryScale,
     TimeScale,
     LinearScale,
     PointElement,
@@ -9,12 +11,8 @@ import {
     Legend
 } from 'chart.js';
 
-import 'chartjs-adapter-date-fns';
-import { Line } from 'react-chartjs-2';
-
 ChartJs.register(
     LineElement,
-    // CategoryScale,
     TimeScale,
     LinearScale,
     PointElement,
@@ -35,24 +33,18 @@ export default function LineChartAll(things) {
     sortable.sort(function(a, b) {
         return a[0] - b[0];
     });
-    // console.log('SORTED', sortable)
 
     const dates = []
     const totals = []
     var sum = 0
     for (var entry of sortable){
-        // console.log(entry)
         dates.push(entry[0])
         sum += entry[1]
         totals.push(sum)
     }
 
     const minimumDate = new Date(Math.min.apply(null, dates));
-    // const maximumDate = new Date(Math.max.apply(null, dates));
     const maximumDate = new Date();
-    // var num_days = parseInt((maximumDate - minimumDate) / (1000 * 60 * 60 * 24), 10); 
- //    var day = 60 * 60 * 24 * 1000;
- //    const minimumDate = new Date(maximumDate.getTime() - (7 * day))
 
     dates.push(maximumDate)
     totals.push(sum)

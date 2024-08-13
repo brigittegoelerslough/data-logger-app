@@ -109,3 +109,28 @@ export function objPerDate (dataObj) {
      }
     return res;
 }
+
+
+// For Line
+export function createDatesTotals (dataObj, minimumDate, maximumDate) {
+    const dates = []
+    const totals = []
+    if (dataObj.length > 0) {
+        dates.push(minimumDate)
+        totals.push(0)
+    }
+    var sum = 0
+    for (var entry of dataObj){
+        dates.push(entry[0])
+        sum += entry[1]
+        totals.push(sum)
+    }
+    if (sum > 0) {
+        dates.push(maximumDate)
+        totals.push(sum)
+    } else {
+        dates.push(minimumDate)
+        dates.push(maximumDate)
+    }
+    return [dates, totals]
+}
