@@ -1,7 +1,6 @@
 'use client';
 import { deleteThing } from "../data/things/actions";
 
-
 export default function DeleteThingButton({thingId}){
    return (
        <button

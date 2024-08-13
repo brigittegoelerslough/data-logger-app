@@ -8,22 +8,16 @@ export async function saveThing(formData){
     const { data } = await supabase.auth.getUser();
     const user = data.user;
 
-//    const ammt = formData.get('ammt')
-
    if (!user) {
-        // redirect('/login')}
         throw Error('Must be an authenticated user to perform this action')}
         // redirect('/login')}
 
     formData['user_id'] = user.id;
-    console.log(formData)
     try {
        const {data, error} = await supabase.from('things').insert([
             formData
-        //    {user_id: user.id, amount: ammt, created_at: new_time, created_date: date}
         ])
        if (error) throw error;
-       console.log('DONE SUCCESS')
        revalidatePath('/saved-data');
        revalidatePath('/log-data');
        return data;

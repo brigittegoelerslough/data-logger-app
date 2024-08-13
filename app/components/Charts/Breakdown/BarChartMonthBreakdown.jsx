@@ -29,11 +29,7 @@ export default function BarChartMonthBreakdown(things){
       dates.push(new Date(day))
    }
    const minimumDate = new Date(Math.min.apply(null, dates));
-   // const maximumDate = new Date(Math.max.apply(null, dates));
    const maximumDate = new Date();
-   // var num_days = parseInt((maximumDate - minimumDate) / (1000 * 60 * 60 * 24), 10); 
-   // var day = 60 * 60 * 24 * 1000;
-   // const minimumDate = new Date(maximumDate.getTime() - (31 * day))
 
    //creating array with all dates (missing ones)
    var new_dates = []
@@ -60,23 +56,6 @@ export default function BarChartMonthBreakdown(things){
    });
 
 
-   // const now = new Date();
-   // const month = now.toISOString().substring(5,7);
-   // if (month === '02'){
-   //    var num_days = 28
-   // } else if (month === '02' || month === '02' || month === '02' || month === '02'){
-   //    var num_days = 30
-   // }  else {
-   //    var num_days = 31
-   // }
-
-   // const last_month_keys = Object.keys(finalResult).slice(-num_days)
-   // const lastMonth = {}
-   // for (const key in last_month_keys) {
-   //  const day = last_month_keys[key]
-   //  lastMonth[day] = finalResult[day]
-   // }
-
    let finalResult2 = {};
    for (const key in finalResult){
    //  const amounts = Object.groupBy(finalResult[key], ({amount}) => amount)
@@ -101,7 +80,7 @@ export default function BarChartMonthBreakdown(things){
          }
          obj['total'] = total;
          total = 0;
-         const pos_amounts = ['1', '2', '3', '4', '5']
+         const pos_amounts = ['1', '2', '3', '4', '5', '6']
          for (const i of pos_amounts) {
                if (!Object.keys(obj).includes(i)){
                   obj[i] = 0
@@ -138,66 +117,46 @@ export default function BarChartMonthBreakdown(things){
                }
              }}
             data={{
-               // labels: revenueData.map((data) => data.label),
-            //    labels: Object.keys(finalResult),
                labels: finalResult3.map((data) => data.date),
                datasets: [
                   {
                      label: "1",
-                     // data: revenueData.map((data) => data.revenue),
                      data: finalResult3.map((data) => data['1']),
                      backgroundColor: "#4275f5",
                      borderColor: "#4275f5",
                   },
                   {
                     label: "2",
-                    // data: revenueData.map((data) => data.revenue),
                     data: finalResult3.map((data) => data['2']),
                     backgroundColor: "#ed214a",
                     borderColor: "#ed214a",
                  },
                  {
                     label: "3",
-                    // data: revenueData.map((data) => data.revenue),
                     data: finalResult3.map((data) => data['3']),
                     backgroundColor: "#ed9821",
                     borderColor: "#ed9821",
                  }, 
                  {
                     label: "4",
-                    // data: revenueData.map((data) => data.revenue),
                     data: finalResult3.map((data) => data['4']),
                     backgroundColor: "#21ed6f",
                     borderColor: "#21ed6f",
                  },
                  {
                     label: "5",
-                    // data: revenueData.map((data) => data.revenue),
                     data: finalResult3.map((data) => data['5']),
                     backgroundColor: "#9121ed",
                     borderColor: "#9121ed",
                  },
-               //   {
-               //    label: "total",
-               //    // data: revenueData.map((data) => data.revenue),
-               //    data: finalResult3.map((data) => data['total']),
-               //    backgroundColor: "#ffffff",
-               //    borderColor: "#ffffff",
-               // },                                                        
+                 {
+                  label: "6",
+                  data: finalResult3.map((data) => data['6']),
+                  backgroundColor: "#70f1ff",
+                  borderColor: "#70f1ff",
+                 },                                                    
                ],
             }}
-            // options={{
-            //    elements:{
-            //       line: {
-            //          // tension: 0.5,
-            //       }
-            //    },
-            //    plugins: {
-            //       title: {
-            //          text: "Monthly Revenue and Cost"
-            //       }
-            //    }
-            // }}
          />
        </div>
 

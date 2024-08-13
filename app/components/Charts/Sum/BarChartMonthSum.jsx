@@ -1,6 +1,5 @@
 "use client";
 
-import chooseGraph from "@/app/bar-chart/actions";
 import { Chart as ChartJS, defaults } from "chart.js/auto"
 import {Bar, Doughnut, Line } from "react-chartjs-2"
 

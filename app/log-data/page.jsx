@@ -86,33 +86,21 @@ export default async function Home() {
   return (
     <main className="px-5 md:px-0 bg-gray-800 min-h-screen flex pt-10 justify-center text-center text-white ">
 
-      {/* <div className="grid grid-cols-4 gap-10 mt-12 mx-4"> */}
       <div className="md:flex md:w-screen md:px-10 md:mx-10">
 
-        {/* <div className="col-span-1">  */}
         <div className="md:flex-shrink-0 md:flex-grow basis-1/4 justify-center items-center"> 
           <DataLogger user={data.user} />
         </div>
 
-        {/* <div className="col-span-1"> */}
         <div className="md:flex-shrink-0 md:flex-grow basis-1/12">
           <p></p>
         </div>
 
-        {/* <div className="col-span-2"> */}
         <div className="mt-4 md:mt-0 md:ml-6 md:flex-shrink-0 md:flex-grow basis-2/3">
               <h1 className="text-2xl font-bold mb-4">{header}</h1>
-              {/* <h1 
-                class="text-2xl font-bold mb-4 text-yellow-600 sm:text-indigo-600 md:text-green-600 lg:text-fuchsia-600 xl:text-orange-600 2xl:text-blue-600"
-                >
-                    Size
-              </h1> */}
             <div className="md:columns-1 lg:columns-2 min-[1400px]:columns-3 min-[1800px]:columns-4 pb-10">
-                {/* <div className="md:flex-shrink-0 md:flex-grow"> */}
-                  {/* <div className="basis-1/3"> */}
                     <ul>
                       {first_half.map((thing) => (
-                        // <div key={thing.id} className="flex items-center justify-center space-x-2">
                         <div key={thing.id} className="flex justify-center space-x-2">
                         <li className="list-none">
                               {
@@ -122,10 +110,6 @@ export default async function Home() {
                               {"\xa0"}
                               &mdash; 
                               {"\xa0"}
-                              {/* &#8943; */}
-                              {/* &#8943; */}
-                              {/* &#10870; */}
-                              {/* {' Ammount: ' + thing.amount */}
                               {' ' + thing.amount + ' '}
                               <DeleteThingButton thingId={thing.id} />
                             </li>
@@ -133,12 +117,7 @@ export default async function Home() {
                         ))}
                     </ul> 
                   </div>
-              
-
-
             </div>
-        
-
       </div>
     </main>
   );

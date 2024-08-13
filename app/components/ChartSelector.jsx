@@ -2,7 +2,6 @@
 
 import { Chart as ChartJS, defaults } from "chart.js/auto"
 import {Bar, Doughnut, Line } from "react-chartjs-2"
-// import chooseGraph from "../saved-data/actions";
 import { useEffect, useRef, useState } from "react";
 import BarChartAllSum from "./Charts/Sum/BarChartAllSum";
 import BarChartWeekSum from "./Charts/Sum/BarChartWeekSum";
@@ -15,7 +14,6 @@ import { setWeek } from "date-fns";
 require("core-js/actual/array/group-by");
 
 export default function ChartSelector(things){
-    // console.log(things)
 
     if (things.things.length == 0) {return};
 
@@ -53,11 +51,7 @@ export default function ChartSelector(things){
        dates.push(new Date(day))
     }
     const minimumDate = new Date(Math.min.apply(null, dates));
-    // const maximumDate = new Date(Math.max.apply(null, dates));
     const maximumDate = new Date();
-    // var num_days = parseInt((maximumDate - minimumDate) / (1000 * 60 * 60 * 24), 10); 
-    // var day = 60 * 60 * 24 * 1000;
-    // const minimumDate = new Date(maximumDate.getTime() - (31 * day))
  
     //creating array with all dates (missing ones)
     var new_dates = []
@@ -80,7 +74,6 @@ export default function ChartSelector(things){
           }
     });
 
-
     const timeRef = useRef()
     const breakdownRef = useRef()
     const graphAllSum = useRef()
@@ -92,7 +85,6 @@ export default function ChartSelector(things){
 
 
     const now = new Date();
-    // var datestring = now.toISOString().split('T')[0]
 
     // Month Chooser
     const monthRef = useRef()
@@ -199,9 +191,7 @@ export default function ChartSelector(things){
 
 
    return (
-    // <div className="grid grid-cols-5 gap-24 m-12">
     <div className="lg:flex">
-        {/* <div className="col-span-1 content-center"> */}
         <div className="columns-2 lg:columns-1 lg:flex-shrink-0 lg:flex-grow basis-1/4 pt-2 lg:pt-40">
 
         <div>
@@ -209,20 +199,15 @@ export default function ChartSelector(things){
                 Time Period:
             </h1>
 
-            {/* <input className="text-black" type="text" value={childState} onChange={() => handleStateChange} />
-            <br></br> */}
-
             <select className="mb-10 max-w-64 h-10 m-auto text-black col-span-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 ref={timeRef}
                 onChange={async () => {
                     const timescale = timeRef.current.value;
-                    // const breakdown = breakdownRef.current.value;
                     if (breakdownRef.current.checked){
                         var breakdown = 'Breakdown'
                     } else{
                         var breakdown = 'Sum'
                     }
-                    // console.log(ammt)
                     if(timescale === "All" && breakdown == "Sum"){
                         graphAllSum.current.style.display = 'block';
                         graphMonthSum.current.style.display = 'none';
@@ -277,12 +262,9 @@ export default function ChartSelector(things){
                 <option value="All">All Time</option>
                 <option value="Month">By Month</option>
                 <option value="Week">By Week</option>
-                {/* <option value="1">Brekadown by Amount</option> */}
-                {/* <option value="4"></option> */}
             </select>
         </div>
 
-        {/* <br></br> <br></br> <br></br> <br></br> */}
         <div>
             <h1 className="text-xl xl:text-2xl font-bold mb-3 lg:mb-4 lg:pt-32">Breakdown By Amount:</h1>
             
@@ -353,21 +335,17 @@ export default function ChartSelector(things){
                         }}
                 />
                 <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                {/* <span className="ms-3 text-lg font-medium text-white">Breakdown By Amount</span> */}
                 </label>
         </div>
 
     </div>
 
-        {/* <div> */}
-            {/* <div style={{display:"block"}} ref={graphAllSum} className="col-span-4"> */}
         <div style={{display:"block"}} ref={graphAllSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
             <h1 className="text-2xl font-bold mb-4" >Consumption Over All Time</h1>
             
             <div className="-mx-2 lg:mx-0" >
                 <BarChartAllSum things={finalResult}/>
             </div>
-            {/* <App/> */}
         </div>
 
         <div style={{display:"none"}} ref={graphMonthSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
@@ -387,7 +365,6 @@ export default function ChartSelector(things){
             <button className="font-bold" onClick={() => increaseM()}>
                 {"\xa0"} &rarr;
             </button>
-            {/* <br></br> */}
             <button 
                 onClick={() => chooseMonthToday()}
                 className="-mr-3 mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
