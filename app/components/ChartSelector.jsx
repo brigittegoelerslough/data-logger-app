@@ -11,6 +11,7 @@ import BarChartMonthBreakdown from "./Charts/Breakdown/BarChartMonthBreakdown";
 import BarChartWeekBreakdown from "./Charts/Breakdown/BarChartWeekBreakdown";
 import { groupBy } from "core-js/actual/array/group-by";
 import { setWeek } from "date-fns";
+import { convertToMMDDYYYY, fillInDates, fillInObject, groupByAmmount, groupByReduce, objPerDate, sumData } from "../functions/actions";
 require("core-js/actual/array/group-by");
 
 export default function ChartSelector(things){
@@ -18,61 +19,17 @@ export default function ChartSelector(things){
     if (things.things.length == 0) {return};
 
     const thingsData = things.things
-    // const days = Object.groupBy(thingsData, ({created_date}) => created_date)
-    // const days = thingsData.groupBy((created_date) => created_date)
-    const days = thingsData.reduce((x,y) => {
-        (x[y.created_date] = x[y.created_date] || []).push(y);
-        return x;
-    } , {});
-    
-    const newData = {}
-    for (const day in days){
-       var counter=0
-       for (const item in day){
-          try {
-          counter += days[day][item]['amount']}
-          catch(e){
-             {}}
-       }
-       newData[day] = counter;
-       counter=0
-    };
- 
-    const sortedData = Object.keys(newData)
-    .sort()
-    .reduce((acc, key) => { 
-       acc[key] = newData[key];
-       return acc;
-    }, {});
-       
-    //converting string to date objects
-    const dates = [];
-    for (const day in sortedData){
-       dates.push(new Date(day))
-    }
-    const minimumDate = new Date(Math.min.apply(null, dates));
-    const maximumDate = new Date();
- 
-    //creating array with all dates (missing ones)
-    var new_dates = []
-    let i = minimumDate.getTime();
-    do {
-       let date = new Date(i);
-       new_dates.push(date)
-       i += 86400000;
-    } while (i <= maximumDate);
-    
-    //filling in new object using old list and new missing dates filled in with 0
-    let finalResult = {};
-    new_dates.forEach(date => {
-       var datestring = date.toISOString().split('T')[0]
-       var mmddyyy = datestring.substring(5,7) + '/' + datestring.substring(8,10) + '/' + datestring.substring(0,4);
-          if(!sortedData.hasOwnProperty(datestring)) {
-             finalResult[mmddyyy] = 0;
-          } else {
-             finalResult[mmddyyy] = sortedData[datestring];
-          }
-    });
+
+    const days = groupByReduce(thingsData, 'created_date')
+    const new_dates = fillInDates(days)
+    const filledData = fillInObject(new_dates, days, [])
+
+    // For Summed Graphs
+    const summedData = sumData(filledData)
+
+    // For Breakdown Graphs
+    const groupedAmmount = groupByAmmount(filledData)
+    const breakdownData = objPerDate(groupedAmmount)
 
     const timeRef = useRef()
     const breakdownRef = useRef()
@@ -156,7 +113,7 @@ export default function ChartSelector(things){
 
     function decreaseW() {
         const oneWeek = 7 * 1000 * 60 * 60 * 24;
-        const newWeek = new Date(weekState - oneWeek)
+        const newWeek = new Date(weekState.valueOf() - oneWeek)
         setWeekState(newWeek)
     }
 
@@ -165,28 +122,11 @@ export default function ChartSelector(things){
         setWeekState(today) 
     }
 
-    const datestring = weekState.toISOString()
-    if (datestring[5] == 0 && datestring[8] == 0){
-        var mmddyyyy = datestring.substring(6,7) + '/' + datestring.substring(9,10) + '/' + datestring.substring(0,4);
-    } else if (datestring[5] == 0) {
-        var mmddyyyy = datestring.substring(6,7) + '/' + datestring.substring(8,10) + '/' + datestring.substring(0,4);
-    } else if (datestring[8] == 0) {
-        var mmddyyyy = datestring.substring(5,7) + '/' + datestring.substring(9,10) + '/' + datestring.substring(0,4);
-    } else{
-        var mmddyyyy = datestring.substring(5,7) + '/' + datestring.substring(8,10) + '/' + datestring.substring(0,4);
-    }
+    const mmddyyyy = convertToMMDDYYYY(weekState)
     const oneWeek = 7 * 1000 * 60 * 60 * 24;
     const prevWeek = new Date(weekState - oneWeek)
-    const prevdatestring = prevWeek.toISOString()
-    if (prevdatestring[5] == 0 && prevdatestring[8] == 0){
-        var mmddyyyy2 = prevdatestring.substring(6,7) + '/' + prevdatestring.substring(9,10) + '/' + prevdatestring.substring(0,4);
-    } else if (datestring[5] == 0) {
-        var mmddyyyy2 = prevdatestring.substring(6,7) + '/' + prevdatestring.substring(8,10) + '/' + prevdatestring.substring(0,4);
-    } else if (datestring[8] == 0) {
-        var mmddyyyy2 = prevdatestring.substring(5,7) + '/' + prevdatestring.substring(9,10) + '/' + prevdatestring.substring(0,4);
-    } else{
-        var mmddyyyy2 = prevdatestring.substring(5,7) + '/' + prevdatestring.substring(8,10) + '/' + prevdatestring.substring(0,4);
-    }
+    const mmddyyyy2 = convertToMMDDYYYY(prevWeek)
+
     var dispWeek =  mmddyyyy2 + ' - ' + mmddyyyy
 
 
@@ -344,7 +284,7 @@ export default function ChartSelector(things){
             <h1 className="text-2xl font-bold mb-4" >Consumption Over All Time</h1>
             
             <div className="-mx-2 lg:mx-0" >
-                <BarChartAllSum things={finalResult}/>
+                <BarChartAllSum things={summedData}/>
             </div>
         </div>
 
@@ -372,7 +312,7 @@ export default function ChartSelector(things){
             </button>
 
             <div className="-mx-2 lg:mx-0" >
-                <BarChartMonthSum data={[finalResult, monthState]}/>
+                <BarChartMonthSum data={[summedData, monthState]}/>
             </div>
 
         </div>
@@ -401,14 +341,14 @@ export default function ChartSelector(things){
             </button>
 
             <div className="-mx-2 lg:mx-0" >
-                <BarChartWeekSum data={[finalResult, weekState]}/>
+                <BarChartWeekSum data={[summedData, weekState]}/>
             </div>
         </div>
 
         <div style={{display:"none"}} ref={graphAllBreakdown} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
             <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
             <div className="-mx-2 lg:mx-0" >
-                <BarChartAllBreakdown things={thingsData} />
+                <BarChartAllBreakdown things={breakdownData} />
             </div>
         </div>
             
@@ -436,7 +376,7 @@ export default function ChartSelector(things){
             </button>
 
             <div className="-mx-2 lg:mx-0" >
-                <BarChartMonthBreakdown data={[thingsData, monthState]} />
+                <BarChartMonthBreakdown data={[breakdownData, monthState]} />
             </div>
         </div>    
             
@@ -464,7 +404,7 @@ export default function ChartSelector(things){
             </button>
             
             <div className="-mx-2 lg:mx-0" >
-                <BarChartWeekBreakdown data={[thingsData, weekState]} />
+                <BarChartWeekBreakdown data={[breakdownData, weekState]} />
             </div>
         </div>                
 
