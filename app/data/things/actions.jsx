@@ -20,6 +20,7 @@ export async function saveThing(formData){
        if (error) throw error;
        revalidatePath('/saved-data');
        revalidatePath('/log-data');
+       redirect('/log-data')
        return data;
    } catch(error){
        throw error}}

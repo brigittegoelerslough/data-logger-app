@@ -15,7 +15,21 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <NavBar/>
-        <Toaster />
+        <Toaster 
+          toastOptions={{
+            success: {
+              style: {
+                background: '#c4ffda',
+                color: 'black'
+              },
+            },
+            error: {
+              style: {
+                background: '#ffc4c4',
+                color: 'black'
+              },
+            },
+          }}/>
         {children}
       </body>
     </html>

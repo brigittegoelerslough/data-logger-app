@@ -10,7 +10,6 @@ export default async function Home() {
   const supabase = createClient();
   const {data} = await supabase.auth.getUser();
 
-  // const supabase = createClient();
   const {data:userData} = await supabase.auth.getUser();
   let things = [];
   if (userData.user){
@@ -25,17 +24,13 @@ export default async function Home() {
       header = 'Login to Delete Previous Entries:';
       return (
       <main className="px-5 md:px-0 bg-gray-800 min-h-screen flex pt-10 md:pt-0 md:items-center justify-center text-center text-white ">
-      {/* <div className="grid grid-cols-4 gap-10 "> */}
       <div className="md:flex ">
-        {/* <div className="col-span-1">  */}
         <div className="md:flex-shrink-0 md:flex-grow basis-1/3"> 
           <DataLogger user={data.user} />
         </div>
-        {/* <div className="col-span-1"> */}
         <div className="md:flex-shrink-0 md:flex-grow basis-1/4">
           <p></p>
         </div>
-        {/* <div className="col-span-2"> */}
         <div className="mt-4 md:mt-0 md:ml-6 md:flex-shrink-0 md:flex-grow basis-1/2">
           <h1 className="text-2xl font-bold mb-4">{header}</h1>
           <button
@@ -46,18 +41,6 @@ export default async function Home() {
         </div>
       </div>
     </main> )
-    //   return (
-    //     <main className="bg-gray-800 min-h-screen flex items-center justify-center text-center text-white ">
-    //       <div>
-    //         <h1 className="text-4xl font-bold mb-4 -mt-20">{header}</h1>
-    //         <button
-    //             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-8"
-    //             > 
-    //             <a href="/login"> Login/Signup</a>
-    //         </button>
-    //       </div>
-    //     </main>
-    // )
   }
 
   for (var key in Object.keys(things)){
