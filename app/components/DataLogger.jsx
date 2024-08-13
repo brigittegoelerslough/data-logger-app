@@ -126,7 +126,7 @@ export default function DataLogger(user){
                             Data Saved!
                         </p>
                     </div>, {
-                        duration: 60000,
+                        duration: 4000,
                         position: 'top-center'
                     });
                    }}
