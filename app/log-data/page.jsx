@@ -65,24 +65,6 @@ export default async function Home() {
   }
   things.sort((a,b) => b.dateobj - a.dateobj)
 
-  if (things.length % 2 == 1){
-    var halfway = Math.floor(things.length/2)+1
-  } else {
-    var halfway = things.length/2
-  }
-  const first_keys = Object.keys(things).slice(0,halfway)
-  var first_half = []
-  for (const key in first_keys) {
-   const id = first_keys[key]
-   first_half.push(things[id])
-  }
-  const second_keys = Object.keys(things).slice(halfway,things.length)
-  const second_half = []
-  for (const key in second_keys) {
-   const id = second_keys[key]
-   second_half.push(things[id])
-  }
-
   return (
     <main className="px-5 md:px-0 bg-gray-800 min-h-screen flex pt-10 justify-center text-center text-white ">
 
@@ -100,7 +82,7 @@ export default async function Home() {
               <h1 className="text-2xl font-bold mb-4">{header}</h1>
             <div className="md:columns-1 lg:columns-2 min-[1400px]:columns-3 min-[1800px]:columns-4 pb-10">
                     <ul>
-                      {first_half.map((thing) => (
+                      {things.map((thing) => (
                         <div key={thing.id} className="flex justify-center space-x-2">
                         <li className="list-none">
                               {

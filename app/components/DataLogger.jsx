@@ -1,11 +1,18 @@
 'use client';
-import { useEffect, useRef, useState } from "react";
+
+import { useRef } from "react";
 import { redirect } from "next/navigation";
 import { saveThing } from "../data/things/actions";
+import { toast } from "react-hot-toast";
+import { HiCheck, HiExclamation, HiX } from "react-icons/hi";
+
+// import "react-toastify/dist/ReactToastify.css";
+
+// toast.configure();
 
 export default function DataLogger(user){
 
-    const saveDataText = user.user ? 'Save Data' : 'Login To Save Data'
+   const saveDataText = user.user ? 'Save Data' : 'Login To Save Data'
    const myElementRef = useRef()
    const myTimeRef = useRef()
    const myDateRef = useRef()
@@ -95,7 +102,6 @@ export default function DataLogger(user){
                     const date = myDateRef.current.value;
                     const datetime = date.concat(" ", time, ":00")
 
-
                     const curr_time = new Date;
                     const curr_datetime = curr_time.toISOString().replace("T"," ").substring(0, 19);
                     const curr_date = curr_time.toISOString().substring(0, 10);
@@ -107,9 +113,22 @@ export default function DataLogger(user){
                     }
 
                     // tempAlert("Data Saved!", 20000);
-                    // alert('Data Saved!')
+                    // alert('Data Saved!')      
+                    // await saveThing(formData);
                     await saveThing(formData);
-                    // alert('Data Saved Successfully!')
+                    toast.custom(
+                    <div className="flex gap-4 bg-green-100 text-black h-10 w-44 rounded-lg items-center justify-left">
+                        <div className="ml-1 items-center justify-center inline-flex h-8 w-8 shrink-0 rounded-lg bg-green-300 text-green-700 dark:bg-green-800 dark:text-green-200">
+                            <HiCheck className="h-5 w-5" />
+                            {/* <HiCheck className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200" /> */}
+                        </div>
+                        <p className="ml-2 text-md font-normal">
+                            Data Saved!
+                        </p>
+                    </div>, {
+                        duration: 60000,
+                        position: 'top-center'
+                    });
                    }}
                    >
                    {saveDataText}

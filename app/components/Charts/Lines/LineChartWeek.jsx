@@ -93,8 +93,8 @@ export default function LineChartWeek(things) {
                 time: {
                     unit: 'day'
                 },
-                max: maximumDate,
-                min: minimumDate
+                // max: maximumDate,
+                // min: minimumDate
             }
         }
     }

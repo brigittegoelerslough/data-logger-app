@@ -3,18 +3,6 @@
 import { Chart as ChartJS, defaults } from "chart.js/auto"
 import {Bar, Doughnut, Line } from "react-chartjs-2"
 
-const config = {
-    options: {
-      scales: {
-        y: {
-          grid: {
-            color: '#ffffff'
-            },
-          },
-        }
-      }
-    };
-
 export default function BarChartWeekBreakdown(things){
 
    const thingsData = things.data[0]
@@ -99,7 +87,7 @@ export default function BarChartWeekBreakdown(things){
         }
         obj['total'] = total;
         total = 0;
-        const pos_amounts = ['1', '2', '3', '4', '5']
+        const pos_amounts = ['1', '2', '3', '4', '5', '6']
         for (const i of pos_amounts) {
             if (!Object.keys(obj).includes(i)){
                 obj[i] = 0

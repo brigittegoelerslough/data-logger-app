@@ -108,8 +108,8 @@ export default function LineChartMonth(things) {
                 time: {
                     unit: 'day'
                 },
-                max: maximumDate,
-                min: minimumDate
+                // max: maximumDate,
+                // min: minimumDate
             }
         }
     }
