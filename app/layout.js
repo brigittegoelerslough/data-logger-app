@@ -19,13 +19,13 @@ export default function RootLayout({ children }) {
           toastOptions={{
             success: {
               style: {
-                background: '#c4ffda',
+                background: '#d1ffe0',
                 color: 'black'
               },
             },
             error: {
               style: {
-                background: '#ffc4c4',
+                background: '#ffd1d1',
                 color: 'black'
               },
             },
