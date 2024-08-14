@@ -90,7 +90,7 @@ export default function DataLogger(user){
                 type="time" 
                 ref={myTimeRef} 
                 defaultValue = {currTime}
-                className="flex mx-auto w-72 lg:w-full h-12 items-center bg-gray-50 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="flex text-left mx-auto w-72 lg:w-full h-12 items-center bg-gray-50 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
 
             <label className="text-left ml-1 block mb-1 mt-4 text-lg font-small text-white"> Date: </label>
@@ -99,7 +99,7 @@ export default function DataLogger(user){
                 ref={myDateRef} 
                 max ={currDate}
                 defaultValue = {currDate}
-                className="flex mx-auto w-72 lg:w-full h-12 items-center bg-gray-50 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                className="flex text-left mx-auto w-72 lg:w-full h-12 items-center bg-gray-50 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
 
             <button
                type='button'
