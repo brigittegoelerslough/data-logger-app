@@ -23,14 +23,16 @@ ChartJs.register(
 
 export default function LineChartMonth(things) {
 
-   const thingsData = things.data[0]
-   const chosenDate = things.data[1]
+    const thingsData = things.data[0]
+    const chosenDate = things.data[1]
 
-   const chosenMonth = chosenDate.toISOString().substring(5,7)
-   const chosenYear = chosenDate.toISOString().substring(0,4)
+    const chosenMonth = chosenDate.toISOString().substring(5,7)
+    const chosenYear = chosenDate.toISOString().substring(0,4)
 
-   if (chosenMonth === '02'){
-    var num_days = 28
+    if (chosenMonth === '02' && chosenYear % 4 == 0){
+        var num_days = 29
+    } else if (chosenMonth === '02'){
+        var num_days = 28
     } else if (chosenMonth === '09' || chosenMonth === '04' || chosenMonth === '06' || chosenMonth === '11'){
         var num_days = 30
     }  else {

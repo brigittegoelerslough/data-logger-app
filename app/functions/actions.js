@@ -134,3 +134,57 @@ export function createDatesTotals (dataObj, minimumDate, maximumDate) {
     }
     return [dates, totals]
 }
+
+// Month Chooser
+export function increaseMHelper(currDate) {
+    var datestring = currDate.toISOString()
+    var currMonth = parseInt(currDate.toISOString().substring(5,7));
+    if (currMonth < 12) {
+        currMonth += 1
+        if (currMonth < 10) {
+            var newDay = datestring.substring(0,4) + '-0' + currMonth + '-10' + datestring.substring(10,30)
+        } else {
+            var newDay = datestring.substring(0,4) + '-' + currMonth + '-10' + datestring.substring(10,30)
+        }
+    } else if (currMonth == 12) {
+        var currYear = parseInt(datestring.substring(0,4))
+        currYear += 1
+        var newDay = currYear + '-01-10' + datestring.substring(10,30)
+    } else {
+        alert('error')
+    }
+    const nextMonth = new Date(newDay)
+    return nextMonth
+}
+
+export function decreaseMHelper(currDate) {
+    var datestring = currDate.toISOString()
+    var currMonth = parseInt(currDate.toISOString().substring(5,7));
+    if (currMonth > 1) {
+        currMonth -= 1
+        if (currMonth < 10) {
+            var newDay = datestring.substring(0,4) + '-0' + currMonth + '-10' + datestring.substring(10,30)
+        } else {
+            var newDay = datestring.substring(0,4) + '-' + currMonth + '-10' + datestring.substring(10,30)
+        }
+    } else if (currMonth == 1) {
+        var currYear = parseInt(datestring.substring(0,4))
+        currYear -= 1
+        var newDay = currYear + '-12-10' + datestring.substring(10,30)
+    } else {
+        alert('error')
+    }
+    const prevMonth = new Date(newDay)
+    return prevMonth
+}
+
+export function displayMonth (currDate) {
+    var months = [ "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December" ];
+    var dispMonth = months[parseInt(currDate.toISOString().substring(5,7)) - 1];
+    var dispYear = currDate.toISOString().substring(0,4);
+    var dispDay = dispMonth + ' ' + dispYear
+    return dispDay
+}
+
+

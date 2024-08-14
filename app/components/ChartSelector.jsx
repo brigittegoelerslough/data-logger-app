@@ -11,7 +11,7 @@ import BarChartMonthBreakdown from "./Charts/Breakdown/BarChartMonthBreakdown";
 import BarChartWeekBreakdown from "./Charts/Breakdown/BarChartWeekBreakdown";
 import { groupBy } from "core-js/actual/array/group-by";
 import { setWeek } from "date-fns";
-import { convertToMMDDYYYY, fillInDates, fillInObject, groupByAmmount, groupByReduce, objPerDate, sumData } from "../functions/actions";
+import { convertToMMDDYYYY, decreaseMHelper, displayMonth, fillInDates, fillInObject, groupByAmmount, groupByReduce, increaseMHelper, objPerDate, sumData } from "../functions/actions";
 require("core-js/actual/array/group-by");
 
 export default function ChartSelector(things){
@@ -48,45 +48,13 @@ export default function ChartSelector(things){
     const [monthState, setMonthState] = useState(now);
 
     function increaseM() {
-        var datestring = monthState.toISOString()
-        var currMonth = parseInt(monthState.toISOString().substring(5,7));
-        if (currMonth < 12) {
-            currMonth += 1
-            if (currMonth < 10) {
-                var newDay = datestring.substring(0,4) + '-0' + currMonth + '-10' + datestring.substring(10,30)
-            } else {
-                var newDay = datestring.substring(0,4) + '-' + currMonth + '-10' + datestring.substring(10,30)
-            }
-        } else if (currMonth == 12) {
-            var currYear = parseInt(datestring.substring(0,4))
-            currYear += 1
-            var newDay = currYear + '-01-10' + datestring.substring(10,30)
-        } else {
-            alert('error')
-        }
-        const nextMonth = new Date(newDay)
+        const nextMonth = increaseMHelper(monthState)
         setMonthState(nextMonth) 
     }
 
     function decreaseM() {
-        var datestring = monthState.toISOString()
-        var currMonth = parseInt(monthState.toISOString().substring(5,7));
-        if (currMonth > 1) {
-            currMonth -= 1
-            if (currMonth < 10) {
-                var newDay = datestring.substring(0,4) + '-0' + currMonth + '-10' + datestring.substring(10,30)
-            } else {
-                var newDay = datestring.substring(0,4) + '-' + currMonth + '-10' + datestring.substring(10,30)
-            }
-        } else if (currMonth == 1) {
-            var currYear = parseInt(datestring.substring(0,4))
-            currYear -= 1
-            var newDay = currYear + '-12-10' + datestring.substring(10,30)
-        } else {
-            alert('error')
-        }
-        const nextMonth = new Date(newDay)
-        setMonthState(nextMonth) 
+        const prevMonth = decreaseMHelper(monthState)
+        setMonthState(prevMonth) 
     }
 
     function chooseMonthToday() {
@@ -94,11 +62,7 @@ export default function ChartSelector(things){
         setMonthState(today) 
     }
     
-    var months = [ "January", "February", "March", "April", "May", "June", 
-        "July", "August", "September", "October", "November", "December" ];
-    var dispMonth = months[parseInt(monthState.toISOString().substring(5,7)) - 1];
-    var dispYear = monthState.toISOString().substring(0,4);
-    var dispDay = dispMonth + ' ' + dispYear
+    var dispDay = displayMonth(monthState)
 
     
     // Week Chooser
@@ -221,7 +185,6 @@ export default function ChartSelector(things){
                         } else{
                             var breakdown = 'Sum'
                         }
-
                         if(timescale === "All" && breakdown == "Sum"){
                             graphAllSum.current.style.display = 'block';
                             graphMonthSum.current.style.display = 'none';
