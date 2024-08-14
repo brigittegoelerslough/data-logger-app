@@ -93,6 +93,16 @@ export default function ChartSelector(things){
 
     var dispWeek =  mmddyyyy2 + ' - ' + mmddyyyy
 
+    var chartheight = '100%'
+    if (self.innerWidth < 750) {
+     chartheight = 350
+    } else if (self.innerWidth < 1023) {
+     chartheight = '100%' 
+    } else if (self.innerWidth < 1500) {
+     chartheight = 550
+    } else {
+     chartheight = '100%'
+    }
 
    return (
     <div className="lg:flex">
@@ -247,7 +257,7 @@ export default function ChartSelector(things){
             <h1 className="text-2xl font-bold mb-4" >Consumption Over All Time</h1>
             
             <div className="-mx-2 lg:mx-0" >
-                <BarChartAllSum things={summedData}/>
+                <BarChartAllSum things={[summedData, chartheight]}/>
             </div>
         </div>
 
@@ -275,7 +285,7 @@ export default function ChartSelector(things){
             </button>
 
             <div className="-mx-2 lg:mx-0" >
-                <BarChartMonthSum data={[summedData, monthState]}/>
+                <BarChartMonthSum data={[summedData, monthState, chartheight]}/>
             </div>
 
         </div>
@@ -304,14 +314,14 @@ export default function ChartSelector(things){
             </button>
 
             <div className="-mx-2 lg:mx-0" >
-                <BarChartWeekSum data={[summedData, weekState]}/>
+                <BarChartWeekSum data={[summedData, weekState, chartheight]}/>
             </div>
         </div>
 
         <div style={{display:"none"}} ref={graphAllBreakdown} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4 mr-4">
             <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
             <div className="-mx-2 lg:mx-0" >
-                <BarChartAllBreakdown things={breakdownData} />
+                <BarChartAllBreakdown things={[breakdownData, chartheight]} />
             </div>
         </div>
             
@@ -339,7 +349,7 @@ export default function ChartSelector(things){
             </button>
 
             <div className="-mx-2 lg:mx-0" >
-                <BarChartMonthBreakdown data={[breakdownData, monthState]} />
+                <BarChartMonthBreakdown data={[breakdownData, monthState, chartheight]} />
             </div>
         </div>    
             
@@ -367,7 +377,7 @@ export default function ChartSelector(things){
             </button>
             
             <div className="-mx-2 lg:mx-0" >
-                <BarChartWeekBreakdown data={[breakdownData, weekState]} />
+                <BarChartWeekBreakdown data={[breakdownData, weekState, chartheight]} />
             </div>
         </div>                
 

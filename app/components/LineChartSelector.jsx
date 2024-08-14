@@ -78,6 +78,17 @@ export default function LineChartSelector(things){
 
     var dispWeek =  mmddyyyy2 + ' - ' + mmddyyyy
 
+    var chartheight = '100%'
+    if (self.innerWidth < 750) {
+     chartheight = 350
+    } else if (self.innerWidth < 1023) {
+     chartheight = '100%' 
+    } else if (self.innerWidth < 1500) {
+     chartheight = 550
+    } else {
+     chartheight = '100%'
+    }
+
 
    return (
     <div className="lg:flex">
@@ -119,7 +130,7 @@ export default function LineChartSelector(things){
             <h1 className="text-2xl font-bold mb-4" >Consumption Over All Time</h1>
             
             <div className="-mx-2 lg:mx-0" >
-                <LineChartAll things={thingsData}/>
+                <LineChartAll things={[thingsData, chartheight]}/>
             </div>
         </div>
 
@@ -147,7 +158,7 @@ export default function LineChartSelector(things){
             </button>
 
             <div className="-mx-2 lg:mx-0" >
-                <LineChartMonth data={[thingsData, monthState]}/>
+                <LineChartMonth data={[thingsData, monthState, chartheight]}/>
             </div>
         </div>
         <div style={{display:"none"}} ref={graphWeekSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
@@ -174,7 +185,7 @@ export default function LineChartSelector(things){
             </button>
 
             <div className="-mx-2 lg:mx-0" >
-                <LineChartWeek data={[thingsData, weekState]}/>
+                <LineChartWeek data={[thingsData, weekState, chartheight]}/>
             </div>
         </div>               
         </div>

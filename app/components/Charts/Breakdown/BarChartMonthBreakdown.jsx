@@ -8,6 +8,8 @@ export default function BarChartMonthBreakdown(things){
 
    const thingsData = things.data[0]
    const date = things.data[1]
+   const chartheight = things.data[2]
+
 
    const chosenMonth = date.toISOString().substring(5,7)
    const chosenYear = date.toISOString().substring(0,4)
@@ -19,27 +21,13 @@ export default function BarChartMonthBreakdown(things){
       }
    }
 
-   var chartheight = '100%'
-   if (self.innerWidth < 750) {
-    chartheight = 350
-   } else if (self.innerWidth < 1023) {
-    chartheight = '100%' 
-   } else if (self.innerWidth < 1500) {
-    chartheight = 550
-   } else {
-    chartheight = '100%'
-   }
-
    return (
       <div>
-       <div>
+       <div style={{height: chartheight}}>
          <Bar 
-            style={{
-               height: chartheight ,
-               width: '100%'
-             }}
              options= {{
                maintainAspectRatio: false,
+               aspectRatio: 1,
                plugins: {
                   legend: {
                      labels: {

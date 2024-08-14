@@ -26,6 +26,7 @@ export default function LineChartWeek(things) {
 
     const thingsData = things.data[0]
     const chosenDate = things.data[1]
+    const chartheight = things.data[2]
 
     const maximumDate = chosenDate;
     var day = 60 * 60 * 24 * 1000;
@@ -47,17 +48,6 @@ export default function LineChartWeek(things) {
     let res = createDatesTotals(sortable, minimumDate, maximumDate)
     const dates = res[0]
     const totals = res[1]
-
-    var chartheight = '100%'
-    if (self.innerWidth < 750) {
-     chartheight = 350
-    } else if (self.innerWidth < 1023) {
-     chartheight = '100%' 
-    } else if (self.innerWidth < 1500) {
-     chartheight = 550
-    } else {
-     chartheight = '100%'
-    }
     
     const data = {
         labels: dates,
@@ -81,6 +71,7 @@ export default function LineChartWeek(things) {
 
     const options = {
         maintainAspectRatio: false,
+        aspectRatio: 1,
         scales: {
             y: {
                 // beginAtZero: true
@@ -97,12 +88,8 @@ export default function LineChartWeek(things) {
     }
 
     return (
-        <div>
-            <Line
-                style={{
-                    height: chartheight ,
-                    width: '100%'
-                    }}            
+        <div style={{height: chartheight}}>
+            <Line       
                 data = {data}
                 options = {options}
             />

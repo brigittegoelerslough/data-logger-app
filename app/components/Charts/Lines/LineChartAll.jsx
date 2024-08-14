@@ -21,7 +21,9 @@ ChartJs.register(
 );
 
 export default function LineChartAll(things) {
-    const thingsData = things.things
+    const thingsData = things.things[0]
+    const chartheight = things.things[1]
+
 
     let sortable = [];
     for (var key in thingsData) {
@@ -48,17 +50,6 @@ export default function LineChartAll(things) {
 
     dates.push(maximumDate)
     totals.push(sum)
-
-    var chartheight = '100%'
-    if (self.innerWidth < 750) {
-     chartheight = 350
-    } else if (self.innerWidth < 1023) {
-     chartheight = '100%' 
-    } else if (self.innerWidth < 1500) {
-     chartheight = 550
-    } else {
-     chartheight = '100%'
-    }
 
     const data = {
         labels: dates,

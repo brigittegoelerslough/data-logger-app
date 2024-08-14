@@ -7,6 +7,8 @@ export default function BarChartWeekSum(things){
 
   const finalResult = things.data[0]
   const date = things.data[1]
+  const chartheight = things.data[2]
+
   // console.log(date.toISOString().split('T')[0], finalResult)
   const datestring = date.toISOString().split('T')[0]
   var mmddyyyy = datestring.substring(5,7) + '/' + datestring.substring(8,10) + '/' + datestring.substring(0,4);
@@ -26,27 +28,13 @@ export default function BarChartWeekSum(things){
     lastWeek[day] = finalResult[day]
    }
 
-   var chartheight = '100%'
-   if (self.innerWidth < 750) {
-    chartheight = 350
-   } else if (self.innerWidth < 1023) {
-    chartheight = '100%' 
-   } else if (self.innerWidth < 1500) {
-    chartheight = 550
-   } else {
-    chartheight = '100%'
-   }
-
    return (
       <div>
-       <div>
+       <div style={{height: chartheight}}>
          <Bar 
-            style={{
-              height: chartheight ,
-              width: '100%'
-              }}
-           options= {{
-              maintainAspectRatio: false,
+             options= {{
+               maintainAspectRatio: false,
+               aspectRatio: 1,
                scales: {
                  y:       {
                    grid: {

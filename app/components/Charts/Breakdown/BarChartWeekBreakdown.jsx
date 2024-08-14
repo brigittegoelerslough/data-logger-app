@@ -8,6 +8,7 @@ export default function BarChartWeekBreakdown(things){
 
    const thingsData = things.data[0]
    const chosenDate = things.data[1]
+   const chartheight = things.data[2]
 
    const chosendatestring = chosenDate.toISOString().split('T')[0]
    var searchDate = chosendatestring.substring(5,7) + '/' + chosendatestring.substring(8,10) + '/' + chosendatestring.substring(0,4);
@@ -19,28 +20,14 @@ export default function BarChartWeekBreakdown(things){
       finalResult.push(thingsData[key])
    }
 
-   var chartheight = '100%'
-   if (self.innerWidth < 750) {
-    chartheight = 350
-   } else if (self.innerWidth < 1023) {
-    chartheight = '100%' 
-   } else if (self.innerWidth < 1500) {
-    chartheight = 550
-   } else {
-    chartheight = '100%'
-   }
-
 
    return (
       <div>
-       <div>
+       <div style={{height: chartheight}}>
          <Bar 
-            style={{
-               height: chartheight ,
-               width: '100%'
-             }}
              options= {{
                maintainAspectRatio: false,
+               aspectRatio: 1,
                plugins: {
                   legend: {
                      labels: {

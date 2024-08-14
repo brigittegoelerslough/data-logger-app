@@ -7,26 +7,8 @@ export default function BarChartMonthSum(things){
 
    const finalResult = things.data[0]
    const chooseMonth = things.data[1]
+   const chartheight = things.data[2]
 
-   // const now = new Date();
-   // const month = now.toISOString().substring(5,7);
-   // if (month === '02'){
-   //    var num_days = 28
-   // } else if (month === '02' || month === '02' || month === '02' || month === '02'){
-   //    var num_days = 30
-   // }  else {
-   //    var num_days = 31
-   // }
-   // const last_month_keys = Object.keys(finalResult).slice(-num_days)
-   // const lastMonth = {}
-   // for (const key in last_month_keys) {
-   //  const day = last_month_keys[key]
-   //  lastMonth[day] = finalResult[day]
-   // }
-
-   // console.log(chooseMonth)
-   // console.log(chooseMonth.toISOString())
-   // console.log(finalResult)
    const month = chooseMonth.toISOString().substring(5,7)
    const year = chooseMonth.toISOString().substring(0,4)
    var dates = []
@@ -38,48 +20,34 @@ export default function BarChartMonthSum(things){
       }
    }
 
-   var chartheight = '100%'
-   if (self.innerWidth < 750) {
-    chartheight = 350
-   } else if (self.innerWidth < 1023) {
-    chartheight = '100%' 
-   } else if (self.innerWidth < 1500) {
-    chartheight = 550
-   } else {
-    chartheight = '100%'
-   }
-
    return (
       <div>
-       <div>
+       <div style={{height: chartheight}}>
          <Bar 
-            style={{
-               height: chartheight ,
-               width: '100%'
-               }}
-            options= {{
+             options= {{
                maintainAspectRatio: false,
+               aspectRatio: 1,
                scales: {
-                 y:       {
-                   grid: {
-                     color: "#474747"
-                   },
-                   ticks: {
-                    color: "#a8a8a8"
-                   }
-                 }
-                 ,
-                 x: 
-                   {
-                     grid: {
-                       color: "#474747"
-                     },
-                     ticks: {
-                      color: "#a8a8a8"
-                     }
-                   }
-               }
-             }}         
+                  y:       {
+                    grid: {
+                      color: "#474747"
+                    },
+                    ticks: {
+                     color: "#a8a8a8"
+                    }
+                  }
+                  ,
+                  x: 
+                    {
+                      grid: {
+                        color: "#474747"
+                      },
+                      ticks: {
+                       color: "#a8a8a8"
+                      }
+                    }
+                }
+              }}     
             data={{
                // labels: revenueData.map((data) => data.label),
                // labels: Object.keys(lastMonth),
