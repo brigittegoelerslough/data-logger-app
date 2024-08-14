@@ -11,7 +11,7 @@ export default async function Home() {
     return (
       <main className="bg-gray-800 min-h-screen flex items-center justify-center text-center text-white p-5">
       <div>
-        <h1 className="text-4xl font-bold mb-12 -mt-24"> Tracker App </h1>
+        <h1 className="text-4xl font-bold mb-12 -mt-24"> Data Logger App </h1>
         <h1 className="text-2xl mb-16"> To log data for whatever you want to track, and to see graphs over time </h1>
       </div>
     </main>    
@@ -20,7 +20,7 @@ export default async function Home() {
   return (
     <main className="bg-gray-800 min-h-screen flex items-center justify-center text-center text-white p-5">
       <div>
-        <h1 className="text-4xl font-bold mb-12 "> Tracker App </h1>
+        <h1 className="text-4xl font-bold mb-12 "> Data Logger App </h1>
         <h1 className="text-2xl mb-16"> To log data for whatever you want to track, and to see graphs over time: </h1>
         <button
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2 mb-32"

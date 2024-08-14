@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Tracker App",
+  title: "Data Logger App",
   description: "An App to Track Stuff (js)",
 };
 
