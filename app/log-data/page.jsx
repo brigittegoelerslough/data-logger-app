@@ -51,19 +51,19 @@ export default async function Home() {
   return (
     <main className="px-5 md:px-0 bg-gray-800 min-h-screen flex pt-10 justify-center text-center text-white ">
 
-      <div className="md:flex md:w-screen md:px-10 md:mx-10">
+      <div className="md:flex md:w-screen md:px-4 md:mx-4 lg:px-6 lg:mx-6 min-[1400px]:px-10 min-[1400px]:mx-10">
 
         <div className="md:flex-shrink-0 md:flex-grow basis-1/4 justify-center items-center"> 
           <DataLogger user={data.user} />
         </div>
 
-        <div className="md:flex-shrink-0 md:flex-grow basis-1/12">
+        <div className="md:flex-shrink-0 md:flex-grow basis-1/12 md:-mx-7 lg:-mx-4 min-[1400px]:mx-0">
           <p></p>
         </div>
 
         <div className="mt-4 md:mt-0 md:ml-6 md:flex-shrink-0 md:flex-grow basis-2/3">
               <h1 className="text-2xl font-bold mb-4">{header}</h1>
-            <div className="md:columns-1 lg:columns-2 min-[1400px]:columns-3 min-[1800px]:columns-4 pb-10">
+            <div className="md:columns-1 min-[1050px]:columns-2 min-[1400px]:columns-3 min-[1800px]:columns-4 pb-10">
                     <ul>
                       {things.map((thing) => (
                         <div key={thing.id} className="flex justify-center space-x-2">
