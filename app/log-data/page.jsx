@@ -53,7 +53,7 @@ export default async function Home() {
 
       <div className="md:flex md:w-screen md:px-4 md:mx-4 lg:px-6 lg:mx-6 min-[1400px]:px-10 min-[1400px]:mx-10">
 
-        <div className="md:flex-shrink-0 md:flex-grow basis-1/4 justify-center items-center"> 
+        <div className="md:flex-shrink-0 md:flex-grow basis-1/4 "> 
           <DataLogger user={data.user} />
         </div>
 
