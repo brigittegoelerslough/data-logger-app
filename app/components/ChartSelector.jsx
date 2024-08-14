@@ -253,7 +253,7 @@ export default function ChartSelector(things){
 
     </div>
 
-        <div style={{display:"block"}} ref={graphAllSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4 mr-4">
+        <div style={{display:"block"}} ref={graphAllSum} className="mt-5 lg:ml-6 lg:flex-grow basis-3/4 mr-4">
             <h1 className="text-2xl font-bold mb-4" >Consumption Over All Time</h1>
             
             <div className="-mx-2 lg:mx-0" >
@@ -261,7 +261,7 @@ export default function ChartSelector(things){
             </div>
         </div>
 
-        <div style={{display:"none"}} ref={graphMonthSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4 mr-4">
+        <div style={{display:"none"}} ref={graphMonthSum} className="mt-5 lg:ml-6 lg:flex-grow basis-3/4 mr-4">
             <h1 className="text-xl lg:text-2xl font-bold mb-2 lg:mb-4" >Consumption Over The Month Of:</h1>
             
             <button className="font-bold -ml-3" onClick={() => decreaseM()}>
@@ -290,7 +290,7 @@ export default function ChartSelector(things){
 
         </div>
 
-        <div style={{display:"none"}} ref={graphWeekSum} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4 mr-4">
+        <div style={{display:"none"}} ref={graphWeekSum} className="mt-5 lg:ml-6 lg:flex-grow basis-3/4 mr-4">
             <h1 className="text-xl lg:text-2xl font-bold mb-2 lg:mb-4" >Consumption Over The Week Of:</h1>
 
             <button className="-ml-3 font-bold" onClick={() => decreaseW()}>
@@ -318,14 +318,14 @@ export default function ChartSelector(things){
             </div>
         </div>
 
-        <div style={{display:"none"}} ref={graphAllBreakdown} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4 mr-4">
+        <div style={{display:"none"}} ref={graphAllBreakdown} className="mt-5 lg:ml-6 lg:flex-grow basis-3/4 mr-4">
             <h1 className="text-2xl font-bold mb-4" >Consumption Over Time</h1>
             <div className="-mx-2 lg:mx-0" >
                 <BarChartAllBreakdown things={[breakdownData, chartheight]} />
             </div>
         </div>
             
-        <div style={{display:"none"}} ref={graphMonthBreakdown} className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4 mr-4">
+        <div style={{display:"none"}} ref={graphMonthBreakdown} className="mt-5 lg:ml-6 lg:flex-grow basis-3/4 mr-4">
             <h1 className="text-xl lg:text-2xl font-bold mb-2 lg:mb-4" >Consumption Over The Month Of:</h1>
         
             <button className="-ml-3 font-bold" onClick={() => decreaseM()}>
@@ -353,7 +353,7 @@ export default function ChartSelector(things){
             </div>
         </div>    
             
-        <div style={{display:"none"}} ref={graphWeekBreakdown} className="mt-4 lg:mt-0 lg:ml-6 lg:flex-grow basis-3/4 mr-4">
+        <div style={{display:"none"}} ref={graphWeekBreakdown} className="mt-5 lg:ml-6 lg:flex-grow basis-3/4 mr-4">
             <h1 className="text-xl lg:text-2xl font-bold mb-2 lg:mb-4" >Consumption Over The Week Of:</h1>
 
             <button className="-ml-3 font-bold" onClick={() => decreaseW()}>
