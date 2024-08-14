@@ -42,7 +42,28 @@ export default function DataLogger(user){
         ) }
 
    var now = new Date();
-   var minDate = now.toISOString().substring(0,10);
+
+   var hours = ''+now.getHours()
+   var minutes = ''+now.getMinutes()
+   if (hours.length == 1) {
+    hours = 0 + hours
+   }
+   if (minutes.length == 1) {
+    minutes = 0 + minutes
+   }
+   var currTime = hours + ':' + minutes
+
+   var month = '' + (now.getMonth()+1)
+   var date = '' + now.getDate()
+   var year = '' + now.getFullYear()
+   if (month.length == 1) {
+    month = 0 + month
+   }
+   if (date.length == 1) {
+    date = 0 + date
+   }
+
+   var currDate = year + '-' + month + '-' + date
 
    return (
        <div className="">
@@ -68,6 +89,7 @@ export default function DataLogger(user){
             <input 
                 type="time" 
                 ref={myTimeRef} 
+                defaultValue = {currTime}
                 className="mx-auto w-72 lg:w-full h-11 items-center justify-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
 
@@ -75,7 +97,8 @@ export default function DataLogger(user){
             <input 
                 type="date" 
                 ref={myDateRef} 
-                max ={minDate}
+                max ={currDate}
+                defaultValue = {currDate}
                 className="mx-auto w-72 lg:w-full h-11 items-center justify-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
 
             <button
