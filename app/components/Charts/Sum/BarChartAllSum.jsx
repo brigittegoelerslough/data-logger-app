@@ -11,13 +11,28 @@ export default function BarChartAllSum(things){
 
    const finalResult = things.things
    // console.log('SUM FINAL', finalResult)
+   var chartheight = '100%'
+   if (self.innerWidth < 750) {
+    chartheight = 350
+   } else if (self.innerWidth < 1023) {
+    chartheight = '100%' 
+   } else if (self.innerWidth < 1500) {
+    chartheight = 550
+   } else {
+    chartheight = '100%'
+   }
 
    return (
       <div>
        <div>
          <Bar 
+            style={{
+              height: chartheight ,
+              width: '100%'
+            }}
             options= {{
-               scales: {
+              maintainAspectRatio: false,
+              scales: {
                  y:       {
                    grid: {
                      color: "#474747"

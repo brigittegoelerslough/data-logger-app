@@ -68,6 +68,17 @@ export default function LineChartMonth(things) {
     const dates = res[0]
     const totals = res[1]
 
+    var chartheight = '100%'
+    if (self.innerWidth < 750) {
+     chartheight = 350
+    } else if (self.innerWidth < 1023) {
+     chartheight = '100%' 
+    } else if (self.innerWidth < 1500) {
+     chartheight = 550
+    } else {
+     chartheight = '100%'
+    }
+
     const data = {
         labels: dates,
         datasets: [
@@ -88,6 +99,7 @@ export default function LineChartMonth(things) {
     }
 
     const options = {
+        maintainAspectRatio: false,
         scales: {
             y: {
                 // beginAtZero: true
@@ -106,6 +118,10 @@ export default function LineChartMonth(things) {
     return (
         <div>
             <Line
+                style={{
+                    height: chartheight ,
+                    width: '100%'
+                    }}
                 data = {data}
                 options = {options}
             />

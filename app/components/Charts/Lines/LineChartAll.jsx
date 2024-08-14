@@ -49,6 +49,17 @@ export default function LineChartAll(things) {
     dates.push(maximumDate)
     totals.push(sum)
 
+    var chartheight = '100%'
+    if (self.innerWidth < 750) {
+     chartheight = 350
+    } else if (self.innerWidth < 1023) {
+     chartheight = '100%' 
+    } else if (self.innerWidth < 1500) {
+     chartheight = 550
+    } else {
+     chartheight = '100%'
+    }
+
     const data = {
         labels: dates,
         datasets: [
@@ -69,6 +80,7 @@ export default function LineChartAll(things) {
     }
 
     const options = {
+        maintainAspectRatio: false,
         scales: {
             y: {
                 beginAtZero: true
@@ -85,6 +97,10 @@ export default function LineChartAll(things) {
     return (
         <div>
             <Line
+                style={{
+                    height: chartheight ,
+                    width: '100%'
+                    }}
                 data = {data}
                 options = {options}
             />

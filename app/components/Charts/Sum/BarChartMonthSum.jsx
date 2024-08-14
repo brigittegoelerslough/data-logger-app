@@ -38,11 +38,27 @@ export default function BarChartMonthSum(things){
       }
    }
 
+   var chartheight = '100%'
+   if (self.innerWidth < 750) {
+    chartheight = 350
+   } else if (self.innerWidth < 1023) {
+    chartheight = '100%' 
+   } else if (self.innerWidth < 1500) {
+    chartheight = 550
+   } else {
+    chartheight = '100%'
+   }
+
    return (
       <div>
        <div>
          <Bar 
+            style={{
+               height: chartheight ,
+               width: '100%'
+               }}
             options= {{
+               maintainAspectRatio: false,
                scales: {
                  y:       {
                    grid: {
