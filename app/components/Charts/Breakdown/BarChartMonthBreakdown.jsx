@@ -24,6 +24,13 @@ export default function BarChartMonthBreakdown(things){
        <div>
          <Bar 
             options= {{
+               plugins: {
+                  legend: {
+                     labels: {
+                       boxWidth: 35,
+                     }
+                   },
+               },
                scales: {
                  y:       {
                    grid: {

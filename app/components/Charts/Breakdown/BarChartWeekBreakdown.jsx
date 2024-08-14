@@ -25,6 +25,13 @@ export default function BarChartWeekBreakdown(things){
        <div>
          <Bar 
             options= {{
+               plugins: {
+                  legend: {
+                     labels: {
+                       boxWidth: 35,
+                     }
+                   },
+               },
                 scales: {
                   y:       {
                     grid: {
