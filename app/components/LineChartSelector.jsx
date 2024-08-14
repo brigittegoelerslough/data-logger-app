@@ -153,7 +153,7 @@ export default function LineChartSelector(things){
             </button>
             <button 
                 onClick={() => chooseMonthToday()}
-                className="-mr-3 mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                className="-mr-3 mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-sm font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
                 Return to Today
             </button>
 
@@ -180,7 +180,7 @@ export default function LineChartSelector(things){
             </button>
             <button 
                 onClick={() => chooseWeekToday()}
-                className="-mr-3 mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-md font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
+                className="-mr-3 mb-4 mt-4 ml-2 lg:mt-0 lg:ml-10 bg-transparent hover:bg-gray-400 text-white text-sm font-semibold hover:text-white py-1 px-2 border border-white hover:border-white rounded">
                 Return to Today
             </button>
 
