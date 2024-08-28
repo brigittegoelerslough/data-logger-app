@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "../utils/supabase/server";
 // import { createClient } from '@/utils/supabase/server'
 
-export async function login(formData) {
+export async function login2(formData) {
   const supabase = createClient();
 
   // type-casting here for convenience
@@ -17,9 +17,6 @@ export async function login(formData) {
   const { error } = await supabase.auth.signInWithPassword(data);
 
   if (error) {
-    if (error.__isAuthError == true) {
-      console.log("auth error");
-    }
     redirect("/error");
   }
 
@@ -27,7 +24,7 @@ export async function login(formData) {
   redirect("/bar-chart");
 }
 
-export async function signup(formData) {
+export async function signup2(formData) {
   const supabase = createClient();
 
   // type-casting here for convenience
@@ -46,5 +43,3 @@ export async function signup(formData) {
   revalidatePath("/", "layout");
   redirect("/log-data");
 }
-
-export async function resetPasswordFx(data) {}

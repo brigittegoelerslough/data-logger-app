@@ -1,11 +1,10 @@
 "use client";
 import { useState } from "react";
-import { login, resetPasswordFx, signup } from "./actions";
+import { login2, signup2 } from "./actions";
 
-export default function Login() {
+export default function LoginModal() {
   const [isSigningUp, setIsSigningUp] = useState(false);
   const [clickedSignUp, setClickedSignUp] = useState(false);
-  const [resetPassword, setResetPassword] = useState(false);
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-gray-800 text-white">
@@ -43,7 +42,7 @@ export default function Login() {
           {isSigningUp ? (
             <button
               type="submit"
-              formAction={signup}
+              formAction={signup2}
               onClick={() => setClickedSignUp(true)}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
             >
@@ -52,7 +51,7 @@ export default function Login() {
           ) : (
             <button
               type="submit"
-              formAction={login}
+              formAction={login2}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Login
@@ -82,15 +81,6 @@ export default function Login() {
           </button>
         </p>
       )}
-
-      {/* <p className="mt-4 text-center text-sm text-gray-400">
-        Forgot your Password?{' '}
-            <button
-                className="font-medium text-white hover:text-red-500"
-                onClick={() => resetPasswordFx(true)}>
-                Reset Password
-            </button>
-        </p> */}
     </main>
   );
 }
