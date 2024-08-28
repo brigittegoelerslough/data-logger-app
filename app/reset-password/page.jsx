@@ -14,17 +14,22 @@ export default function Reset() {
     const password = formData.get("password")
     const confirmPassword = formData.get("confirm-password")
     if (password != confirmPassword) {
-      alert('your passwords must be the same')
+      alert('your passwords must be the same');
+      return false;
     }
     const { data: resetData, error } = await supabase.auth.updateUser({
       password: password
     })
 
-    if (resetData) {
+    console.log('TEST', resetData.user, 'done')
+
+    if (resetData.user) {
       console.log(resetData)
       redirect("/login");
     }
-    if (error) console.log(error)
+    if (error) {
+      console.log(error)
+    }
 
   }
 
