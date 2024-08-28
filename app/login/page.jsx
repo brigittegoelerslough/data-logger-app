@@ -15,6 +15,7 @@ export default function Login() {
     const supabase = createClient();
     const fullname = `${window.location.href}`.slice(0, -5);
     var website = fullname + 'reset-password';
+    // console.log(website)
     try {
       const email = formData.get("email")
       const {data, error} = await supabase.auth.resetPasswordForEmail(email , {
