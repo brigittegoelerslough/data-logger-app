@@ -1,33 +1,45 @@
 "use client";
 
-import { Chart as ChartJS, defaults } from "chart.js/auto";
-import { Bar, Doughnut, Line } from "react-chartjs-2";
-// import chooseGraph from "../saved-data/actions";
-import { useEffect, useRef, useState } from "react";
-import BarChartAllSum from "./Charts/Sum/BarChartAllSum";
-import BarChartWeekSum from "./Charts/Sum/BarChartWeekSum";
-import BarChartMonthSum from "./Charts/Sum/BarChartMonthSum";
-import BarChartAllBreakdown from "./Charts/Breakdown/BarChartAllBreakdown";
-import BarChartMonthBreakdown from "./Charts/Breakdown/BarChartMonthBreakdown";
-import BarChartWeekBreakdown from "./Charts/Breakdown/BarChartWeekBreakdown";
-import { groupBy } from "core-js/actual/array/group-by";
+import { useRef, useState } from "react";
 import LineChartAll from "./Charts/Lines/LineChartAll";
 import LineChartMonth from "./Charts/Lines/LineChartMonth";
 import LineChartWeek from "./Charts/Lines/LineChartWeek";
+import BarChartEmpty from "./Charts/BarChartEmpty";
 import {
   convertToMMDDYYYY,
   decreaseMHelper,
   displayMonth,
-  fillInDates,
-  fillInObject,
-  groupByReduce,
   increaseMHelper,
-  sumData,
 } from "../functions/actions";
 
 export default function LineChartSelector(things) {
   if (things.things.length == 0) {
-    return;
+    return (
+      <div className="lg:flex">
+        <div className="lg:flex-shrink-0 lg:flex-grow basis-1/4 pt-0 object-center lg:my-auto ">
+          <h1 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-4 lg:-mt-10">
+            Time Period:
+          </h1>
+
+          <select className="max-w-64 h-10 m-auto text-black col-span-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option value="All">All Time</option>
+            <option value="Month">By Month</option>
+            <option value="Week">By Week</option>
+          </select>
+        </div>
+
+        <div
+          style={{ display: "block" }}
+          className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4"
+        >
+          <h1 className="text-2xl font-bold mb-4">Log Data To See Graphs</h1>
+
+          <div className="-mx-2 lg:mx-0">
+            <BarChartEmpty />
+          </div>
+        </div>
+      </div>
+    );
   }
 
   const thingsData = things.things;

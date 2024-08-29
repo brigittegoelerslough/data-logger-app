@@ -1,16 +1,13 @@
 "use client";
 
-import { Chart as ChartJS, defaults } from "chart.js/auto";
-import { Bar, Doughnut, Line } from "react-chartjs-2";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import BarChartAllSum from "./Charts/Sum/BarChartAllSum";
 import BarChartWeekSum from "./Charts/Sum/BarChartWeekSum";
 import BarChartMonthSum from "./Charts/Sum/BarChartMonthSum";
 import BarChartAllBreakdown from "./Charts/Breakdown/BarChartAllBreakdown";
 import BarChartMonthBreakdown from "./Charts/Breakdown/BarChartMonthBreakdown";
 import BarChartWeekBreakdown from "./Charts/Breakdown/BarChartWeekBreakdown";
-import { groupBy } from "core-js/actual/array/group-by";
-import { setWeek } from "date-fns";
+import BarChartEmpty from "./Charts/BarChartEmpty";
 import {
   convertToMMDDYYYY,
   decreaseMHelper,
@@ -27,7 +24,49 @@ require("core-js/actual/array/group-by");
 
 export default function ChartSelector(things) {
   if (things.things.length == 0) {
-    return;
+    return (
+      <div className="lg:flex">
+        <div className="columns-2 lg:columns-1 lg:flex-shrink-0 lg:flex-grow basis-1/4 pt-2 lg:pt-32 xl:pt-40">
+          <div>
+            <h1 className="text-xl xl:text-2xl font-bold mb-3 lg:mb-4">
+              Time Period:
+            </h1>
+
+            <select className="mb-10 max-w-64 h-10 m-auto text-black col-span-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option value="All">All Time</option>
+              <option value="Month">By Month</option>
+              <option value="Week">By Week</option>
+            </select>
+          </div>
+
+          <div>
+            <h1 className="text-xl xl:text-2xl font-bold mb-3 lg:mb-4 lg:pt-24 xl:pt-32">
+              Breakdown By Amount:
+            </h1>
+
+            <label className="inline-flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                value="Breakdown"
+                className="sr-only peer"
+              />
+              <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+            </label>
+          </div>
+        </div>
+
+        <div
+          style={{ display: "block" }}
+          className="mt-5 lg:ml-6 lg:flex-grow basis-3/4 mr-4"
+        >
+          <h1 className="text-2xl font-bold mb-4">Log Data To See Graphs</h1>
+
+          <div className="-mx-2 lg:mx-0">
+            <BarChartEmpty />
+          </div>
+        </div>
+      </div>
+    );
   }
 
   const thingsData = things.things;

@@ -1,23 +1,27 @@
 "use client";
 
-import { Chart as ChartJS, defaults } from "chart.js/auto";
-import { Bar, Doughnut, Line } from "react-chartjs-2";
-
-// defaults.maintainAspectRatio = false;
-// defaults.responsive = true;
-
-// defaults.plugins.title.display = true;
-// defaults.plugins.title.align = "middle";
-// defaults.plugins.title.font.size = 20;
-// defaults.plugins.title.color = "white";
+import { Bar } from "react-chartjs-2";
 
 export default function BarChartEmpty() {
+  var chartheight = "100%";
+  if (self.innerWidth < 750) {
+    chartheight = 350;
+  } else if (self.innerWidth < 1023) {
+    chartheight = "100%";
+  } else if (self.innerWidth < 1500) {
+    chartheight = 550;
+  } else {
+    chartheight = "100%";
+  }
   return (
     <div>
       <div>
         <Bar
+          style={{
+            height: chartheight,
+            width: "100%",
+          }}
           data={{
-            // labels: revenueData.map((data) => data.label),
             datasets: [
               {
                 label: "Amount",
@@ -30,7 +34,6 @@ export default function BarChartEmpty() {
           options={{
             elements: {
               line: {
-                // tension: 0.5,
               },
             },
             plugins: {
