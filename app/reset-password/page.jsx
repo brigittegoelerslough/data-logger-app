@@ -3,34 +3,32 @@ import { useState } from "react";
 import { login, resetPasswordFx, signup } from "../login/actions";
 import { createClient } from "../utils/supabase/client";
 import { redirect } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 export default function Reset() {
-
   const supabase = createClient();
 
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
 
   async function confirmPasswords(formData) {
-    const password = formData.get("password")
-    const confirmPassword = formData.get("confirm-password")
+    const password = formData.get("password");
+    const confirmPassword = formData.get("confirm-password");
     if (password != confirmPassword) {
-      alert('your passwords must be the same');
+      toast.error("Your passwords must be the same", { duration: 4000 });
+      // alert('your passwords must be the same');
       return false;
     }
     const { data: resetData, error } = await supabase.auth.updateUser({
-      password: password
-    })
-
-    console.log('TEST', resetData.user, 'done')
+      password: password,
+    });
 
     if (resetData.user) {
-      console.log(resetData)
+      console.log(resetData);
       redirect("/login");
     }
     if (error) {
-      console.log(error)
+      console.log(error);
     }
-
   }
 
   return (
@@ -66,22 +64,21 @@ export default function Reset() {
             />
           </div>
           <button
-                type="submit"
-                formAction={confirmPasswords}
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              >
-                Confirm
-            </button>
+            type="submit"
+            formAction={confirmPasswords}
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Confirm
+          </button>
         </form>
 
         <button
           onClick={() => setShowPassword(!showPassword)}
-          className="mt-3 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-transparent hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="mt-3 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-gray-400 bg-transparent hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         >
           Show Passwords
-          </button>
+        </button>
       </div>
-
     </main>
   );
 }

@@ -2,7 +2,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "../utils/supabase/server";
-// import { createClient } from '@/utils/supabase/server'
+import { toast } from "react-hot-toast";
 
 export async function login(formData) {
   const supabase = createClient();
@@ -17,14 +17,14 @@ export async function login(formData) {
   const { error } = await supabase.auth.signInWithPassword(data);
 
   if (error) {
-    if (error.__isAuthError == true) {
-      console.log("auth error");
-    }
-    redirect("/error");
+    // if (error.__isAuthError == true) {
+    //   console.log("auth error");
+    // }
+    throw new Error(error);
+  } else {
+    revalidatePath("/", "layout");
+    redirect("/bar-chart");
   }
-
-  revalidatePath("/", "layout");
-  redirect("/bar-chart");
 }
 
 export async function signup(formData) {
@@ -40,11 +40,10 @@ export async function signup(formData) {
   const { error } = await supabase.auth.signUp(data);
 
   if (error) {
-    redirect("/error");
+    throw new Error(error)
+    // redirect("/error");
+  } else {
+    revalidatePath("/", "layout");
+    redirect("/log-data");
   }
-
-  revalidatePath("/", "layout");
-  redirect("/log-data");
 }
-
-export async function resetPasswordFx(data) {}
