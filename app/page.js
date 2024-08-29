@@ -8,10 +8,10 @@ export default async function Home({ searchParams }) {
   const show = searchParams?.show;
   const supabase = createClient();
   const { data } = await supabase.auth.getUser();
-
+  
   if (data.user) {
     if (!data.user.user_metadata.display_name) {
-      var displayName = data.user.email
+      var displayName = data.user.email.split('@')[0]
     } else {
       displayName = data.user.user_metadata.display_name
     }

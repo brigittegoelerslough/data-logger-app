@@ -48,7 +48,7 @@ export function ChangeNameModal() {
             onClick={closeModal}
             className="-mr-1 text-gray-400 bg-transparent hover:bg-gray-600 hover:text-white rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center "
           >
-            <svg class="w-3 h-3" viewBox="0 0 14 14">
+            <svg className="w-3 h-3" viewBox="0 0 14 14">
               <path
                 stroke="currentColor"
                 strokeLinecap="round"
@@ -59,12 +59,12 @@ export function ChangeNameModal() {
           </button>
         </div>
 
-        <div class="p-4 md:p-5">
-          <form class="space-y-4" action="#">
+        <div className="p-4 md:p-5">
+          <form className="space-y-4" action="#">
             <div>
               <label
-                for="name"
-                class="block mb-2 text-sm font-medium text-white text-left"
+                htmlFor="name"
+                className="block mb-2 text-sm font-medium text-white text-left"
               >
                 Your Name:
               </label>

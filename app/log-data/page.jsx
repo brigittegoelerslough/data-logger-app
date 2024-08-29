@@ -20,7 +20,7 @@ export default async function Home() {
   }
   let header = "Delete Previous Entries:";
   if (!things.length) {
-    header = "Save Some Things to See Your Data";
+    header = "Log Some Data to See Previous Entries";
   }
   if (!userData.user) {
     header = "Login to Delete Previous Entries:";

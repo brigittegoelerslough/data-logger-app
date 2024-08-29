@@ -60,7 +60,7 @@ export default function ChartSelector(things) {
           style={{ display: "block" }}
           className="mt-5 lg:ml-6 lg:flex-grow basis-3/4 mr-4"
         >
-          <h1 className="text-2xl font-bold mb-4">Log Data To See Graphs</h1>
+          <h1 className="text-2xl font-bold mb-4">Log Some Data To See Graphs</h1>
 
           <div className="-mx-2 lg:mx-0">
             <BarChartEmpty />
