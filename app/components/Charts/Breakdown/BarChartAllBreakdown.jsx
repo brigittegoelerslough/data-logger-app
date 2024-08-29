@@ -1,31 +1,31 @@
 "use client";
 
-import {
-  groupByAmmount,
-  groupByReduce,
-  objPerDate,
-} from "@/app/functions/actions";
+// import {
+  // groupByAmmount,
+  // groupByReduce,
+  // objPerDate,
+// } from "@/app/functions/actions";
 import { Chart as ChartJS, defaults } from "chart.js/auto";
-import { Bar, Doughnut, Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
-import {
-  Chart as ChartJs,
-  LineElement,
-  TimeScale,
-  LinearScale,
-  PointElement,
-  Tooltip,
-  Legend,
-} from "chart.js";
+// import {
+//   Chart as ChartJs,
+//   // LineElement,
+//   TimeScale,
+//   LinearScale,
+//   PointElement,
+//   Tooltip,
+//   Legend,
+// } from "chart.js";
 
-ChartJs.register(
-  LineElement,
-  TimeScale,
-  LinearScale,
-  PointElement,
-  Tooltip,
-  Legend,
-);
+// ChartJs.register(
+  // LineElement,
+  // TimeScale,
+  // LinearScale,
+  // PointElement,
+  // Tooltip,
+  // Legend,
+// );
 
 export default function BarChartAllBreakdown(things) {
   var finalResult = things.things[0];

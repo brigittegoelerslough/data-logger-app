@@ -1,10 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { redirect } from "next/navigation";
 import { saveThing } from "../data/things/actions";
 import { toast } from "react-hot-toast";
-import { HiCheck, HiExclamation, HiX } from "react-icons/hi";
 
 export default function DataLogger(user) {
   const saveDataText = user.user ? "Save Data" : "Login To Save Data";

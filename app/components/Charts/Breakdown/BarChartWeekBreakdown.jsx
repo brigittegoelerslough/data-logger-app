@@ -1,8 +1,7 @@
 "use client";
 
-import { groupByReduce } from "@/app/functions/actions";
+import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, defaults } from "chart.js/auto";
-import { Bar, Doughnut, Line } from "react-chartjs-2";
 
 export default function BarChartWeekBreakdown(things) {
   const thingsData = things.data[0];

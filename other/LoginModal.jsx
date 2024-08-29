@@ -1,6 +1,7 @@
 "use client";
+
 import { useState } from "react";
-import { login2, signup2 } from "./actions";
+import { login2, signup2 } from "../app/components/actions";
 
 export default function LoginModal() {
   const [isSigningUp, setIsSigningUp] = useState(false);

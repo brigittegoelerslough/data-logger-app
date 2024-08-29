@@ -1,5 +1,7 @@
 import "chartjs-adapter-date-fns";
 import { Line } from "react-chartjs-2";
+import { createDatesTotals } from "@/app/functions/actions";
+import { Chart as ChartJS, defaults } from "chart.js/auto";
 
 import {
   Chart as ChartJs,
@@ -7,20 +9,9 @@ import {
   TimeScale,
   LinearScale,
   PointElement,
-  Tooltip,
-  Legend,
 } from "chart.js";
-import { max } from "date-fns";
-import { createDatesTotals } from "@/app/functions/actions";
 
-ChartJs.register(
-  LineElement,
-  TimeScale,
-  LinearScale,
-  PointElement,
-  Tooltip,
-  Legend,
-);
+ChartJs.register(LineElement, TimeScale, LinearScale, PointElement);
 
 export default function LineChartWeek(things) {
   const thingsData = things.data[0];

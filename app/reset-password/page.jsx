@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { login, resetPasswordFx, signup } from "../login/actions";
 import { createClient } from "../utils/supabase/client";
 import { redirect } from "next/navigation";
 import { toast } from "react-hot-toast";
@@ -15,7 +14,6 @@ export default function Reset() {
     const confirmPassword = formData.get("confirm-password");
     if (password != confirmPassword) {
       toast.error("Your passwords must be the same", { duration: 4000 });
-      // alert('your passwords must be the same');
       return false;
     }
     const { data: resetData, error } = await supabase.auth.updateUser({

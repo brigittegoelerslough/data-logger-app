@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import * as React from "react";
 import BarChartAllSum from "./Charts/Sum/BarChartAllSum";
 import BarChartWeekSum from "./Charts/Sum/BarChartWeekSum";
 import BarChartMonthSum from "./Charts/Sum/BarChartMonthSum";
@@ -142,12 +143,17 @@ export default function ChartSelector(things) {
 
   var dispWeek = mmddyyyy2 + " - " + mmddyyyy;
 
+  // const [innerWidth, setInnerWidth] = useState()
+  // React.useEffect(() => {
+  //   setInnerWidth(window.innerWidth)
+  // }, []);
+  const innerWidth = self.innerWidth
   var chartheight = "100%";
-  if (self.innerWidth < 750) {
+  if (innerWidth < 750) {
     chartheight = 350;
-  } else if (self.innerWidth < 1023) {
+  } else if (innerWidth < 1023) {
     chartheight = "100%";
-  } else if (self.innerWidth < 1500) {
+  } else if (innerWidth < 1500) {
     chartheight = 550;
   } else {
     chartheight = "100%";
@@ -230,7 +236,7 @@ export default function ChartSelector(things) {
         </div>
 
         <div>
-          <h1 className="text-xl xl:text-2xl font-bold mb-3 lg:mb-4 lg:pt-32">
+          <h1 className="text-xl xl:text-2xl font-bold mb-3 lg:mb-4 lg:pt-24 xl:pt-32">
             Breakdown By Amount:
           </h1>
 

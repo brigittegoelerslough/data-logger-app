@@ -1,6 +1,6 @@
 import "chartjs-adapter-date-fns";
 import { Line } from "react-chartjs-2";
-
+import { Chart as ChartJS, defaults } from "chart.js/auto";
 import {
   Chart as ChartJs,
   LineElement,
@@ -8,17 +8,10 @@ import {
   LinearScale,
   PointElement,
   Tooltip,
-  Legend,
+  Legend
 } from "chart.js";
 
-ChartJs.register(
-  LineElement,
-  TimeScale,
-  LinearScale,
-  PointElement,
-  Tooltip,
-  Legend,
-);
+ChartJs.register(LineElement, TimeScale, LinearScale, PointElement, Tooltip, Legend);
 
 export default function LineChartAll(things) {
   const thingsData = things.things[0];

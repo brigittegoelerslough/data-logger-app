@@ -1,13 +1,13 @@
 "use client";
+
 import { useState } from "react";
-import { login, resetPasswordFx, signup } from "./actions";
+import { login, signup } from "./actions";
 import { createClient } from "../utils/supabase/client";
-import { redirect } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 export default function Login() {
   const [isSigningUp, setIsSigningUp] = useState(false);
-  const [clickedSignUp, setClickedSignUp] = useState(false);
+  // const [clickedSignUp, setClickedSignUp] = useState(false);
   const [resetPassword, setResetPassword] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -90,7 +90,7 @@ export default function Login() {
                 <button
                   type="submit"
                   formAction={trySignUp}
-                  onClick={() => setClickedSignUp(true)}
+                  // onClick={() => setClickedSignUp(true)}
                   className="-mt-2 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-bold rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                 >
                   Sign up

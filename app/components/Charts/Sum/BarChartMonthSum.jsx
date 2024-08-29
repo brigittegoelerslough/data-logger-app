@@ -1,7 +1,6 @@
 "use client";
 
-import { Chart as ChartJS, defaults } from "chart.js/auto";
-import { Bar, Doughnut, Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 export default function BarChartMonthSum(things) {
   const finalResult = things.data[0];
@@ -46,25 +45,14 @@ export default function BarChartMonthSum(things) {
             },
           }}
           data={{
-            // labels: revenueData.map((data) => data.label),
-            // labels: Object.keys(lastMonth),
             labels: dates,
             datasets: [
               {
                 label: "Ammount",
-                // data: revenueData.map((data) => data.revenue),
-                // data: Object.values(lastMonth),
                 data: values,
                 backgroundColor: "#13eda1",
                 borderColor: "#13eda1",
               },
-              // {
-              //    label: "Cost",
-              //    // data: revenueData.map((data) => data.cost),
-              //    data: thingsData.map((data) => data.amount),
-              //    backgroundColor: "#fc4503",
-              //    borderColor: "#fc4503",
-              // },
             ],
           }}
         />

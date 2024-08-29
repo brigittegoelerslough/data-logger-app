@@ -4,7 +4,7 @@
 import { groupBy } from "core-js/actual/array/group-by";
 import { useState } from "react";
 import Login from "../../app/login/page";
-import LoginModal from "../../app/components/LoginModal";
+import LoginModal from "../LoginModal";
 
 export default function Form() {
   const [isOpen, setIsOpen] = useState(false);

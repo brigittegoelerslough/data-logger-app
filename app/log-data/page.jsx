@@ -1,4 +1,3 @@
-import Image from "next/image";
 import DataLogger from "../components/DataLogger";
 import { createClient } from "../utils/supabase/server";
 import DeleteThingButton from "../components/DeleteThingButton";

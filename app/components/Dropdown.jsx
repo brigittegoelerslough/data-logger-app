@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+
+import { useState } from "react";
 
 export default function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +41,6 @@ export default function Dropdown() {
             type="button"
             className="items-center w-28 py-2 px-3 text-white hover:text-blue-500 bg-transparent focus:outline-none inline-flex"
             onClick={toggleDropdown}
-            // onMouseOver={openDropdown}
           >
             Charts
             <svg

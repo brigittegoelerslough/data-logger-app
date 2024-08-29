@@ -12,6 +12,6 @@ export async function logout() {
   }
 
   revalidatePath("/login");
-  revalidatePath("/saved-jokes");
   revalidatePath("/");
+  redirect("/");
 }

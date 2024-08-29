@@ -1,6 +1,5 @@
-import BarChart4 from "../components/Charts/BarChartEmpty";
+import BarChartEmpty from "../components/Charts/BarChartEmpty";
 import ChartSelector from "../components/ChartSelector";
-import DeleteThingButton from "../components/DeleteThingButton";
 import { createClient } from "../utils/supabase/server";
 
 export default async function BarCharts() {
@@ -37,7 +36,7 @@ export default async function BarCharts() {
           <div className="mt-10 lg:mt-5 lg:ml-6 lg:flex-grow basis-3/4">
             <h1 className="text-2xl font-bold mb-4">Consumption Over Time</h1>
             <div className="-mx-2 lg:mx-0">
-              <BarChart4 />
+              <BarChartEmpty />
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import LogoutButton from "./LogoutButton";
+import LogoutButton from "../app/components/LogoutButton";
 import { FaUser } from "react-icons/fa";
 // import LogoutOrLogin from './LogoutOrLogin';
 
